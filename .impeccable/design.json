@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-21T00:00:00.000Z",
+  "title": "Design System: IELTS 工作台 · 石墨矿场",
+  "extensions": {
+    "colorMeta": {
+      "accent": { "role": "primary", "displayName": "操作蓝", "canonical": "#4C9EFF", "tonalRamp": ["#0A1B33", "#0F2747", "#15335C", "#1B3F72", "#214B88", "#27589E", "#2D64B5", "#4C9EFF"] },
+      "ok": { "role": "secondary", "displayName": "达标绿", "canonical": "#3ECF8E", "tonalRamp": ["#08301F", "#0D452D", "#125A3B", "#176F49", "#1C8457", "#219965", "#26AE74", "#3ECF8E"] },
+      "warn": { "role": "secondary", "displayName": "警示琥珀", "canonical": "#FFB454", "tonalRamp": ["#33200A", "#472D0E", "#5C3A12", "#714716", "#86541A", "#9B611E", "#B06E22", "#FFB454"] },
+      "bad": { "role": "secondary", "displayName": "破坏红", "canonical": "#FF6369", "tonalRamp": ["#330F11", "#471517", "#5C1C1E", "#712225", "#86292C", "#9B3033", "#B0363A", "#FF6369"] },
+      "ground": { "role": "neutral", "displayName": "石墨黑", "canonical": "#0B0D10", "tonalRamp": ["#0B0D10", "#0E1115", "#12151B", "#171B22", "#1C212A", "#262C36", "#333B47", "#E8EBEF"] },
+      "panel": { "role": "neutral", "displayName": "面板底", "canonical": "#12151B", "tonalRamp": ["#0B0D10", "#12151B", "#171B22", "#1C212A", "#262C36", "#333B47", "#414B5A", "#E8EBEF"] },
+      "text-secondary": { "role": "neutral", "displayName": "次级文本", "canonical": "#A7B1BF", "tonalRamp": ["#20242B", "#2E333C", "#3D434E", "#4D5460", "#5E6673", "#707887", "#838C9B", "#A7B1BF"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "模块页大标题，700/34px，仅用于页面头部。" },
+      "data": { "displayName": "Data", "purpose": "所有数字/日期/倒计时，等宽 + tabular-nums。" },
+      "label": { "displayName": "Label", "purpose": "面板标题与表头，12px 等宽小号大写 +0.09em。" }
+    },
+    "shadows": [
+      { "name": "toast", "value": "0 4px 14px rgba(0,0,0,0.45)", "purpose": "唯一允许的阴影：Toast 浮层。" }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "所有状态过渡与入场缓动，指数级 ease-out。" },
+      { "name": "rise-in", "value": "translateY(6px) → none, 0.28s", "purpose": "页面切换时面板的单一入场动效。" }
+    ],
+    "breakpoints": [
+      { "name": "tablet", "value": "860px", "purpose": "导航收窄为图标栏。" },
+      { "name": "mobile", "value": "640px", "purpose": "导航变底部通栏，内容单列。" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "主操作：实心操作蓝反白字，悬停提亮。",
+      "html": "<button class=\"ds-btn-primary\">保存记录</button>",
+      "css": ".ds-btn-primary { display:inline-flex; align-items:center; gap:6px; height:34px; padding:0 12px; border-radius:4px; border:1px solid #4C9EFF; background:#4C9EFF; color:#06101F; font:600 14px/1 system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif; cursor:pointer; transition:background .12s ease-out; } .ds-btn-primary:hover { background:#63AFFF; border-color:#63AFFF; } .ds-btn-primary:focus-visible { outline:2px solid #4C9EFF; outline-offset:2px; }"
+    },
+    {
+      "name": "Danger Button",
+      "kind": "button",
+      "refersTo": "button-danger",
+      "description": "破坏性操作：默认描边红字，悬停/聚焦才显形为实心红。",
+      "html": "<button class=\"ds-btn-danger\">清空数据</button>",
+      "css": ".ds-btn-danger { display:inline-flex; align-items:center; gap:6px; height:34px; padding:0 12px; border-radius:4px; border:1px solid #333B47; background:transparent; color:#FF6369; font:500 14px/1 system-ui,sans-serif; cursor:pointer; transition:background .12s, border-color .12s, color .12s; } .ds-btn-danger:hover { border-color:#FF6369; background:rgba(255,99,105,.12); } .ds-btn-danger:focus-visible { outline:2px solid #FF6369; outline-offset:2px; background:#FF6369; border-color:#FF6369; color:#1A0507; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "次级操作：透明底 + 发丝缝边框。",
+      "html": "<button class=\"ds-btn-ghost\">导出</button>",
+      "css": ".ds-btn-ghost { display:inline-flex; align-items:center; gap:6px; height:28px; padding:0 10px; border-radius:4px; border:1px solid #262C36; background:transparent; color:#A7B1BF; font:400 13px/1 system-ui,sans-serif; cursor:pointer; transition:color .12s, background .12s; } .ds-btn-ghost:hover { color:#E8EBEF; background:rgba(255,255,255,.03); }"
+    },
+    {
+      "name": "Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "发丝缝面板：12px 等宽大写标题 + 前置圆点 + 1px 缝分隔。",
+      "html": "<section class=\"ds-panel\"><div class=\"ds-panel-head\"><span class=\"ds-dot\"></span>今日任务</div><div class=\"ds-panel-body\">面板内容</div></section>",
+      "css": ".ds-panel { background:#12151B; border:1px solid #262C36; border-radius:7px; } .ds-panel-head { display:flex; align-items:center; gap:8px; padding:12px 16px; border-bottom:1px solid #262C36; font:600 12px/1 ui-monospace,'SF Mono',Menlo,Consolas,monospace; letter-spacing:.09em; text-transform:uppercase; color:#A7B1BF; } .ds-dot { width:6px; height:6px; border-radius:50%; background:#4C9EFF; } .ds-panel-body { padding:16px; color:#E8EBEF; font:400 14px/1.6 system-ui,sans-serif; }"
+    },
+    {
+      "name": "Badge",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "语义徽章：前置语义色圆点，低饱和底 + 40% 透明边框。",
+      "html": "<span class=\"ds-badge ds-badge-ok\">已达标</span>",
+      "css": ".ds-badge { display:inline-flex; align-items:center; gap:5px; height:22px; padding:0 8px; border-radius:999px; font:400 12px/1 system-ui,sans-serif; } .ds-badge::before { content:''; width:5px; height:5px; border-radius:50%; background:currentColor; } .ds-badge-ok { color:#3ECF8E; border:1px solid rgba(62,207,142,.4); background:rgba(62,207,142,.13); }"
+    },
+    {
+      "name": "Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "地面底色输入框，聚焦时边框转操作蓝 + 3px 光晕。",
+      "html": "<input class=\"ds-input\" placeholder=\"新任务…\">",
+      "css": ".ds-input { width:100%; background:#0B0D10; border:1px solid #262C36; border-radius:4px; padding:7px 10px; color:#E8EBEF; font:400 14px/1.6 system-ui,sans-serif; transition:border-color .12s, box-shadow .12s; } .ds-input::placeholder { color:#78828F; } .ds-input:focus { outline:none; border-color:#4C9EFF; box-shadow:0 0 0 3px rgba(76,158,255,.14); }"
+    },
+    {
+      "name": "Nav Item",
+      "kind": "nav",
+      "refersTo": "nav-item",
+      "description": "激活态：操作蓝文字 + 14% 低饱和底，不用彩色侧边条。",
+      "html": "<nav style=\"width:208px;background:#0E1115;padding:8px 0;\"><a class=\"ds-nav ds-nav-active\">进度看板</a><a class=\"ds-nav\">词汇</a></nav>",
+      "css": ".ds-nav { display:flex; align-items:center; gap:12px; height:40px; padding:0 16px; color:#A7B1BF; font:400 14px/1 system-ui,sans-serif; } .ds-nav:hover { color:#E8EBEF; background:rgba(255,255,255,.02); } .ds-nav-active { color:#4C9EFF; background:rgba(76,158,255,.14); font-weight:600; }"
+    },
+    {
+      "name": "Stat Cell",
+      "kind": "card",
+      "refersTo": "stat",
+      "description": "数据统计格：等宽大写标签 + 等宽大数字，格间 1px 缝。",
+      "html": "<div class=\"ds-stats\"><div class=\"ds-stat\"><span class=\"ds-k\">考试倒计时</span><span class=\"ds-v\">47 天</span></div></div>",
+      "css": ".ds-stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px; background:#262C36; border:1px solid #262C36; border-radius:7px; overflow:hidden; } .ds-stat { background:#12151B; padding:12px 16px; display:flex; flex-direction:column; gap:2px; } .ds-k { font:600 12px/1 ui-monospace,monospace; letter-spacing:.07em; text-transform:uppercase; color:#78828F; } .ds-v { font:650 26px/1.15 ui-monospace,monospace; font-variant-numeric:tabular-nums; color:#E8EBEF; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "石墨矿场",
+    "overview": "每一次打卡、每一道练习、每一篇作文，都是往矿场的账本里写入一行真实记录；你的努力不靠口号，靠可回看的账目与矿脉累积。系统以深色石墨为地面，用 1px 发丝缝把信息划分为清晰的面板——像开发者控制台一样诚实、精密、可扫读。状态色是矿灯：蓝灯指路（操作）、绿灯见矿（达标）、琥珀预警（学习中）、红灯警报（破坏/错误），它们只出现在数据与状态上，绝不充当装饰。等宽数字是矿场的度量衡：所有分数、天数、倒计时都以等宽字形排布，跨面板对齐，眼睛扫过即是读数。",
+    "keyCharacteristics": [
+      "石墨黑地面（#0B0D10），面板靠发丝缝与单级抬升区分，无阴影堆叠",
+      "语法色仅用于状态与数据：蓝/绿/琥珀/红四种，配对应低饱和底色",
+      "所有度量用等宽数字（tabular figures），面板标题用小号大写等宽字",
+      "手绘 1.4px 笔画 SVG 线框图标，无 emoji",
+      "破坏性操作默认描边态，聚焦/悬停才显形为实心红",
+      "一个方向一个动作：rise-in 入场动效只出现在页面切换，其余状态过渡克制"
+    ],
+    "rules": [
+      { "name": "The 矿灯 Rule", "body": "状态色只出现在数据或状态上；任何把状态色当装饰（彩色按钮墙、彩色卡片、彩色边框）都是违规。", "section": "colors" },
+      { "name": "The 发丝缝 Rule", "body": "面板之间用 1px 发丝缝与单级抬升区分，永远不用阴影堆叠层级；阴影只出现在 Toast 浮层。", "section": "elevation" },
+      { "name": "The 账本 Rule", "body": "任何数字一律等宽字形 + tabular-nums，保证跨行、跨面板对齐。", "section": "typography" },
+      { "name": "The 平面矿层 Rule", "body": "静止状态下一切表面都是平的；阴影不参与层级表达。", "section": "elevation" }
+    ],
+    "dos": [
+      "Do 用发丝缝和底色抬升表达层级，保持平面。",
+      "Do 让状态色只出现在数据与状态上，且一次一个主角。",
+      "Do 用等宽数字排布所有度量，保证跨面板对齐。",
+      "Do 破坏性操作保持描边态直到悬停/聚焦。",
+      "Do 用 12px 等宽小号大写字做面板标题与表头。"
+    ],
+    "donts": [
+      "Don't 用阴影堆叠表达面板层级。",
+      "Don't 用彩色侧边条（>1px 彩色 border-left）标记状态。",
+      "Don't 用 emoji 或 Unicode 符号代替图标——一律手绘 SVG 线框。",
+      "Don't 用渐变文字、玻璃拟态、硬偏移阴影。",
+      "Don't 用大数字+小标签的营销式 hero 指标；数据要以可扫读的面板呈现。",
+      "Don't 把状态色当装饰铺满界面。"
+    ]
+  }
+}
