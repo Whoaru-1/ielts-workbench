@@ -110,7 +110,9 @@ input, select, textarea { font: inherit; color: inherit; }
   height: 40px; padding: 0 var(--space-4);
   color: var(--text-2); font-size: var(--fs-2);
   position: relative;
+  text-decoration: none;
 }
+.nav-item:hover { text-decoration: none; }
 .nav-item svg { width: 17px; height: 17px; flex: 0 0 auto; }
 .nav-item:hover { color: var(--text); background: rgba(255, 255, 255, 0.02); }
 .nav-item.is-active {
