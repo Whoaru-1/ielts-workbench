@@ -19,6 +19,7 @@ const emptyState = () => ({
   practices: [],    // {id, module:'listening'|'reading'|'writing'|'speaking', title, date, correct, total, band, minutes, notes}
   writing: [],      // {id, date, taskType:'task1'|'task2', topic, essay, score, notes}
   speaking: [],     // {id, date, part:1|2|3, topic, notes, score}
+  speakingBank: { practiced: {} }, // {'questionId': ISO时间}
   tasks: {},        // {'YYYY-MM-DD': [{id, text, done}]}
   checkins: {},     // {'YYYY-MM-DD': true}
   log: [],          // {at, module, msg, kind}
@@ -260,6 +261,34 @@ export function deleteSpeaking(id) {
 }
 
 export function speakingList() { return state.speaking; }
+
+/* ---------- 口语题库（练习标记） ---------- */
+
+export function isSpeakingPracticed(id) {
+  return !!state.speakingBank?.practiced?.[id];
+}
+
+export function toggleSpeakingPracticed(id) {
+  state.speakingBank ??= { practiced: {} };
+  state.speakingBank.practiced ??= {};
+  if (state.speakingBank.practiced[id]) {
+    delete state.speakingBank.practiced[id];
+    addLog("口语", "取消已练标记");
+  } else {
+    state.speakingBank.practiced[id] = new Date().toISOString();
+    addLog("口语", "标记一道口语题已练", "ok");
+  }
+  save();
+}
+
+export function speakingPracticedCount() {
+  return Object.keys(state.speakingBank?.practiced || {}).length;
+}
+
+export function resetSpeakingBankMarks() {
+  state.speakingBank = { practiced: {} };
+  save();
+}
 
 /* ---------- 计划与打卡 ---------- */
 

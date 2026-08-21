@@ -480,3 +480,46 @@ input, select, textarea { font: inherit; color: inherit; }
 .stat .v.warn { color: var(--warn); }
 .stat .v.bad { color: var(--bad); }
 .stat .v.acc { color: var(--acc); }
+
+/* ---------- Tabs ---------- */
+.tabbar { display: flex; gap: 2px; border-bottom: 1px solid var(--hairline); }
+.tab {
+  height: 36px; padding: 0 var(--space-4);
+  font-size: var(--fs-2); color: var(--text-2);
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+  transition: color .12s, border-color .12s;
+}
+.tab:hover { color: var(--text); }
+.tab.is-active { color: var(--acc); border-bottom-color: var(--acc); font-weight: 600; }
+.tab-pane { display: flex; flex-direction: column; gap: var(--space-5); margin-top: var(--space-5); }
+
+/* ---------- Speaking bank ---------- */
+.bank-list { display: flex; flex-direction: column; }
+.bank-item {
+  display: grid; grid-template-columns: 1fr auto; gap: var(--space-4);
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--hairline);
+}
+.bank-item:last-child { border-bottom: 0; }
+.bank-item:hover { background: rgba(255,255,255,.018); }
+.bank-item.practiced .bank-question { color: var(--text-3); }
+.bank-item.practiced .bank-question::after { content: " ✓"; color: var(--ok); }
+.bank-head { display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; margin-bottom: 4px; }
+.bank-question { font-size: var(--fs-2); line-height: 1.6; color: var(--text); }
+.bank-actions { display: flex; gap: var(--space-2); flex-wrap: wrap; justify-content: flex-end; }
+
+/* ---------- Random pick card ---------- */
+.rand-card {
+  margin-bottom: var(--space-5);
+  padding: var(--space-4);
+  border: 1px solid rgba(255,180,84,.45);
+  border-radius: var(--r-m);
+  background: var(--warn-dim);
+}
+.rand-question { font-size: var(--fs-4); font-weight: 600; line-height: 1.5; letter-spacing: var(--track); margin: var(--space-3) 0; }
+
+@media (max-width: 640px) {
+  .bank-item { grid-template-columns: 1fr; }
+  .bank-actions { justify-content: flex-start; }
+}
