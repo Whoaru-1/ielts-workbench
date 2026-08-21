@@ -4,7 +4,11 @@
 import * as store from "../store.js";
 import { h, panel, badge, icon, esc, emptyState, toast } from "../ui.js";
 import WRITING_BANK from "../data/writing-bank.js";
+import aT2A from "../data/answers-writing-t2-a.js";
+import aT2B from "../data/answers-writing-t2-b.js";
+import aT1 from "../data/answers-writing-t1.js";
 
+const ANSWERS = { ...aT2A, ...aT2B, ...aT1 };
 const TASK_LABEL = { 1: "Task 1", 2: "Task 2" };
 const TASK_KIND = { 1: "acc", 2: "warn" };
 
@@ -116,14 +120,20 @@ export function render(root, app) {
     }
     bankListWrap.append(h("div", { class: "bank-list" }, list.map((x) => {
       const practiced = store.isWritingPracticed(x.id);
+      const answer = ANSWERS[x.id];
       return h("div", { class: `bank-item${practiced ? " practiced" : ""}` },
         h("div", { class: "bank-main" },
           h("div", { class: "bank-head" },
             badge(TASK_LABEL[x.task], TASK_KIND[x.task]),
             badge(x.category, "acc"),
+            answer ? badge("有范文", "ok") : null,
             practiced ? badge("已练", "ok") : null
           ),
-          h("div", { class: "bank-question" }, esc(x.question))
+          h("div", { class: "bank-question" }, esc(x.question)),
+          answer ? h("details", { class: "bank-answer" },
+            h("summary", null, "参考答案（高分范文）"),
+            h("div", { class: "bank-answer-body" }, esc(answer))
+          ) : null
         ),
         h("div", { class: "bank-actions" },
           h("button", { class: "btn btn-ghost btn-sm", onclick: () => { store.toggleWritingPracticed(x.id); renderBank(); app.refreshChrome(); } },
@@ -140,6 +150,7 @@ export function render(root, app) {
     if (!pool.length) { toast("当前筛选下没有题目", "warn"); return; }
     const x = pool[Math.floor(Math.random() * pool.length)];
     const practiced = store.isWritingPracticed(x.id);
+    const answer = ANSWERS[x.id];
     randPanel.innerHTML = "";
     randPanel.append(h("div", { class: "rand-card" },
       h("div", { class: "bank-head" },
@@ -149,6 +160,10 @@ export function render(root, app) {
         practiced ? badge("已练", "ok") : null
       ),
       h("div", { class: "rand-question" }, esc(x.question)),
+      answer ? h("details", { class: "bank-answer" },
+        h("summary", null, "参考答案（高分范文）"),
+        h("div", { class: "bank-answer-body" }, esc(answer))
+      ) : null,
       h("div", { class: "btn-row" },
         h("button", { class: "btn btn-primary btn-sm", onclick: () => useInRecord(x) }, icon("edit"), "用此题记录练习"),
         h("button", { class: "btn btn-ghost btn-sm", onclick: () => { store.toggleWritingPracticed(x.id); pickRandom(); app.refreshChrome(); } }, icon("check"), practiced ? "取消已练" : "标记已练"),

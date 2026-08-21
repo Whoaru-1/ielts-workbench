@@ -547,3 +547,15 @@ input, select, textarea { font: inherit; color: inherit; }
 .guide-type summary:hover { color: var(--acc); }
 .guide-type ul { padding: var(--space-2) var(--space-3) var(--space-3) var(--space-6); list-style: disc; color: var(--text-2); font-size: var(--fs-1); }
 .guide-type li { margin-bottom: 4px; }
+
+/* ---------- Bank answer toggle ---------- */
+.bank-answer { margin-top: var(--space-2); border: 1px dashed var(--hairline-strong); border-radius: var(--r-s); background: var(--ground); }
+.bank-answer summary { cursor: pointer; padding: var(--space-2) var(--space-3); font-size: var(--fs-1); color: var(--acc); font-weight: 600; user-select: none; }
+.bank-answer summary:hover { color: var(--text); }
+.bank-answer-body {
+  padding: var(--space-3);
+  border-top: 1px dashed var(--hairline);
+  font-size: var(--fs-2); line-height: 1.8; color: var(--text-2);
+  white-space: pre-wrap;
+}
+.rand-card .bank-answer { background: var(--ground-2); }
