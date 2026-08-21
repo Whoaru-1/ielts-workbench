@@ -12,7 +12,7 @@ export function render(root, app) {
   const page = h("div", { class: "page" });
   page.append(
     h("div", { class: "page-head" },
-      h("h1", { class: "page-title" }, "词汇", h("span", { class: "t-sub" }, "生词本 · 内置约 100 个入门词，可自由增删")),
+      h("h1", { class: "page-title" }, "词汇", h("span", { class: "t-sub" }, "生词本 · 内置 2000+ 分话题词库（12 大话题），可自由增删")),
       h("div", { class: "page-actions" },
         h("button", { class: "btn btn-primary btn-sm", onclick: () => startQuiz() }, icon("spark"), "开始自测")
       )
@@ -28,9 +28,15 @@ export function render(root, app) {
     statOf("已掌握", v.mastered, "ok")
   ));
 
-  /* 工具条 */
+  /* 工具条：搜索 + 话题筛选 + 状态筛选 */
   const q = h("input", { class: "input", placeholder: "搜索单词 / 释义…", "aria-label": "搜索词表" });
-  const filter = h("select", { class: "select" },
+  const topicFilter = h("select", { class: "select", "aria-label": "按话题筛选" },
+    h("option", { value: "all" }, "全部话题"),
+    ...Object.entries(store.TOPIC_LABELS).map(([k, label]) =>
+      h("option", { value: k }, `${label}${v.byTopic[k] ? ` (${v.byTopic[k]})` : ""}`)
+    )
+  );
+  const filter = h("select", { class: "select", "aria-label": "按状态筛选" },
     h("option", { value: "all" }, "全部状态"),
     h("option", { value: "new" }, "陌生"),
     h("option", { value: "learning" }, "学习中"),
@@ -38,6 +44,7 @@ export function render(root, app) {
   );
   page.append(h("div", { class: "toolbar" },
     h("div", { class: "toolbar-search" }, icon("search"), q),
+    topicFilter,
     filter
   ));
 
@@ -45,10 +52,10 @@ export function render(root, app) {
   page.append(listWrap);
 
   const renderList = () => {
-    const words = store.vocabList(filter.value, q.value);
+    const words = store.vocabList(filter.value, q.value, topicFilter.value);
     listWrap.innerHTML = "";
     if (words.length === 0) {
-      listWrap.append(panel({ title: "词表", body: emptyState("vocab", "词表为空", "在下方「新增单词」面板添加第一个词，或从进度文件导入。") }));
+      listWrap.append(panel({ title: "词表", body: emptyState("vocab", "没有符合条件的词", "换个筛选条件，或在下方「新增单词」面板添加，或从进度文件导入。") }));
       return;
     }
     listWrap.append(panel({
@@ -61,6 +68,7 @@ export function render(root, app) {
           ),
           h("div", { class: "vocab-meaning" }, esc(w.meaning || "—")),
           h("div", { class: "vocab-right" },
+            badge(store.TOPIC_LABELS[w.category] || "通用", "acc"),
             badge(STATUS_LABEL[w.status] || w.status, STATUS_KIND[w.status]),
             h("div", { class: "row-actions" },
               cycleBtn(w, renderList),
@@ -82,6 +90,7 @@ export function render(root, app) {
   page.append(panel({ title: "新增单词", body: form }));
 
   q.addEventListener("input", renderList);
+  topicFilter.addEventListener("change", renderList);
   filter.addEventListener("change", renderList);
   renderList();
   root.append(page);

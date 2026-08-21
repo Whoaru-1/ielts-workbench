@@ -82,12 +82,47 @@ export function logEntries(n = 12) {
 
 /* ---------- 词汇 ---------- */
 
-export function addWord({ word, phonetic = "", meaning = "", example = "", status = "new" }) {
-  const w = { id: uid(), word: word.trim(), phonetic, meaning, example, status, addedAt: new Date().toISOString(), correct: 0, wrong: 0 };
+export const TOPIC_LABELS = {
+  education: "教育", environment: "环境", technology: "科技", health: "健康",
+  society: "社会", work: "工作", economy: "经济", culture: "文化",
+  science: "科学", travel: "旅行", government: "政府", media: "媒体",
+  general: "通用",
+};
+
+export function addWord({ word, phonetic = "", meaning = "", example = "", status = "new", category = "general" }) {
+  const w = { id: uid(), word: word.trim(), phonetic, meaning, example, status, category, addedAt: new Date().toISOString(), correct: 0, wrong: 0 };
   state.vocab.unshift(w);
   addLog("词汇", `新增单词「${w.word}」`, "ok");
   save();
   return w;
+}
+
+/** 批量写入词库（种子用）：按 word 去重，一次保存 */
+export function seedBulk(entries) {
+  const existing = new Set(state.vocab.map((w) => w.word.trim().toLowerCase()));
+  const added = [];
+  for (const e of entries) {
+    const key = String(e.word || "").trim().toLowerCase();
+    if (!key || existing.has(key)) continue;
+    existing.add(key);
+    added.push({
+      id: uid(),
+      word: String(e.word).trim(),
+      phonetic: e.phonetic || "",
+      meaning: e.meaning || "",
+      example: e.example || "",
+      status: e.status || "new",
+      category: e.category || "general",
+      addedAt: new Date().toISOString(),
+      correct: 0, wrong: 0,
+    });
+  }
+  if (added.length) {
+    state.vocab.push(...added);
+    addLog("词汇", `载入内置词库 ${added.length} 词`, "ok");
+    save();
+  }
+  return added.length;
 }
 
 export function updateWord(id, patch) {
@@ -119,10 +154,11 @@ export function recordQuiz(id, correct) {
   save();
 }
 
-export function vocabList(filter = "all", query = "") {
+export function vocabList(filter = "all", query = "", category = "all") {
   const q = query.trim().toLowerCase();
   return state.vocab.filter((w) => {
     if (filter !== "all" && w.status !== filter) return false;
+    if (category !== "all" && (w.category || "general") !== category) return false;
     if (!q) return true;
     return w.word.toLowerCase().includes(q) || w.meaning.includes(query.trim()) || w.example.toLowerCase().includes(q);
   });
@@ -131,7 +167,12 @@ export function vocabList(filter = "all", query = "") {
 export function vocabStats() {
   const c = { new: 0, learning: 0, mastered: 0 };
   for (const w of state.vocab) c[w.status] = (c[w.status] || 0) + 1;
-  return { total: state.vocab.length, ...c };
+  const byTopic = {};
+  for (const w of state.vocab) {
+    const t = w.category || "general";
+    byTopic[t] = (byTopic[t] || 0) + 1;
+  }
+  return { total: state.vocab.length, ...c, byTopic };
 }
 
 /* ---------- 真题模考 ---------- */

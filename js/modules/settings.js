@@ -79,7 +79,7 @@ export function render(root, app) {
     title: "关于",
     body: h("div", { class: "about" },
       h("p", null, "IELTS 工作台 · 本地优先的雅思备考控制台。数据保存在当前浏览器的 localStorage，不经过任何服务器；换设备请使用「导出 / 导入」。"),
-      h("p", { class: "about-sub" }, "内置约 100 个入门高频词汇为初始内容（非官方词表，可自由修改）；真题练习为自记录模式，估分映射仅供参考。")
+      h("p", { class: "about-sub" }, "内置 2000+ 分话题词库（12 大雅思话题，非官方词表，可自由修改）；真题练习为自记录模式，估分映射仅供参考。")
     ),
   }));
 

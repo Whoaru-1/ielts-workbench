@@ -38,12 +38,12 @@ Confirmed capabilities:
 - Full export to JSON file and import from JSON file (with validation and merge/replace choice).
 - Chinese UI.
 - Dark, modern, high-contrast dashboard visual style (user confirmed direction; no other visuals pinned).
-- Starter vocabulary bank ships with the app (curated common IELTS words); users can add/edit/delete their own words; starter data is labeled as starter content.
+- A topic-organized built-in vocabulary bank (~2000 words across 12 IELTS topics: education, environment, technology, health, society, work, economy, culture, science, travel, government, media) ships with the app and merges on first load (incremental for existing users); users can add/edit/delete their own words; built-in data is labeled as non-official starter content.
 
 Technical constraints:
 
 - Static files only; no server, no database, no build step.
-- localStorage capacity limits the size of vocab banks (starter bank kept modest, ~100 words).
+- localStorage capacity limits the size of vocab banks (built-in bank ~2000 words ≈ 400KB, well within limits; user additions tracked individually).
 - Single-user per browser; import/export is the migration path.
 
 Undecided facts (not invented):

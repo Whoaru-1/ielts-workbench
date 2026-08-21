@@ -1,5 +1,5 @@
 /* ============================================================
- * app.js — 应用外壳：哈希路由 / 导航 / 顶栏 / 首次种子词表
+ * app.js — 应用外壳：哈希路由 / 导航 / 顶栏 / 首次种子词库
  * ============================================================ */
 import * as store from "./store.js";
 import { ICONS, toast, h, icon } from "./ui.js";
@@ -11,6 +11,18 @@ import { render as renderSpeaking } from "./modules/speaking.js";
 import { render as renderPlan } from "./modules/plan.js";
 import { render as renderSettings } from "./modules/settings.js";
 import { STARTER_VOCAB } from "./data/starter-vocab.js";
+import education from "./data/topics/education.js";
+import environment from "./data/topics/environment.js";
+import technology from "./data/topics/technology.js";
+import health from "./data/topics/health.js";
+import society from "./data/topics/society.js";
+import work from "./data/topics/work.js";
+import economy from "./data/topics/economy.js";
+import culture from "./data/topics/culture.js";
+import science from "./data/topics/science.js";
+import travel from "./data/topics/travel.js";
+import government from "./data/topics/government.js";
+import media from "./data/topics/media.js";
 
 const ROUTES = {
   dashboard: { label: "进度看板", icon: "dashboard", render: renderDashboard },
@@ -26,13 +38,22 @@ const app = {
   refreshChrome,
 };
 
-/* ---------- 首次启动：内置入门词表种子 ---------- */
-function seedStarterVocab() {
-  const v = store.rawState();
-  if (v.vocab.length === 0 && !localStorage.getItem("ielts-workbench:seeded")) {
-    for (const w of STARTER_VOCAB) store.addWord({ ...w, status: "new" });
-    localStorage.setItem("ielts-workbench:seeded", "1");
+/* ---------- 首次启动：内置分话题词库种子（2000+ 词） ---------- */
+const TOPIC_BANK = { education, environment, technology, health, society, work, economy, culture, science, travel, government, media };
+
+function seedVocab() {
+  // 已写入过 v2 词库则跳过（用户增删的词不受影响，只做一次合并）
+  if (localStorage.getItem("ielts-workbench:seeded2")) return;
+  const hasData = store.rawState().vocab.length > 0;
+  // 词库完全为空：写入全部（入门词 + 12 话题）；已有数据（老用户/导入过）：只补话题词库，尊重用户删除
+  const seedAll = !hasData && !localStorage.getItem("ielts-workbench:seeded");
+  const entries = [];
+  if (seedAll) for (const w of STARTER_VOCAB) entries.push({ ...w, category: "general" });
+  for (const [cat, words] of Object.entries(TOPIC_BANK)) {
+    for (const w of words) entries.push({ ...w, category: cat });
   }
+  if (entries.length) store.seedBulk(entries);
+  localStorage.setItem("ielts-workbench:seeded2", "1");
 }
 
 /* ---------- 导航 ---------- */
@@ -129,7 +150,7 @@ function renderRoute() {
 }
 
 /* ---------- 启动 ---------- */
-seedStarterVocab();
+seedVocab();
 buildNav();
 wireTopbar();
 refreshChrome();
