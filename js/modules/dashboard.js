@@ -7,11 +7,13 @@ import { h, panel, statCard, emptyState, badge, icon } from "../ui.js";
 export function render(root, app) {
   root.innerHTML = "";
   const s = store.settings();
-  const cd = store.countdown();
 
   /* ---- 倒计时 + 目标 ---- */
+  const cdRaw = store.countdown();
+  const cd = cdRaw == null ? null : Math.max(0, cdRaw);
+  const cdSub = cdRaw == null ? "未设置考试日期" : cdRaw < 0 ? "考试日已过，请在设置中更新" : `考试日 ${store.fmtDate(s.examDate)}`;
   const stats = [
-    statCard("考试倒计时", cd == null ? "—" : `${cd} 天`, s.examDate ? `考试日 ${store.fmtDate(s.examDate)}` : "未设置考试日期", cd != null && cd <= 30 ? "warn" : ""),
+    statCard("考试倒计时", cd == null ? "—" : `${cd} 天`, cdSub, cd != null && cd <= 30 ? "warn" : ""),
     statCard("目标分数", s.targetBand, "写作 / 口语以估分为准", "acc"),
     statCard("连续打卡", `${store.streakDays()} 天`, "坚持就是胜利", store.streakDays() > 0 ? "ok" : ""),
     statCard("累计练习", `${store.practiceStats().total} 次`, store.practiceStats().avgBand ? `平均估分 ${store.practiceStats().avgBand}` : "暂无练习记录"),
@@ -114,8 +116,8 @@ function taskBody(today, tasks, app) {
     fullRefresh();
   } }, icon("plus"), "添加");
 
-  // 任务变化会联动看板的统计、模块概览与日志，直接整体重渲最一致
-  const fullRefresh = () => { render(document.getElementById("main"), app); };
+  // 任务变化会联动看板的统计、模块概览、日志与顶栏连续打卡，整体重渲 + 刷新 chrome
+  const fullRefresh = () => { render(document.getElementById("main"), app); app.refreshChrome(); };
   rerender();
   wrap.append(list, h("div", { class: "task-add" }, input, addBtn));
   return wrap;

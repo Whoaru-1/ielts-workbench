@@ -82,6 +82,9 @@ function refreshChrome() {
   navCounts();
 }
 
+/* 模块内派发的全局 chrome 刷新（如计划页打卡后联动顶栏连续天数） */
+document.addEventListener("app-refresh-chrome", refreshChrome);
+
 /* ---------- 导出 / 导入（顶栏） ---------- */
 function wireTopbar() {
   document.getElementById("btn-export").addEventListener("click", () => {

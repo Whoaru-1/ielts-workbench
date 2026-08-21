@@ -48,7 +48,7 @@ export function render(root, app) {
     const words = store.vocabList(filter.value, q.value);
     listWrap.innerHTML = "";
     if (words.length === 0) {
-      listWrap.append(panel({ title: "词表", body: emptyState("vocab", "词表为空", "点击右上角「新增单词」添加，或先导入进度文件。") }));
+      listWrap.append(panel({ title: "词表", body: emptyState("vocab", "词表为空", "在下方「新增单词」面板添加第一个词，或从进度文件导入。") }));
       return;
     }
     listWrap.append(panel({

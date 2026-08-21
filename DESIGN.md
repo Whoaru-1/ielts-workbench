@@ -11,6 +11,9 @@ colors:
   text-secondary: "#A7B1BF"
   text-muted: "#78828F"
   on-accent: "#06101F"
+  accent-hover: "#63AFFF"
+  on-danger: "#1A0507"
+  selection-text: "#F2F6FC"
   accent: "#4C9EFF"
   ok: "#3ECF8E"
   warn: "#FFB454"
@@ -40,7 +43,9 @@ typography:
     fontFamily: "ui-monospace, 'SF Mono', Menlo, Consolas, monospace"
     fontSize: "13px"
 rounded:
+  xs: "2px"
   sm: "4px"
+  pill: "999px"
   md: "7px"
 spacing:
   xs: "4px"
@@ -114,6 +119,7 @@ components:
 - **正文**（#E8EBEF）：主文本。
 - **次级文本**（#A7B1BF）：从冷色相中调出的次级文本，绝不使用纯灰。
 - **弱化文本**（#78828F）：元信息、占位符、表头。
+- **选区文字**（#F2F6FC）：文本选区高亮文字色（配合操作蓝 32% 选区底）。
 
 ### Named Rules
 **The 矿灯 Rule.** 状态色只出现在"数据或状态"上：一个绿色徽章说明"达标"，一块蓝色填充说明"当前"。任何把状态色当装饰（彩色按钮墙、彩色卡片、彩色边框）都是违规。
@@ -127,6 +133,8 @@ components:
 **Label/Mono Font:** 等宽栈（ui-monospace / SF Mono / Menlo / Consolas），用于所有数据、数字、面板标题、表头、日志
 
 **Character:** 界面语言是"精密控制台"：正文用干净的系统无衬线保证中文可读性，数据与标签全部换等宽字形，让数字表格在视觉上形成矿场账本般的秩序感。标题靠字重与字号拉开层级，不做多余装饰。
+
+**Exemption（已文档化）:** 展示层使用系统字体栈（PingFang SC / Microsoft YaHei / system-ui），不引入自托管字体。这是"零构建 + 离线可用"产品约束（PRODUCT.md §Operating Context）下的有意识决策：不因字体而引入运行时网络依赖。
 
 ### Hierarchy
 - **Display**（700, 34px, 1.25, -0.01em）：模块页大标题，如"进度看板"。
@@ -155,7 +163,7 @@ components:
 
 ## Shapes
 
-- 控件圆角 4px（按钮、输入框、徽章、表格元素），面板圆角 7px。
+- 控件圆角 4px（按钮、输入框、徽章、表格元素），面板圆角 7px；微元素使用 2–3px 超小圆角：打卡格子（2px）、进度条（3px）。
 - 所有可点元素都有 1px 发丝缝边框作为"可点"的静态暗示；主按钮用实心蓝反白字。
 - 图标统一 1.4px 笔画、圆头圆角、16×16 viewBox 手绘 SVG 线框，单色 currentColor。
 

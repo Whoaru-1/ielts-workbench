@@ -10,7 +10,7 @@
       "bad": { "role": "secondary", "displayName": "破坏红", "canonical": "#FF6369", "tonalRamp": ["#330F11", "#471517", "#5C1C1E", "#712225", "#86292C", "#9B3033", "#B0363A", "#FF6369"] },
       "ground": { "role": "neutral", "displayName": "石墨黑", "canonical": "#0B0D10", "tonalRamp": ["#0B0D10", "#0E1115", "#12151B", "#171B22", "#1C212A", "#262C36", "#333B47", "#E8EBEF"] },
       "panel": { "role": "neutral", "displayName": "面板底", "canonical": "#12151B", "tonalRamp": ["#0B0D10", "#12151B", "#171B22", "#1C212A", "#262C36", "#333B47", "#414B5A", "#E8EBEF"] },
-      "text-secondary": { "role": "neutral", "displayName": "次级文本", "canonical": "#A7B1BF", "tonalRamp": ["#20242B", "#2E333C", "#3D434E", "#4D5460", "#5E6673", "#707887", "#838C9B", "#A7B1BF"] }
+      "selection-text": { "role": "neutral", "displayName": "选区文字", "canonical": "#F2F6FC", "tonalRamp": ["#2A2F38", "#3A414C", "#4B535F", "#5D6673", "#707A88", "#848E9D", "#99A3B3", "#F2F6FC"] }, "text-secondary": { "role": "neutral", "displayName": "次级文本", "canonical": "#A7B1BF", "tonalRamp": ["#20242B", "#2E333C", "#3D434E", "#4D5460", "#5E6673", "#707887", "#838C9B", "#A7B1BF"] }
     },
     "typographyMeta": {
       "display": { "displayName": "Display", "purpose": "模块页大标题，700/34px，仅用于页面头部。" },
