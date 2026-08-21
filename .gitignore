@@ -1,0 +1,4 @@
+.DS_Store
+.impeccable/review/
+node_modules/
+*.log
