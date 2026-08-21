@@ -20,6 +20,8 @@ const emptyState = () => ({
   writing: [],      // {id, date, taskType:'task1'|'task2', topic, essay, score, notes}
   speaking: [],     // {id, date, part:1|2|3, topic, notes, score}
   speakingBank: { practiced: {} }, // {'questionId': ISO时间}
+  writingBank: { practiced: {} },  // {'questionId': ISO时间}
+  mistakes: [],     // {id, module:'listening'|'reading', qtype, note, date}
   tasks: {},        // {'YYYY-MM-DD': [{id, text, done}]}
   checkins: {},     // {'YYYY-MM-DD': true}
   log: [],          // {at, module, msg, kind}
@@ -288,6 +290,49 @@ export function speakingPracticedCount() {
 export function resetSpeakingBankMarks() {
   state.speakingBank = { practiced: {} };
   save();
+}
+
+/* ---------- 写作题库（练习标记） ---------- */
+
+export function isWritingPracticed(id) {
+  return !!state.writingBank?.practiced?.[id];
+}
+
+export function toggleWritingPracticed(id) {
+  state.writingBank ??= { practiced: {} };
+  state.writingBank.practiced ??= {};
+  if (state.writingBank.practiced[id]) {
+    delete state.writingBank.practiced[id];
+    addLog("写作", "取消已练标记");
+  } else {
+    state.writingBank.practiced[id] = new Date().toISOString();
+    addLog("写作", "标记一道写作题已练", "ok");
+  }
+  save();
+}
+
+export function writingPracticedCount() {
+  return Object.keys(state.writingBank?.practiced || {}).length;
+}
+
+/* ---------- 听读错题本 ---------- */
+
+export function addMistake({ module, qtype = "", note = "" }) {
+  const m = { id: uid(), module, qtype: qtype.trim() || "未分类", note: note.trim(), date: todayKey(), addedAt: new Date().toISOString() };
+  state.mistakes.unshift(m);
+  addLog(moduleLabel(module), `错题：${m.qtype}${m.note ? " · " + m.note : ""}`, "warn");
+  save();
+  return m;
+}
+
+export function deleteMistake(id) {
+  state.mistakes = state.mistakes.filter((x) => x.id !== id);
+  addLog("错题", "删除一条错题记录");
+  save();
+}
+
+export function mistakesList(module = "all") {
+  return module === "all" ? state.mistakes : state.mistakes.filter((m) => m.module === module);
 }
 
 /* ---------- 计划与打卡 ---------- */

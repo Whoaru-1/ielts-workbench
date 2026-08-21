@@ -523,3 +523,27 @@ input, select, textarea { font: inherit; color: inherit; }
   .bank-item { grid-template-columns: 1fr; }
   .bank-actions { justify-content: flex-start; }
 }
+
+/* ---------- Timer ---------- */
+.timer-box { display: flex; flex-direction: column; gap: var(--space-4); align-items: stretch; }
+.timer-box .select { max-width: 280px; }
+.timer-display {
+  font-family: var(--mono); font-variant-numeric: tabular-nums;
+  font-size: 56px; font-weight: 700; letter-spacing: -0.02em;
+  text-align: center; padding: var(--space-5) 0;
+  color: var(--acc);
+  background: var(--ground);
+  border: 1px solid var(--hairline); border-radius: var(--r-m);
+}
+.timer-hint { font-size: var(--fs-1); color: var(--text-3); line-height: 1.7; }
+
+/* ---------- Guides ---------- */
+.guide-desc { color: var(--text-2); margin-bottom: var(--space-2); }
+.guide-strategy { color: var(--text); margin-bottom: var(--space-3); }
+.guide-strategy strong { color: var(--acc); }
+.guide-types { display: flex; flex-direction: column; gap: var(--space-2); }
+.guide-type { border: 1px solid var(--hairline); border-radius: var(--r-s); background: var(--ground); }
+.guide-type summary { cursor: pointer; padding: var(--space-2) var(--space-3); color: var(--text); font-weight: 600; user-select: none; }
+.guide-type summary:hover { color: var(--acc); }
+.guide-type ul { padding: var(--space-2) var(--space-3) var(--space-3) var(--space-6); list-style: disc; color: var(--text-2); font-size: var(--fs-1); }
+.guide-type li { margin-bottom: 4px; }

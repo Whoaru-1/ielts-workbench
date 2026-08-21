@@ -82,5 +82,61 @@ export default [
   { id: "p3-travel-03", category: "旅行", question: "What can be done to make tourism more sustainable and environmentally friendly?" },
   { id: "p3-travel-04", category: "旅行", question: "Why do some people prefer to travel alone rather than in groups?" },
   { id: "p3-travel-05", category: "旅行", question: "How has technology changed the way people plan and experience travel?" },
-  { id: "p3-travel-06", category: "旅行", question: "Do you think there should be limits on the number of tourists visiting popular destinations?" }
+  { id: "p3-travel-06", category: "旅行", question: "Do you think there should be limits on the number of tourists visiting popular destinations?" },
+  // 科技与社会
+  { id: "p3-tech-society-01", category: "科技与社会", question: "Do you think technology has made people less sociable in real life?" },
+  { id: "p3-tech-society-02", category: "科技与社会", question: "Should children be allowed unlimited screen time?" },
+  { id: "p3-tech-society-03", category: "科技与社会", question: "How has technology changed the way people build and maintain friendships?" },
+  { id: "p3-tech-society-04", category: "科技与社会", question: "Why do some people feel more connected online but more isolated in real life?" },
+  { id: "p3-tech-society-05", category: "科技与社会", question: "Do you think social media makes it easier or harder for people to express their true opinions?" },
+  { id: "p3-tech-society-06", category: "科技与社会", question: "What are the social consequences of relying too heavily on digital communication?" },
+  // 城市与乡村
+  { id: "p3-city-rural-01", category: "城市与乡村", question: "What factors push people to leave rural areas and move to large cities?" },
+  { id: "p3-city-rural-02", category: "城市与乡村", question: "Is rural life genuinely better than city life, or is this just a romanticised view?" },
+  { id: "p3-city-rural-03", category: "城市与乡村", question: "Do you think the gap between urban and rural areas is widening?" },
+  { id: "p3-city-rural-04", category: "城市与乡村", question: "How does living in a city affect people's mental wellbeing compared with living in the countryside?" },
+  { id: "p3-city-rural-05", category: "城市与乡村", question: "What are the advantages and disadvantages of raising children in a rural area rather than in a city?" },
+  { id: "p3-city-rural-06", category: "城市与乡村", question: "Should governments do more to make rural areas attractive places to live and work?" },
+  // 全球化
+  { id: "p3-globalisation-01", category: "全球化", question: "Has globalisation had more positive or negative effects on ordinary people's lives?" },
+  { id: "p3-globalisation-02", category: "全球化", question: "Do you think globalisation threatens the survival of minority languages and traditional customs?" },
+  { id: "p3-globalisation-03", category: "全球化", question: "How does globalisation affect the job market in both developed and developing countries?" },
+  { id: "p3-globalisation-04", category: "全球化", question: "Why do some people oppose globalisation even though it brings economic benefits?" },
+  { id: "p3-globalisation-05", category: "全球化", question: "Should countries try to protect their own industries from foreign competition?" },
+  { id: "p3-globalisation-06", category: "全球化", question: "What are the cultural and economic challenges of living in an increasingly globalised world?" },
+  // 老年人
+  { id: "p3-elderly-01", category: "老年人", question: "How should society support the elderly in practical and meaningful ways?" },
+  { id: "p3-elderly-02", category: "老年人", question: "Do older people still have an important role to play in modern society?" },
+  { id: "p3-elderly-03", category: "老年人", question: "Why do some elderly people feel isolated even when they live in crowded cities?" },
+  { id: "p3-elderly-04", category: "老年人", question: "Do you think the experience and wisdom of older generations are undervalued in the workplace?" },
+  { id: "p3-elderly-05", category: "老年人", question: "What are the benefits of regular interaction between older and younger generations?" },
+  { id: "p3-elderly-06", category: "老年人", question: "Should governments create more opportunities for elderly people to remain active in the community?" },
+  // 儿童教育
+  { id: "p3-child-education-01", category: "儿童教育", question: "Should children start formal schooling at an earlier age?" },
+  { id: "p3-child-education-02", category: "儿童教育", question: "What is the most effective way to teach young children?" },
+  { id: "p3-child-education-03", category: "儿童教育", question: "Do you think children learn more through play than through formal instruction?" },
+  { id: "p3-child-education-04", category: "儿童教育", question: "Why is early childhood education so important for a child's later development?" },
+  { id: "p3-child-education-05", category: "儿童教育", question: "How can parents and teachers encourage children to develop a genuine love of learning?" },
+  { id: "p3-child-education-06", category: "儿童教育", question: "What are the long-term effects of putting too much academic pressure on young children?" },
+  // 消费观
+  { id: "p3-consumerism-01", category: "消费观", question: "Are people today too materialistic?" },
+  { id: "p3-consumerism-02", category: "消费观", question: "What makes people overspend even when they know they should not?" },
+  { id: "p3-consumerism-03", category: "消费观", question: "Do you think people buy things to improve their lives or to impress other people?" },
+  { id: "p3-consumerism-04", category: "消费观", question: "Why has consumer culture become so dominant in many societies?" },
+  { id: "p3-consumerism-05", category: "消费观", question: "How do advertising and social media shape people's attitudes towards money and possessions?" },
+  { id: "p3-consumerism-06", category: "消费观", question: "What are the environmental consequences of a society that constantly encourages consumption?" },
+  // 语言学习
+  { id: "p3-language-learning-01", category: "语言学习", question: "Why do people choose to learn foreign languages in the modern world?" },
+  { id: "p3-language-learning-02", category: "语言学习", question: "Is it better to learn a language as a child rather than as an adult?" },
+  { id: "p3-language-learning-03", category: "语言学习", question: "Do you think English will continue to dominate as a global language in the future?" },
+  { id: "p3-language-learning-04", category: "语言学习", question: "How does learning a foreign language change the way a person sees the world?" },
+  { id: "p3-language-learning-05", category: "语言学习", question: "Should learning a foreign language be compulsory for all school students?" },
+  { id: "p3-language-learning-06", category: "语言学习", question: "What are the main difficulties adults face when trying to learn a new language?" },
+  // 新闻媒体
+  { id: "p3-news-media-01", category: "新闻媒体", question: "Why is it important to question what we read and see online?" },
+  { id: "p3-news-media-02", category: "新闻媒体", question: "How has the rise of social media changed the speed at which news spreads?" },
+  { id: "p3-news-media-03", category: "新闻媒体", question: "Do you think citizen journalism is as reliable as professional journalism?" },
+  { id: "p3-news-media-04", category: "新闻媒体", question: "What are the dangers of only reading news that confirms our existing views?" },
+  { id: "p3-news-media-05", category: "新闻媒体", question: "Should social media platforms be held responsible for the misinformation they allow to spread?" },
+  { id: "p3-news-media-06", category: "新闻媒体", question: "How can people develop the critical thinking skills needed to evaluate news sources?" }
 ];
