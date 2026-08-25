@@ -137,7 +137,7 @@ export function pager({ page, pages, onChange }) {
   return h("div", { class: "pager" },
     h("button", { class: "btn btn-ghost btn-sm", title: "第一页", disabled: page <= 1, onclick: () => onChange(1) }, "« 首页"),
     h("button", { class: "btn btn-ghost btn-sm", title: "上一页", disabled: page <= 1, onclick: () => onChange(page - 1) }, "‹ 上一页"),
-    h("span", { class: "pager-info" }, `第 ${page} / ${pages} 页`),
+    h("span", { class: "pager-info", html: `第 <b>${page}</b> / ${pages} 页` }),
     h("button", { class: "btn btn-ghost btn-sm", title: "下一页", disabled: page >= pages, onclick: () => onChange(page + 1) }, "下一页 ›"),
     h("button", { class: "btn btn-ghost btn-sm", title: "最后一页", disabled: page >= pages, onclick: () => onChange(pages) }, "末页 »"),
     h("span", { class: "pager-jumpbox" }, jump, jumpBtn)
