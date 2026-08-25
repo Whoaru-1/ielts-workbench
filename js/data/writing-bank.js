@@ -59,24 +59,332 @@ export default [
   { id: "wt2-government-03", task: 2, category: "政府", question: "Some people believe that governments should provide a basic income to every citizen, whether or not they have a job. To what extent do you agree or disagree?" },
   { id: "wt2-government-04", task: 2, category: "政府", question: "Some people think that the government should limit what can be published on the internet, while others believe that all information should be freely available. Discuss both views and give your own opinion." },
   { id: "wt2-government-05", task: 2, category: "政府", question: "Some people believe that countries should work together to solve global problems such as climate change, while others think that each country should focus on its own issues first. Discuss both views and give your own opinion." },
-  { id: "wt1-bar-chart-01", task: 1, category: "柱状图", question: "The bar chart below shows the percentage of households owning a car in three cities over a ten-year period. Summarise the information by selecting and reporting the main features, and make comparisons where relevant." },
-  { id: "wt1-bar-chart-02", task: 1, category: "柱状图", question: "The bar chart below shows the number of students who chose different subjects at a university in 2010 and 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant." },
-  { id: "wt1-bar-chart-03", task: 1, category: "柱状图", question: "The bar chart below shows the average monthly spending on five categories of goods in one country in 2005 and 2015. Summarise the information by selecting and reporting the main features, and make comparisons where relevant." },
-  { id: "wt1-line-graph-01", task: 1, category: "折线图", question: "The line graph below shows the number of international tourists visiting four countries between 1990 and 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant." },
-  { id: "wt1-line-graph-02", task: 1, category: "折线图", question: "The line graph below shows average house prices in five cities from 2000 to 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant." },
-  { id: "wt1-line-graph-03", task: 1, category: "折线图", question: "The line graph below shows the consumption of three types of energy in one country over a 30-year period. Summarise the information by selecting and reporting the main features, and make comparisons where relevant." },
-  { id: "wt1-pie-chart-01", task: 1, category: "饼图", question: "The pie charts below show the percentage of household expenditure on six categories in one country in 1990 and 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant." },
-  { id: "wt1-pie-chart-02", task: 1, category: "饼图", question: "The pie charts below compare the proportions of students studying in different fields at two universities. Summarise the information by selecting and reporting the main features, and make comparisons where relevant." },
-  { id: "wt1-pie-chart-03", task: 1, category: "饼图", question: "The pie chart below shows the main sources of energy used in one country in 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant." },
-  { id: "wt1-table-01", task: 1, category: "表格", question: "The table below shows the number of visitors to four museums in a city in 2015 and 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant." },
-  { id: "wt1-table-02", task: 1, category: "表格", question: "The table below shows the average weekly hours spent on different leisure activities by men and women in one country. Summarise the information by selecting and reporting the main features, and make comparisons where relevant." },
-  { id: "wt1-table-03", task: 1, category: "表格", question: "The table below shows the percentages of people using different modes of transport to commute to work in four cities. Summarise the information by selecting and reporting the main features, and make comparisons where relevant." },
-  { id: "wt1-process-diagram-01", task: 1, category: "流程图", question: "The diagram below shows the process of producing bottled water for sale. Summarise the information by selecting and reporting the main features, and make comparisons where relevant." },
-  { id: "wt1-process-diagram-02", task: 1, category: "流程图", question: "The diagram below shows how recycled paper is made. Summarise the information by selecting and reporting the main features, and make comparisons where relevant." },
-  { id: "wt1-process-diagram-03", task: 1, category: "流程图", question: "The diagram below shows the life cycle of a salmon. Summarise the information by selecting and reporting the main features, and make comparisons where relevant." },
-  { id: "wt1-map-01", task: 1, category: "地图", question: "The maps below show the changes that took place in a coastal town between 1990 and 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant." },
-  { id: "wt1-map-02", task: 1, category: "地图", question: "The maps below show the current layout of a university campus and the proposed layout for 2025. Summarise the information by selecting and reporting the main features, and make comparisons where relevant." },
-  { id: "wt1-map-03", task: 1, category: "地图", question: "The maps below compare the present plan of an airport with the plan for its future development. Summarise the information by selecting and reporting the main features, and make comparisons where relevant." },
-  { id: "wt1-mixed-chart-01", task: 1, category: "混合图", question: "The graph and table below show the number of cinema visits and the average ticket prices in one country over a ten-year period. Summarise the information by selecting and reporting the main features, and make comparisons where relevant." },
-  { id: "wt1-mixed-chart-02", task: 1, category: "混合图", question: "The bar chart and pie chart below show water usage in different sectors and the sources of water in one region. Summarise the information by selecting and reporting the main features, and make comparisons where relevant." }
+  { id: "wt1-bar-chart-01", task: 1, category: "柱状图", question: "The bar chart below shows the percentage of households owning a car in three cities over a ten-year period. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    chart: {
+      type: "bar",
+      title: "Percentage of Households Owning a Car in Three Cities, 2010-2020",
+      unit: "%",
+      categories: ["2010","2020"],
+      series: [
+        { name: "City A", values: [40, 65] },
+        { name: "City B", values: [55, 58] },
+        { name: "City C", values: [70, 75] }
+      ]
+    }
+  },
+  { id: "wt1-bar-chart-02", task: 1, category: "柱状图", question: "The bar chart below shows the number of students who chose different subjects at a university in 2010 and 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    chart: {
+      type: "bar",
+      title: "Number of Students Choosing Different Subjects at a University, 2010 and 2020",
+      unit: "students",
+      categories: ["2010","2020"],
+      series: [
+        { name: "Business", values: [1200, 1800] },
+        { name: "Medicine", values: [800, 1300] },
+        { name: "Engineering", values: [700, 780] },
+        { name: "Law", values: [500, 520] },
+        { name: "Arts", values: [600, 350] }
+      ]
+    }
+  },
+  { id: "wt1-bar-chart-03", task: 1, category: "柱状图", question: "The bar chart below shows the average monthly spending on five categories of goods in one country in 2005 and 2015. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    chart: {
+      type: "bar",
+      title: "Average Monthly Spending on Five Categories of Goods, 2005 and 2015",
+      unit: "$",
+      categories: ["2005","2015"],
+      series: [
+        { name: "Housing", values: [1500, 2200] },
+        { name: "Transport", values: [500, 750] },
+        { name: "Food", values: [900, 800] },
+        { name: "Entertainment", values: [250, 480] },
+        { name: "Clothing", values: [300, 300] }
+      ]
+    }
+  },
+  { id: "wt1-line-graph-01", task: 1, category: "折线图", question: "The line graph below shows the number of international tourists visiting four countries between 1990 and 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    chart: {
+      type: "line",
+      title: "Number of International Tourists Visiting Four Countries, 1990-2020",
+      unit: "million",
+      categories: ["1990","2000","2010","2020"],
+      series: [
+        { name: "Country A", values: [3, 5, 7, 5] },
+        { name: "Country B", values: [2.5, 2, 3, 2.5] },
+        { name: "Country C", values: [4, 6, 8, 10] },
+        { name: "Country D", values: [8, 12, 16, 20] }
+      ]
+    }
+  },
+  { id: "wt1-line-graph-02", task: 1, category: "折线图", question: "The line graph below shows average house prices in five cities from 2000 to 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    chart: {
+      type: "line",
+      title: "Average House Prices in Five Cities, 2000-2020",
+      unit: "thousand USD",
+      categories: ["2000","2005","2010","2015","2020"],
+      series: [
+        { name: "City A", values: [300, 330, 360, 390, 420] },
+        { name: "City B", values: [220, 330, 380, 345, 300] },
+        { name: "City C", values: [120, 160, 200, 230, 260] },
+        { name: "City D", values: [155, 150, 160, 155, 150] },
+        { name: "City E", values: [180, 210, 240, 265, 290] }
+      ]
+    }
+  },
+  { id: "wt1-line-graph-03", task: 1, category: "折线图", question: "The line graph below shows the consumption of three types of energy in one country over a 30-year period. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    chart: {
+      type: "line",
+      title: "Consumption of Three Types of Energy in One Country, 1990-2020",
+      unit: "units",
+      categories: ["1990","2000","2010","2020"],
+      series: [
+        { name: "Coal", values: [100, 80, 60, 40] },
+        { name: "Oil", values: [60, 80, 90, 90] },
+        { name: "Natural gas", values: [20, 45, 70, 85] }
+      ]
+    }
+  },
+  { id: "wt1-pie-chart-01", task: 1, category: "饼图", question: "The pie charts below show the percentage of household expenditure on six categories in one country in 1990 and 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    chart: {
+      type: "pie",
+      title: "Household Expenditure by Category, 1990 and 2020",
+      unit: "%",
+      slices: [
+        { name: "Food", value: 35 },
+        { name: "Housing", value: 30 },
+        { name: "Transport", value: 15 },
+        { name: "Leisure", value: 8 },
+        { name: "Education", value: 5 },
+        { name: "Clothing", value: 7 }
+      ],
+      slices2: [
+        { name: "Housing", value: 40 },
+        { name: "Food", value: 20 },
+        { name: "Leisure", value: 15 },
+        { name: "Education", value: 10 },
+        { name: "Transport", value: 10 },
+        { name: "Clothing", value: 5 }
+      ]
+    }
+  },
+  { id: "wt1-pie-chart-02", task: 1, category: "饼图", question: "The pie charts below compare the proportions of students studying in different fields at two universities. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    chart: {
+      type: "pie",
+      title: "Proportions of Students Studying in Different Fields at Two Universities",
+      unit: "%",
+      slices: [
+        { name: "Engineering", value: 40 },
+        { name: "Science", value: 25 },
+        { name: "Humanities", value: 15 },
+        { name: "Business", value: 15 },
+        { name: "Arts", value: 5 }
+      ],
+      slices2: [
+        { name: "Humanities", value: 25 },
+        { name: "Business", value: 20 },
+        { name: "Science", value: 20 },
+        { name: "Engineering", value: 15 },
+        { name: "Arts", value: 20 }
+      ]
+    }
+  },
+  { id: "wt1-pie-chart-03", task: 1, category: "饼图", question: "The pie chart below shows the main sources of energy used in one country in 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    chart: {
+      type: "pie",
+      title: "Main Sources of Energy Used in One Country, 2020",
+      unit: "%",
+      slices: [
+        { name: "Oil", value: 35 },
+        { name: "Natural gas", value: 25 },
+        { name: "Coal", value: 15 },
+        { name: "Nuclear", value: 15 },
+        { name: "Hydro", value: 5 },
+        { name: "Wind and solar", value: 5 }
+      ]
+    }
+  },
+  { id: "wt1-table-01", task: 1, category: "表格", question: "The table below shows the number of visitors to four museums in a city in 2015 and 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    chart: {
+      type: "table",
+      title: "Number of Visitors to Four Museums, 2015 and 2020",
+      unit: "thousand visitors",
+      columns: ["Museum","2015","2020"],
+      rows: [
+        ["Art Museum", 500, 550],
+        ["Science Museum", 450, 700],
+        ["History Museum", 300, 220],
+        ["Natural History Museum", 250, 260]
+      ]
+    }
+  },
+  { id: "wt1-table-02", task: 1, category: "表格", question: "The table below shows the average weekly hours spent on different leisure activities by men and women in one country. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    chart: {
+      type: "table",
+      title: "Average Weekly Hours Spent on Leisure Activities by Men and Women",
+      unit: "hours per week",
+      columns: ["Activity","Men","Women"],
+      rows: [
+        ["Watching TV", 15, 13],
+        ["Sport and exercise", 6, 2.5],
+        ["Socialising", 3, 5],
+        ["Computer games", 4, 3.5]
+      ]
+    }
+  },
+  { id: "wt1-table-03", task: 1, category: "表格", question: "The table below shows the percentages of people using different modes of transport to commute to work in four cities. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    chart: {
+      type: "table",
+      title: "Percentages of People Using Different Modes of Transport to Commute, by City",
+      unit: "%",
+      columns: ["City","Car","Train","Bus","Cycling/walking"],
+      rows: [
+        ["City A", 55, 15, 20, 10],
+        ["City B", 50, 25, 15, 10],
+        ["City C", 60, 20, 15, 5],
+        ["City D", 25, 40, 20, 15]
+      ]
+    }
+  },
+  { id: "wt1-process-diagram-01", task: 1, category: "流程图", question: "The diagram below shows the process of producing bottled water for sale. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    chart: {
+      type: "process",
+      title: "The Process of Producing Bottled Water for Sale",
+      steps: [
+        "Water is drawn from an underground spring or reservoir and pumped into a processing plant.",
+        "The water passes through a series of filters that remove impurities.",
+        "The filtered water is purified, typically through reverse osmosis or ultraviolet treatment.",
+        "The purified water is transported along pipes to a bottling machine and poured into sterile plastic bottles.",
+        "The bottles are sealed with caps and labelled with the brand and product information.",
+        "The finished bottles are packed into boxes and loaded onto lorries for distribution to retailers."
+      ]
+    }
+  },
+  { id: "wt1-process-diagram-02", task: 1, category: "流程图", question: "The diagram below shows how recycled paper is made. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    chart: {
+      type: "process",
+      title: "How Recycled Paper Is Made",
+      steps: [
+        "Waste paper is collected from homes and offices and taken to a recycling centre.",
+        "The paper is sorted to remove contaminants such as plastic and metal.",
+        "The clean paper is shredded and mixed with water to create a soft pulp.",
+        "The pulp is filtered and washed to remove ink and other impurities, leaving clean paper fibres.",
+        "The cleaned pulp is spread onto a moving mesh screen, where excess water drains away and the fibres bond into a thin sheet.",
+        "The sheet is pressed between rollers, dried with heated cylinders and wound onto large rolls, ready to be cut and reused."
+      ]
+    }
+  },
+  { id: "wt1-process-diagram-03", task: 1, category: "流程图", question: "The diagram below shows the life cycle of a salmon. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    chart: {
+      type: "process",
+      title: "The Life Cycle of a Salmon",
+      steps: [
+        "Adult salmon lay their eggs in the gravel of a riverbed.",
+        "The eggs hatch into alevins, which stay hidden among the stones and feed on the yolk sac attached to their bodies.",
+        "The alevins grow into fry, which begin to feed on small insects.",
+        "The young fish develop into smolts and migrate downstream to the sea.",
+        "In the ocean, the smolts mature into adult salmon over a period of several years.",
+        "The adult salmon swim back upstream to their birthplace to spawn, and the cycle begins again."
+      ]
+    }
+  },
+  { id: "wt1-map-01", task: 1, category: "地图", question: "The maps below show the changes that took place in a coastal town between 1990 and 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    chart: {
+      type: "map",
+      title: "Changes in a Coastal Town, 1990 and 2020",
+      mapType: "town",
+      before: [
+        "A small cluster of houses stands near the harbour.",
+        "Farmland and open fields surround the settlement.",
+        "A single narrow road connects the town to the mainland.",
+        "The coastline to the south is undeveloped and untouched."
+      ],
+      after: [
+        "The farmland has been replaced by rows of houses and apartment blocks.",
+        "A large hotel complex has been built along the beachfront.",
+        "The harbour has been expanded to include a marina for leisure boats.",
+        "A new airport has been constructed on the outskirts of the town.",
+        "A ring road has been built linking the airport, the hotels and the town centre."
+      ]
+    }
+  },
+  { id: "wt1-map-02", task: 1, category: "地图", question: "The maps below show the current layout of a university campus and the proposed layout for 2025. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    chart: {
+      type: "map",
+      title: "University Campus: Current Layout and Proposed Layout for 2025",
+      mapType: "campus",
+      before: [
+        "A central library, a block of lecture halls and a student union building occupy the middle of the campus.",
+        "Halls of residence are located to the north.",
+        "A large car park lies to the south.",
+        "A sports field is situated to the east of the library."
+      ],
+      after: [
+        "A new science building is planned for the south-western corner of the site.",
+        "The car park will be moved to the north-east, next to the halls of residence.",
+        "The sports field will be relocated to the northern edge of the campus.",
+        "A new accommodation block and a new teaching building will be built where the sports field used to be.",
+        "The library and lecture halls will remain in their existing positions."
+      ]
+    }
+  },
+  { id: "wt1-map-03", task: 1, category: "地图", question: "The maps below compare the present plan of an airport with the plan for its future development. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    chart: {
+      type: "map",
+      title: "Airport: Present Plan and Future Development",
+      mapType: "airport",
+      before: [
+        "There is a single terminal building with eight departure gates.",
+        "One main runway serves the airport.",
+        "Two modest car parks are located to the north and south of the terminal."
+      ],
+      after: [
+        "A second, larger runway will be built parallel to the existing one.",
+        "A second terminal will be constructed to the west of the original building, more than doubling the number of gates.",
+        "The car parks will be enlarged on both the north and south sides of the site.",
+        "A new railway station will connect the airport to the city centre.",
+        "A dedicated road link will provide direct access from the airport to the city."
+      ]
+    }
+  },
+  { id: "wt1-mixed-chart-01", task: 1, category: "混合图", question: "The graph and table below show the number of cinema visits and the average ticket prices in one country over a ten-year period. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    chart: {
+      type: "mixed",
+      title: "Cinema Visits and Average Ticket Prices in One Country, 2010-2020",
+      unit: "million",
+      categories: ["2010","2015","2020"],
+      series: [
+        { name: "Cinema visits", values: [80, 120, 150] }
+      ],
+      table: {
+        columns: ["Year","Average ticket price"],
+        rows: [
+          ["2010", "$6.00"],
+          ["2012", "$6.50"],
+          ["2014", "$7.00"],
+          ["2016", "$7.50"],
+          ["2018", "$8.00"],
+          ["2020", "$8.50"]
+        ]
+      }
+    }
+  },
+  { id: "wt1-mixed-chart-02", task: 1, category: "混合图", question: "The bar chart and pie chart below show water usage in different sectors and the sources of water in one region. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    chart: {
+      type: "mixed",
+      title: "Water Usage by Sector and Sources of Water in One Region",
+      unit: "%",
+      categories: ["Agriculture","Industry","Domestic"],
+      series: [
+        { name: "Water usage", values: [70, 20, 10] }
+      ],
+      table: {
+        columns: ["Source","Share of supply"],
+        rows: [
+          ["Rivers", "50%"],
+          ["Groundwater", "30%"],
+          ["Reservoirs", "20%"]
+        ]
+      }
+    }
+  }
 ];

@@ -651,3 +651,64 @@ input, select, textarea { font: inherit; color: inherit; }
 
 /* ---------- Scrollbar hover ---------- */
 ::-webkit-scrollbar-thumb:hover { background: #414B5A; }
+
+/* ---------- 题目展开与图表 ---------- */
+.bank-question {
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.bank-item.expanded .bank-question { -webkit-line-clamp: unset; overflow: visible; }
+.bank-expand-row { display: flex; align-items: center; gap: var(--space-2); margin-top: 6px; }
+.link-btn {
+  color: var(--acc); font-size: var(--fs-1); font-weight: 600;
+  padding: 2px 6px; border-radius: var(--r-s);
+  transition: background .12s, color .12s;
+}
+.link-btn:hover { background: var(--acc-dim); color: #8FC2FF; }
+.bank-chart-hint { font-size: var(--fs-0); color: var(--text-3); }
+.bank-chart { margin-top: var(--space-3); }
+
+/* Chart */
+.chart-figure { border: 1px solid var(--hairline); border-radius: var(--r-m); background: var(--ground); padding: var(--space-3); }
+.chart-title { font-size: var(--fs-1); font-weight: 600; color: var(--text-2); margin-bottom: var(--space-2); }
+.chart-wrap svg { width: 100%; max-width: 560px; height: auto; display: block; margin: 0 auto; }
+.chart-val { font-family: var(--mono); }
+.chart-axis { font-family: var(--mono); }
+.chart-legend-row { display: flex; gap: var(--space-3); flex-wrap: wrap; justify-content: center; margin-top: var(--space-2); }
+.chart-legend-col { flex-direction: column; align-items: flex-start; }
+.chart-legend { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-1); color: var(--text-2); }
+.chart-legend i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.chart-legend b { color: var(--text); font-family: var(--mono); }
+.chart-pie { display: flex; flex-direction: column; align-items: center; gap: var(--space-2); }
+.chart-pie svg { max-width: 220px; }
+.chart-total { font-family: var(--mono); }
+.chart-table-wrap { overflow-x: auto; }
+.chart-table { width: 100%; border-collapse: collapse; font-size: var(--fs-1); }
+.chart-table th, .chart-table td { border: 1px solid var(--hairline); padding: 6px 10px; text-align: left; font-family: var(--mono); }
+.chart-table th { background: var(--panel-2); color: var(--text-2); font-weight: 600; }
+.chart-table td { color: var(--text-2); }
+.chart-process { display: flex; flex-direction: column; gap: var(--space-2); }
+.chart-step { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--fs-1); color: var(--text-2); line-height: 1.5; }
+.chart-step-num {
+  flex: 0 0 20px; height: 20px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--acc-dim); color: var(--acc); font-family: var(--mono); font-size: 11px; font-weight: 700;
+}
+.chart-step-arrow { color: var(--hairline-strong); text-align: center; font-size: 12px; }
+.chart-map { display: flex; gap: var(--space-4); align-items: flex-start; flex-wrap: wrap; }
+.chart-map-col { flex: 1; min-width: 200px; border: 1px solid var(--hairline); border-radius: var(--r-m); background: var(--panel-2); padding: var(--space-3); }
+.chart-map-col h4 { font-size: var(--fs-1); color: var(--acc); margin-bottom: var(--space-2); font-weight: 600; }
+.chart-map-col ul { list-style: disc; padding-left: 18px; font-size: var(--fs-1); color: var(--text-2); line-height: 1.6; }
+.chart-map-arrow { align-self: center; color: var(--acc); font-size: 20px; }
+.chart-mixed { display: flex; flex-direction: column; gap: var(--space-3); }
+@media (max-width: 640px) {
+  .chart-map { flex-direction: column; }
+  .chart-map-arrow { transform: rotate(90deg); align-self: center; }
+}
+
+/* Double pie */
+.chart-pie-double { flex-direction: row; align-items: flex-start; justify-content: center; gap: var(--space-4); flex-wrap: wrap; }
+.chart-pie-item { display: flex; flex-direction: column; align-items: center; }
+.chart-pie-item svg { max-width: 180px; }
+.chart-pie-name { font-size: var(--fs-0); color: var(--text-3); font-family: var(--mono); margin-bottom: 4px; }
+@media (max-width: 640px) { .chart-pie-double { flex-direction: column; align-items: center; } }

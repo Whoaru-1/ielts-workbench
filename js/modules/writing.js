@@ -4,6 +4,7 @@
 import * as store from "../store.js";
 import { h, panel, badge, icon, esc, emptyState, toast, slicePage, pager, PER_PAGE, scrollMainTop } from "../ui.js";
 import WRITING_BANK from "../data/writing-bank.js";
+import { renderChart } from "../charts.js";
 import aT2A from "../data/answers-writing-t2-a.js";
 import aT2B from "../data/answers-writing-t2-b.js";
 import aT1 from "../data/answers-writing-t1.js";
@@ -134,15 +135,24 @@ export function render(root, app) {
         h("div", { class: "bank-list" }, items.map((x) => {
           const practiced = store.isWritingPracticed(x.id);
           const answer = ANSWERS[x.id];
-          return h("div", { class: `bank-item${practiced ? " practiced" : ""}` },
+          const chartBox = h("div", { class: "bank-chart" });
+          const expandBtn = h("button", { class: "link-btn", type: "button", onclick: () => {
+            const expanded = item.classList.toggle("expanded");
+            expandBtn.textContent = expanded ? "收起" : "展开";
+            if (expanded && x.chart && !chartBox.innerHTML) chartBox.innerHTML = renderChart(x.chart);
+          } }, "展开");
+          const item = h("div", { class: `bank-item${practiced ? " practiced" : ""}` },
             h("div", { class: "bank-main" },
               h("div", { class: "bank-head" },
                 badge(TASK_LABEL[x.task], TASK_KIND[x.task]),
                 badge(x.category, "acc"),
+                x.chart ? badge("含图表", "warn") : null,
                 answer ? badge("有范文", "ok") : null,
                 practiced ? badge("已练", "ok") : null
               ),
               h("div", { class: "bank-question" }, esc(x.question)),
+              h("div", { class: "bank-expand-row" }, expandBtn, x.chart ? h("span", { class: "bank-chart-hint" }, "展开查看图表与题目") : null),
+              chartBox,
               answer ? h("details", { class: "bank-answer" },
                 h("summary", null, "参考答案（高分范文）"),
                 h("div", { class: "bank-answer-body" }, esc(answer))
@@ -154,6 +164,7 @@ export function render(root, app) {
               h("button", { class: "btn btn-primary btn-sm", onclick: () => useInRecord(x) }, icon("edit"), "记录练习")
             )
           );
+          return item;
         })),
         pager({ page: bankPage, pages, onChange: (p) => { bankPage = p; renderBank(); scrollMainTop(); } })
       )
