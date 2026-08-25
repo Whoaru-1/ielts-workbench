@@ -21,10 +21,16 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 -->
 <div id="app" class="shell">
   <header class="topbar">
-    <a class="brand" href="#/dashboard" aria-label="IELTS 工作台首页">
-      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 22l6-12 4 7 3-5 5 10" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span class="brand-name">IELTS<span class="brand-accent">工作台</span></span>
-    </a>
+    <div class="topbar-left">
+      <button id="menu-toggle" class="menu-btn" type="button" aria-label="打开模块菜单" aria-expanded="false" aria-controls="module-menu" title="全部模块">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4.5h12M2 8h12M2 11.5h12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <a class="brand" href="#/dashboard" aria-label="IELTS 工作台首页">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 22l6-12 4 7 3-5 5 10" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="brand-name">IELTS<span class="brand-accent">工作台</span></span>
+      </a>
+      <nav id="module-menu" class="module-menu" aria-label="模块菜单" hidden></nav>
+    </div>
     <div class="topbar-right">
       <div id="global-streak" class="streak-chip" title="连续打卡天数" hidden>
         <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 14s4-2.8 4-6A4 4 0 0 0 8 4a4 4 0 0 0-4 4c0 3.2 4 6 4 6z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 9.5c1 0 1.8-.5 1.8-1.4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>

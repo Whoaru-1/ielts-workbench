@@ -72,10 +72,45 @@ function buildNav() {
   }
 }
 
+/* 顶部模块下拉菜单（小屏时替代/补充侧栏） */
+function buildMenu() {
+  const menu = document.getElementById("module-menu");
+  if (!menu) return;
+  menu.innerHTML = "";
+  for (const [key, r] of Object.entries(ROUTES)) {
+    menu.append(
+      h("a", { class: "nav-item", href: `#/${key}`, "data-nav": key },
+        icon(r.icon), h("span", null, r.label),
+        h("span", { class: "nav-count", id: `menu-count-${key}` })
+      )
+    );
+  }
+}
+
+function wireMenu() {
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("module-menu");
+  if (!toggle || !menu) return;
+  const setOpen = (open) => {
+    menu.hidden = !open;
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "关闭模块菜单" : "打开模块菜单");
+  };
+  toggle.addEventListener("click", (e) => { e.stopPropagation(); setOpen(menu.hidden); });
+  menu.addEventListener("click", () => setOpen(false));
+  document.addEventListener("click", (e) => {
+    if (!menu.hidden && !menu.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
+  });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") setOpen(false); });
+  window.addEventListener("hashchange", () => setOpen(false));
+}
+
 function navCounts() {
   const set = (key, n) => {
-    const el = document.getElementById(`nav-count-${key}`);
-    if (el) { el.textContent = n > 0 ? n : ""; el.hidden = n === 0; }
+    for (const id of [`nav-count-${key}`, `menu-count-${key}`]) {
+      const el = document.getElementById(id);
+      if (el) { el.textContent = n > 0 ? n : ""; el.hidden = n === 0; }
+    }
   };
   const v = store.vocabStats();
   set("vocab", v.total);
@@ -152,6 +187,8 @@ function renderRoute() {
 /* ---------- 启动 ---------- */
 seedVocab();
 buildNav();
+buildMenu();
+wireMenu();
 wireTopbar();
 refreshChrome();
 window.addEventListener("hashchange", renderRoute);
