@@ -94,6 +94,8 @@ input, select, textarea { font: inherit; color: inherit; }
 .streak-chip svg { width: 14px; height: 14px; }
 .streak-unit { color: var(--text-3); font-size: var(--fs-0); margin-left: -2px; }
 
+.body { flex: 1; display: flex; min-height: 0; overflow: hidden; }
+
 /* ---------- Sidebar ---------- */
 .sidebar {
   width: 208px; flex: 0 0 208px;
