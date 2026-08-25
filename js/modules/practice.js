@@ -2,7 +2,7 @@
  * practice.js — 真题模考：练习记录 / 模考计时 / 题型攻略 / 错题本
  * ============================================================ */
 import * as store from "../store.js";
-import { h, panel, badge, icon, esc, emptyState, toast } from "../ui.js";
+import { h, panel, badge, icon, esc, emptyState, toast, slicePage, pager, PER_PAGE } from "../ui.js";
 import GUIDES from "../data/practice-guides.js";
 
 const MODULES = [
@@ -55,36 +55,43 @@ export function render(root, app) {
   const listWrap = h("div", {});
   const recordsTab = h("div", { class: "tab-pane" }, formPanel, h("div", { class: "toolbar" }, filter), listWrap);
 
+  let recPage = 1;
   const renderRecords = () => {
     const list = store.practiceList(filter.value);
+    const { items, page: cur, pages } = slicePage(list, recPage);
+    recPage = cur;
     listWrap.innerHTML = "";
     if (list.length === 0) {
+      recPage = 1;
       listWrap.append(panel({ title: "练习历史", body: emptyState("practice", "还没有练习记录", "用「模考计时」完成一次练习，或直接记录成绩。") }));
       return;
     }
     listWrap.append(panel({
-      title: `练习历史 · ${list.length} 条`,
-      body: h("div", { class: "tbl-wrap" },
-        h("table", { class: "tbl" },
-          h("thead", null, h("tr", null, h("th", null, "日期"), h("th", null, "模块"), h("th", null, "标题"), h("th", { class: "num" }, "得分"), h("th", { class: "num" }, "估分"), h("th", { class: "num" }, "用时"), h("th", null, ""))),
-          h("tbody", null, list.map((p) =>
-            h("tr", null,
-              h("td", { class: "num" }, store.fmtDate(p.date)),
-              h("td", null, badge(store.moduleLabel(p.module), "acc")),
-              h("td", null, h("span", { class: "truncate", title: p.title }, esc(p.title))),
-              h("td", { class: "num" }, p.total ? `${p.correct}/${p.total}` : `${p.correct} 题`),
-              h("td", { class: "num" }, p.band != null ? p.band : "—"),
-              h("td", { class: "num" }, p.minutes ? `${p.minutes}′` : "—"),
-              h("td", null, h("div", { class: "row-actions" },
-                h("button", { class: "icon-btn danger", title: "删除", onclick: () => { store.deletePractice(p.id); renderRecords(); app.refreshChrome(); } }, icon("trash"))
-              ))
-            )
-          ))
-        )
+      title: `练习历史 · ${list.length} 条（每页 ${PER_PAGE} 条）`,
+      body: h("div", null,
+        h("div", { class: "tbl-wrap" },
+          h("table", { class: "tbl" },
+            h("thead", null, h("tr", null, h("th", null, "日期"), h("th", null, "模块"), h("th", null, "标题"), h("th", { class: "num" }, "得分"), h("th", { class: "num" }, "估分"), h("th", { class: "num" }, "用时"), h("th", null, ""))),
+            h("tbody", null, items.map((p) =>
+              h("tr", null,
+                h("td", { class: "num" }, store.fmtDate(p.date)),
+                h("td", null, badge(store.moduleLabel(p.module), "acc")),
+                h("td", null, h("span", { class: "truncate", title: p.title }, esc(p.title))),
+                h("td", { class: "num" }, p.total ? `${p.correct}/${p.total}` : `${p.correct} 题`),
+                h("td", { class: "num" }, p.band != null ? p.band : "—"),
+                h("td", { class: "num" }, p.minutes ? `${p.minutes}′` : "—"),
+                h("td", null, h("div", { class: "row-actions" },
+                  h("button", { class: "icon-btn danger", title: "删除", onclick: () => { store.deletePractice(p.id); renderRecords(); app.refreshChrome(); } }, icon("trash"))
+                ))
+              )
+            ))
+          )
+        ),
+        pager({ page: recPage, pages, onChange: (p) => { recPage = p; renderRecords(); } })
       )
     }));
   };
-  filter.addEventListener("change", renderRecords);
+  filter.addEventListener("change", () => { recPage = 1; renderRecords(); });
 
   /* ============ 模考计时标签 ============ */
   const timerPanel = h("div", {});
@@ -181,31 +188,38 @@ export function render(root, app) {
     mListWrap
   );
 
+  let misPage = 1;
   const renderMistakes = () => {
     const list = store.mistakesList(mFilter.value);
+    const { items, page: cur, pages } = slicePage(list, misPage);
+    misPage = cur;
     mListWrap.innerHTML = "";
     if (list.length === 0) {
+      misPage = 1;
       mListWrap.append(panel({ title: "错题本", body: emptyState("practice", "还没有错题记录", "做完题把错题记下来，考前重点复盘，比盲目刷题更有效。") }));
       return;
     }
     mListWrap.append(panel({
-      title: `错题本 · ${list.length} 条`,
-      body: h("div", { class: "writing-list" }, list.map((m) =>
-        h("article", { class: "writing-item" },
-          h("div", { class: "writing-head" },
-            h("div", null,
-              h("div", { class: "writing-title" }, badge(store.moduleLabel(m.module), "acc"), badge(m.qtype, "warn"), h("strong", null, esc(m.note))),
-              h("div", { class: "writing-meta" }, `日期 ${store.fmtDate(m.date)}`)
-            ),
-            h("div", { class: "writing-right" },
-              h("button", { class: "icon-btn danger", title: "删除", onclick: () => { store.deleteMistake(m.id); renderMistakes(); app.refreshChrome(); } }, icon("trash"))
+      title: `错题本 · ${list.length} 条（每页 ${PER_PAGE} 条）`,
+      body: h("div", null,
+        h("div", { class: "writing-list" }, items.map((m) =>
+          h("article", { class: "writing-item" },
+            h("div", { class: "writing-head" },
+              h("div", null,
+                h("div", { class: "writing-title" }, badge(store.moduleLabel(m.module), "acc"), badge(m.qtype, "warn"), h("strong", null, esc(m.note))),
+                h("div", { class: "writing-meta" }, `日期 ${store.fmtDate(m.date)}`)
+              ),
+              h("div", { class: "writing-right" },
+                h("button", { class: "icon-btn danger", title: "删除", onclick: () => { store.deleteMistake(m.id); renderMistakes(); app.refreshChrome(); } }, icon("trash"))
+              )
             )
           )
-        )
-      ))
+        )),
+        pager({ page: misPage, pages, onChange: (p) => { misPage = p; renderMistakes(); } })
+      )
     }));
   };
-  mFilter.addEventListener("change", renderMistakes);
+  mFilter.addEventListener("change", () => { misPage = 1; renderMistakes(); });
 
   /* ============ 标签切换 ============ */
   const setTab = (name) => {

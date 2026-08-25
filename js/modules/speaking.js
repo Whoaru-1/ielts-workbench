@@ -2,7 +2,7 @@
  * speaking.js — 口语：练习记录 + 口语题库（P1/P2/P3 真题库）
  * ============================================================ */
 import * as store from "../store.js";
-import { h, panel, badge, icon, esc, emptyState, toast } from "../ui.js";
+import { h, panel, badge, icon, esc, emptyState, toast, slicePage, pager, PER_PAGE } from "../ui.js";
 import part1 from "../data/speaking-part1.js";
 import part2 from "../data/speaking-part2.js";
 import part3 from "../data/speaking-part3.js";
@@ -48,30 +48,37 @@ export function render(root, app) {
   const recordListWrap = h("div", {});
   const recordsTab = h("div", { class: "tab-pane" }, recordFormPanel, recordListWrap);
 
+  let recPage = 1;
   const renderRecords = () => {
     const list = store.speakingList();
+    const { items, page: cur, pages } = slicePage(list, recPage);
+    recPage = cur;
     recordListWrap.innerHTML = "";
     if (list.length === 0) {
+      recPage = 1;
       recordListWrap.append(panel({ title: "口语记录", body: emptyState("speaking", "还没有口语记录", "去「口语题库」挑一道题练习，或用下方表单手动记录。") }));
       return;
     }
     recordListWrap.append(panel({
-      title: `口语记录 · ${list.length} 条`,
-      body: h("div", { class: "writing-list" }, list.map((s) =>
-        h("article", { class: "writing-item" },
-          h("div", { class: "writing-head" },
-            h("div", null,
-              h("div", { class: "writing-title" }, badge(`Part ${s.part}`, PART_KIND[s.part] || "acc"), h("strong", null, esc(s.topic))),
-              h("div", { class: "writing-meta" }, `日期 ${store.fmtDate(s.date)}`)
+      title: `口语记录 · ${list.length} 条（每页 ${PER_PAGE} 条）`,
+      body: h("div", null,
+        h("div", { class: "writing-list" }, items.map((s) =>
+          h("article", { class: "writing-item" },
+            h("div", { class: "writing-head" },
+              h("div", null,
+                h("div", { class: "writing-title" }, badge(`Part ${s.part}`, PART_KIND[s.part] || "acc"), h("strong", null, esc(s.topic))),
+                h("div", { class: "writing-meta" }, `日期 ${store.fmtDate(s.date)}`)
+              ),
+              h("div", { class: "writing-right" },
+                s.score != null ? badge(`自评 ${s.score}`, s.score >= 6.5 ? "ok" : "warn") : null,
+                h("button", { class: "icon-btn danger", title: "删除", onclick: () => { store.deleteSpeaking(s.id); renderRecords(); app.refreshChrome(); } }, icon("trash"))
+              )
             ),
-            h("div", { class: "writing-right" },
-              s.score != null ? badge(`自评 ${s.score}`, s.score >= 6.5 ? "ok" : "warn") : null,
-              h("button", { class: "icon-btn danger", title: "删除", onclick: () => { store.deleteSpeaking(s.id); renderRecords(); app.refreshChrome(); } }, icon("trash"))
-            )
-          ),
-          s.notes ? h("div", { class: "writing-notes" }, esc(s.notes)) : null
-        )
-      ))
+            s.notes ? h("div", { class: "writing-notes" }, esc(s.notes)) : null
+          )
+        )),
+        pager({ page: recPage, pages, onChange: (p) => { recPage = p; renderRecords(); } })
+      )
     }));
   };
 
@@ -101,6 +108,7 @@ export function render(root, app) {
     })
   );
 
+  let bankPage = 1;
   const buildCatOptions = () => {
     const cats = [...new Set(BANK.map((x) => x.category))];
     catFilter.innerHTML = "";
@@ -118,35 +126,44 @@ export function render(root, app) {
       (c === "all" || x.category === c) &&
       (!query || x.question.toLowerCase().includes(query))
     );
+    const { items, page: cur, pages } = slicePage(list, bankPage);
+    bankPage = cur;
     bankListWrap.innerHTML = "";
     if (list.length === 0) {
+      bankPage = 1;
       bankListWrap.append(emptyState("speaking", "没有符合条件的题目", "换个筛选条件试试。"));
       return;
     }
-    bankListWrap.append(h("div", { class: "bank-list" }, list.map((x) => {
-      const practiced = store.isSpeakingPracticed(x.id);
-      const answer = ANSWERS[x.id];
-      return h("div", { class: `bank-item${practiced ? " practiced" : ""}` },
-        h("div", { class: "bank-main" },
-          h("div", { class: "bank-head" },
-            badge(PART_LABEL[x.part], PART_KIND[x.part]),
-            badge(x.category, "acc"),
-            answer ? badge("有范文", "ok") : null,
-            practiced ? badge("已练", "ok") : null
-          ),
-          h("div", { class: "bank-question" }, esc(x.question)),
-          answer ? h("details", { class: "bank-answer" },
-            h("summary", null, "参考答案（高分示范）"),
-            h("div", { class: "bank-answer-body" }, esc(answer))
-          ) : null
-        ),
-        h("div", { class: "bank-actions" },
-          h("button", { class: "btn btn-ghost btn-sm", title: practiced ? "取消已练标记" : "标记为已练", onclick: () => { store.toggleSpeakingPracticed(x.id); renderBank(); app.refreshChrome(); } },
-            icon("check"), practiced ? "取消" : "标记已练"),
-          h("button", { class: "btn btn-primary btn-sm", onclick: () => useInRecord(x) }, icon("edit"), "记录练习")
-        )
-      );
-    })));
+    bankListWrap.append(panel({
+      title: `口语题库 · ${list.length} 题（每页 ${PER_PAGE} 题）`,
+      body: h("div", null,
+        h("div", { class: "bank-list" }, items.map((x) => {
+          const practiced = store.isSpeakingPracticed(x.id);
+          const answer = ANSWERS[x.id];
+          return h("div", { class: `bank-item${practiced ? " practiced" : ""}` },
+            h("div", { class: "bank-main" },
+              h("div", { class: "bank-head" },
+                badge(PART_LABEL[x.part], PART_KIND[x.part]),
+                badge(x.category, "acc"),
+                answer ? badge("有范文", "ok") : null,
+                practiced ? badge("已练", "ok") : null
+              ),
+              h("div", { class: "bank-question" }, esc(x.question)),
+              answer ? h("details", { class: "bank-answer" },
+                h("summary", null, "参考答案（高分示范）"),
+                h("div", { class: "bank-answer-body" }, esc(answer))
+              ) : null
+            ),
+            h("div", { class: "bank-actions" },
+              h("button", { class: "btn btn-ghost btn-sm", title: practiced ? "取消已练标记" : "标记为已练", onclick: () => { store.toggleSpeakingPracticed(x.id); renderBank(); app.refreshChrome(); } },
+                icon("check"), practiced ? "取消" : "标记已练"),
+              h("button", { class: "btn btn-primary btn-sm", onclick: () => useInRecord(x) }, icon("edit"), "记录练习")
+            )
+          );
+        })),
+        pager({ page: bankPage, pages, onChange: (pg) => { bankPage = pg; renderBank(); } })
+      )
+    }));
   };
 
   /* 随机抽题 */
@@ -204,9 +221,9 @@ export function render(root, app) {
     }
   };
 
-  q.addEventListener("input", renderBank);
-  partFilter.addEventListener("change", () => { buildCatOptions(); renderBank(); });
-  catFilter.addEventListener("change", renderBank);
+  q.addEventListener("input", () => { bankPage = 1; renderBank(); });
+  partFilter.addEventListener("change", () => { buildCatOptions(); bankPage = 1; renderBank(); });
+  catFilter.addEventListener("change", () => { bankPage = 1; renderBank(); });
 
   setTab("record");
   root.append(page);

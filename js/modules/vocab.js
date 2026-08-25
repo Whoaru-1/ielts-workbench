@@ -2,7 +2,7 @@
  * vocab.js — 词汇：词表 / 筛选 / 新增 / 自测
  * ============================================================ */
 import * as store from "../store.js";
-import { h, panel, badge, icon, esc, emptyState, toast } from "../ui.js";
+import { h, panel, badge, icon, esc, emptyState, toast, slicePage, pager, PER_PAGE } from "../ui.js";
 
 const STATUS_LABEL = { new: "陌生", learning: "学习中", mastered: "已掌握" };
 const STATUS_KIND = { new: "", learning: "warn", mastered: "ok" };
@@ -50,33 +50,40 @@ export function render(root, app) {
 
   const listWrap = h("div", {});
   page.append(listWrap);
+  let vocabPage = 1;
 
   const renderList = () => {
     const words = store.vocabList(filter.value, q.value, topicFilter.value);
+    const { items, page: cur, pages } = slicePage(words, vocabPage);
+    vocabPage = cur;
     listWrap.innerHTML = "";
     if (words.length === 0) {
+      vocabPage = 1;
       listWrap.append(panel({ title: "词表", body: emptyState("vocab", "没有符合条件的词", "换个筛选条件，或在下方「新增单词」面板添加，或从进度文件导入。") }));
       return;
     }
     listWrap.append(panel({
-      title: `词表 · ${words.length} 词`,
-      body: h("div", { class: "vocab-list" }, words.map((w) =>
-        h("div", { class: "vocab-item" },
-          h("div", null,
-            h("div", { class: "vocab-word" }, esc(w.word), w.phonetic ? h("span", { class: "phonetic" }, esc(w.phonetic)) : null),
-            w.example ? h("div", { class: "vocab-example" }, `"${esc(w.example)}"`) : null
-          ),
-          h("div", { class: "vocab-meaning" }, esc(w.meaning || "—")),
-          h("div", { class: "vocab-right" },
-            badge(store.TOPIC_LABELS[w.category] || "通用", "acc"),
-            badge(STATUS_LABEL[w.status] || w.status, STATUS_KIND[w.status]),
-            h("div", { class: "row-actions" },
-              cycleBtn(w, renderList),
-              h("button", { class: "icon-btn danger", title: "删除", onclick: () => { store.deleteWord(w.id); renderList(); app.refreshChrome(); } }, icon("trash"))
+      title: `词表 · ${words.length} 词（每页 ${PER_PAGE} 个）`,
+      body: h("div", null,
+        h("div", { class: "vocab-list" }, items.map((w) =>
+          h("div", { class: "vocab-item" },
+            h("div", null,
+              h("div", { class: "vocab-word" }, esc(w.word), w.phonetic ? h("span", { class: "phonetic" }, esc(w.phonetic)) : null),
+              w.example ? h("div", { class: "vocab-example" }, `"${esc(w.example)}"`) : null
+            ),
+            h("div", { class: "vocab-meaning" }, esc(w.meaning || "—")),
+            h("div", { class: "vocab-right" },
+              badge(store.TOPIC_LABELS[w.category] || "通用", "acc"),
+              badge(STATUS_LABEL[w.status] || w.status, STATUS_KIND[w.status]),
+              h("div", { class: "row-actions" },
+                cycleBtn(w, renderList),
+                h("button", { class: "icon-btn danger", title: "删除", onclick: () => { store.deleteWord(w.id); renderList(); app.refreshChrome(); } }, icon("trash"))
+              )
             )
           )
-        )
-      ))
+        )),
+        pager({ page: vocabPage, pages, onChange: (p) => { vocabPage = p; renderList(); } })
+      )
     }));
   };
 
@@ -89,9 +96,9 @@ export function render(root, app) {
   });
   page.append(panel({ title: "新增单词", body: form }));
 
-  q.addEventListener("input", renderList);
-  topicFilter.addEventListener("change", renderList);
-  filter.addEventListener("change", renderList);
+  q.addEventListener("input", () => { vocabPage = 1; renderList(); });
+  topicFilter.addEventListener("change", () => { vocabPage = 1; renderList(); });
+  filter.addEventListener("change", () => { vocabPage = 1; renderList(); });
   renderList();
   root.append(page);
 

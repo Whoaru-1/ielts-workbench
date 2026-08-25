@@ -117,3 +117,22 @@ export function confirmInline(root, message, onConfirm, confirmLabel = "确认�
   );
   root.append(box);
 }
+
+/* ---------- 分页 ---------- */
+
+export const PER_PAGE = 10;
+
+export function slicePage(arr, page, perPage = PER_PAGE) {
+  const pages = Math.max(1, Math.ceil(arr.length / perPage));
+  const cur = Math.min(Math.max(1, page), pages);
+  return { items: arr.slice((cur - 1) * perPage, cur * perPage), page: cur, pages };
+}
+
+export function pager({ page, pages, onChange }) {
+  if (pages <= 1) return null;
+  return h("div", { class: "pager" },
+    h("button", { class: "btn btn-ghost btn-sm", disabled: page <= 1, onclick: () => onChange(page - 1) }, "‹ 上一页"),
+    h("span", { class: "pager-info" }, `第 ${page} / ${pages} 页`),
+    h("button", { class: "btn btn-ghost btn-sm", disabled: page >= pages, onclick: () => onChange(page + 1) }, "下一页 ›")
+  );
+}

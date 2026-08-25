@@ -65,7 +65,7 @@ input, select, textarea { font: inherit; color: inherit; }
 ::placeholder { color: var(--text-3); }
 
 /* ---------- Shell layout ---------- */
-.shell { min-height: 100dvh; display: flex; flex-direction: column; }
+.shell { height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
 .topbar {
   height: 52px;
   flex: 0 0 52px;
@@ -94,8 +94,6 @@ input, select, textarea { font: inherit; color: inherit; }
 .streak-chip svg { width: 14px; height: 14px; }
 .streak-unit { color: var(--text-3); font-size: var(--fs-0); margin-left: -2px; }
 
-.body { flex: 1; display: flex; min-height: 0; }
-
 /* ---------- Sidebar ---------- */
 .sidebar {
   width: 208px; flex: 0 0 208px;
@@ -103,6 +101,7 @@ input, select, textarea { font: inherit; color: inherit; }
   border-right: 1px solid var(--hairline);
   display: flex; flex-direction: column; justify-content: space-between;
   padding: var(--space-4) 0 var(--space-3);
+  overflow-y: auto;
 }
 .nav-list { display: flex; flex-direction: column; gap: 2px; }
 .nav-item {
@@ -559,3 +558,11 @@ input, select, textarea { font: inherit; color: inherit; }
   white-space: pre-wrap;
 }
 .rand-card .bank-answer { background: var(--ground-2); }
+
+/* ---------- Pager ---------- */
+.pager {
+  display: flex; align-items: center; justify-content: center; gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--hairline);
+}
+.pager-info { font-family: var(--mono); font-size: var(--fs-1); color: var(--text-2); }
