@@ -561,8 +561,27 @@ input, select, textarea { font: inherit; color: inherit; }
 
 /* ---------- Pager ---------- */
 .pager {
-  display: flex; align-items: center; justify-content: center; gap: var(--space-3);
+  display: flex; align-items: center; justify-content: center; gap: var(--space-2);
+  flex-wrap: wrap;
   padding: var(--space-3) var(--space-4);
   border-top: 1px solid var(--hairline);
+  background: var(--ground-2);
 }
-.pager-info { font-family: var(--mono); font-size: var(--fs-1); color: var(--text-2); }
+.pager-info {
+  font-family: var(--mono); font-size: var(--fs-1); color: var(--text-2);
+  padding: 2px var(--space-2);
+  border: 1px solid var(--hairline); border-radius: var(--r-s);
+  background: var(--panel);
+}
+.pager-jumpbox { display: inline-flex; align-items: center; gap: 4px; }
+.pager-jump {
+  width: 58px; height: 28px;
+  background: var(--ground); border: 1px solid var(--hairline); border-radius: var(--r-s);
+  color: var(--text); font-family: var(--mono); font-size: var(--fs-1);
+  text-align: center; padding: 0 4px;
+}
+.pager-jump:focus { outline: none; border-color: var(--acc); box-shadow: 0 0 0 3px var(--acc-dim); }
+@media (max-width: 640px) {
+  .pager { gap: 6px; }
+  .pager .btn { padding: 0 8px; font-size: var(--fs-0); }
+}

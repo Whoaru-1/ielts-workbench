@@ -2,9 +2,10 @@
  * practice.js — 真题模考：练习记录 / 模考计时 / 题型攻略 / 错题本
  * ============================================================ */
 import * as store from "../store.js";
-import { h, panel, badge, icon, esc, emptyState, toast, slicePage, pager, PER_PAGE } from "../ui.js";
+import { h, panel, badge, icon, esc, emptyState, toast, slicePage, pager, PER_PAGE, scrollMainTop } from "../ui.js";
 import GUIDES from "../data/practice-guides.js";
 
+let recPage = 1, misPage = 1; // 模块级：记住所在页
 const MODULES = [
   ["listening", "听力"],
   ["reading", "阅读"],
@@ -55,7 +56,6 @@ export function render(root, app) {
   const listWrap = h("div", {});
   const recordsTab = h("div", { class: "tab-pane" }, formPanel, h("div", { class: "toolbar" }, filter), listWrap);
 
-  let recPage = 1;
   const renderRecords = () => {
     const list = store.practiceList(filter.value);
     const { items, page: cur, pages } = slicePage(list, recPage);
@@ -87,7 +87,7 @@ export function render(root, app) {
             ))
           )
         ),
-        pager({ page: recPage, pages, onChange: (p) => { recPage = p; renderRecords(); } })
+        pager({ page: recPage, pages, onChange: (p) => { recPage = p; renderRecords(); scrollMainTop(); } })
       )
     }));
   };
@@ -188,7 +188,6 @@ export function render(root, app) {
     mListWrap
   );
 
-  let misPage = 1;
   const renderMistakes = () => {
     const list = store.mistakesList(mFilter.value);
     const { items, page: cur, pages } = slicePage(list, misPage);
@@ -215,7 +214,7 @@ export function render(root, app) {
             )
           )
         )),
-        pager({ page: misPage, pages, onChange: (p) => { misPage = p; renderMistakes(); } })
+        pager({ page: misPage, pages, onChange: (p) => { misPage = p; renderMistakes(); scrollMainTop(); } })
       )
     }));
   };

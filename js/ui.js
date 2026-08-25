@@ -130,9 +130,21 @@ export function slicePage(arr, page, perPage = PER_PAGE) {
 
 export function pager({ page, pages, onChange }) {
   if (pages <= 1) return null;
+  const jump = h("input", { class: "pager-jump", type: "number", min: 1, max: pages, value: page, "aria-label": "跳转到页码" });
+  const goTo = (p) => onChange(Math.min(pages, Math.max(1, Number(p) || 1)));
+  const jumpBtn = h("button", { class: "btn btn-ghost btn-sm", onclick: () => goTo(jump.value) }, "跳转");
+  jump.addEventListener("keydown", (e) => { if (e.key === "Enter") { goTo(jump.value); jump.blur(); } });
   return h("div", { class: "pager" },
-    h("button", { class: "btn btn-ghost btn-sm", disabled: page <= 1, onclick: () => onChange(page - 1) }, "‹ 上一页"),
+    h("button", { class: "btn btn-ghost btn-sm", title: "第一页", disabled: page <= 1, onclick: () => onChange(1) }, "« 首页"),
+    h("button", { class: "btn btn-ghost btn-sm", title: "上一页", disabled: page <= 1, onclick: () => onChange(page - 1) }, "‹ 上一页"),
     h("span", { class: "pager-info" }, `第 ${page} / ${pages} 页`),
-    h("button", { class: "btn btn-ghost btn-sm", disabled: page >= pages, onclick: () => onChange(page + 1) }, "下一页 ›")
+    h("button", { class: "btn btn-ghost btn-sm", title: "下一页", disabled: page >= pages, onclick: () => onChange(page + 1) }, "下一页 ›"),
+    h("button", { class: "btn btn-ghost btn-sm", title: "最后一页", disabled: page >= pages, onclick: () => onChange(pages) }, "末页 »"),
+    h("span", { class: "pager-jumpbox" }, jump, jumpBtn)
   );
+}
+
+/** 分页切换后把主内容区滚回顶部 */
+export function scrollMainTop() {
+  document.getElementById("main")?.scrollTo({ top: 0, behavior: "smooth" });
 }

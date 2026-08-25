@@ -2,8 +2,9 @@
  * vocab.js — 词汇：词表 / 筛选 / 新增 / 自测
  * ============================================================ */
 import * as store from "../store.js";
-import { h, panel, badge, icon, esc, emptyState, toast, slicePage, pager, PER_PAGE } from "../ui.js";
+import { h, panel, badge, icon, esc, emptyState, toast, slicePage, pager, PER_PAGE, scrollMainTop } from "../ui.js";
 
+let vocabPage = 1; // 模块级：记住所在页
 const STATUS_LABEL = { new: "陌生", learning: "学习中", mastered: "已掌握" };
 const STATUS_KIND = { new: "", learning: "warn", mastered: "ok" };
 
@@ -50,8 +51,6 @@ export function render(root, app) {
 
   const listWrap = h("div", {});
   page.append(listWrap);
-  let vocabPage = 1;
-
   const renderList = () => {
     const words = store.vocabList(filter.value, q.value, topicFilter.value);
     const { items, page: cur, pages } = slicePage(words, vocabPage);
@@ -82,7 +81,7 @@ export function render(root, app) {
             )
           )
         )),
-        pager({ page: vocabPage, pages, onChange: (p) => { vocabPage = p; renderList(); } })
+        pager({ page: vocabPage, pages, onChange: (p) => { vocabPage = p; renderList(); scrollMainTop(); } })
       )
     }));
   };

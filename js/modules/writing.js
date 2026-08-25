@@ -2,13 +2,14 @@
  * writing.js — 写作：练习记录 + 写作题库（Task1/Task2）
  * ============================================================ */
 import * as store from "../store.js";
-import { h, panel, badge, icon, esc, emptyState, toast, slicePage, pager, PER_PAGE } from "../ui.js";
+import { h, panel, badge, icon, esc, emptyState, toast, slicePage, pager, PER_PAGE, scrollMainTop } from "../ui.js";
 import WRITING_BANK from "../data/writing-bank.js";
 import aT2A from "../data/answers-writing-t2-a.js";
 import aT2B from "../data/answers-writing-t2-b.js";
 import aT1 from "../data/answers-writing-t1.js";
 
 const ANSWERS = { ...aT2A, ...aT2B, ...aT1 };
+let recPage = 1, bankPage = 1; // 模块级：记住所在页
 const TASK_LABEL = { 1: "Task 1", 2: "Task 2" };
 const TASK_KIND = { 1: "acc", 2: "warn" };
 
@@ -40,7 +41,6 @@ export function render(root, app) {
   const listWrap = h("div", {});
   const recordsTab = h("div", { class: "tab-pane" }, formPanel, listWrap);
 
-  let recPage = 1, bankPage = 1;
   const renderRecords = () => {
     const list = store.writingList();
     const { items, page: cur, pages } = slicePage(list, recPage);
@@ -73,7 +73,7 @@ export function render(root, app) {
             w.notes ? h("div", { class: "writing-notes" }, "备注：" + esc(w.notes)) : null
           )
         )),
-        pager({ page: recPage, pages, onChange: (p) => { recPage = p; renderRecords(); } })
+        pager({ page: recPage, pages, onChange: (p) => { recPage = p; renderRecords(); scrollMainTop(); } })
       )
     }));
   };
@@ -155,7 +155,7 @@ export function render(root, app) {
             )
           );
         })),
-        pager({ page: bankPage, pages, onChange: (p) => { bankPage = p; renderBank(); } })
+        pager({ page: bankPage, pages, onChange: (p) => { bankPage = p; renderBank(); scrollMainTop(); } })
       )
     }));
   };

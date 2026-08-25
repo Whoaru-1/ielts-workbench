@@ -2,7 +2,7 @@
  * speaking.js — 口语：练习记录 + 口语题库（P1/P2/P3 真题库）
  * ============================================================ */
 import * as store from "../store.js";
-import { h, panel, badge, icon, esc, emptyState, toast, slicePage, pager, PER_PAGE } from "../ui.js";
+import { h, panel, badge, icon, esc, emptyState, toast, slicePage, pager, PER_PAGE, scrollMainTop } from "../ui.js";
 import part1 from "../data/speaking-part1.js";
 import part2 from "../data/speaking-part2.js";
 import part3 from "../data/speaking-part3.js";
@@ -16,6 +16,7 @@ const BANK = [
   ...part2.map((q) => ({ ...q, part: 2 })),
   ...part3.map((q) => ({ ...q, part: 3 })),
 ];
+let bankPage = 1, recPage = 1; // 模块级：记住所在页
 const PART_LABEL = { 1: "Part 1", 2: "Part 2", 3: "Part 3" };
 const PART_KIND = { 1: "acc", 2: "warn", 3: "ok" };
 
@@ -48,7 +49,6 @@ export function render(root, app) {
   const recordListWrap = h("div", {});
   const recordsTab = h("div", { class: "tab-pane" }, recordFormPanel, recordListWrap);
 
-  let recPage = 1;
   const renderRecords = () => {
     const list = store.speakingList();
     const { items, page: cur, pages } = slicePage(list, recPage);
@@ -77,7 +77,7 @@ export function render(root, app) {
             s.notes ? h("div", { class: "writing-notes" }, esc(s.notes)) : null
           )
         )),
-        pager({ page: recPage, pages, onChange: (p) => { recPage = p; renderRecords(); } })
+        pager({ page: recPage, pages, onChange: (p) => { recPage = p; renderRecords(); scrollMainTop(); } })
       )
     }));
   };
@@ -108,7 +108,6 @@ export function render(root, app) {
     })
   );
 
-  let bankPage = 1;
   const buildCatOptions = () => {
     const cats = [...new Set(BANK.map((x) => x.category))];
     catFilter.innerHTML = "";
@@ -161,7 +160,7 @@ export function render(root, app) {
             )
           );
         })),
-        pager({ page: bankPage, pages, onChange: (pg) => { bankPage = pg; renderBank(); } })
+        pager({ page: bankPage, pages, onChange: (pg) => { bankPage = pg; renderBank(); scrollMainTop(); } })
       )
     }));
   };
