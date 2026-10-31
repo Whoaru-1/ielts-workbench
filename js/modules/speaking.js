@@ -96,9 +96,9 @@ export function render(root, app) {
 
   const bankTab = h("div", { class: "tab-pane" },
     randPanel,
-    panel({ title: "题库浏览", body:
+    panel({ title: "题库浏览", flush: true, body:
       h("div", null,
-        h("div", { class: "toolbar" },
+        h("div", { class: "toolbar bank-toolbar" },
           h("div", { class: "toolbar-search" }, icon("search"), q),
           partFilter, catFilter,
           h("button", { class: "btn btn-ghost btn-sm", onclick: () => pickRandom() }, icon("spark"), "换一题")
@@ -133,36 +133,34 @@ export function render(root, app) {
       bankListWrap.append(emptyState("speaking", "没有符合条件的题目", "换个筛选条件试试。"));
       return;
     }
-    bankListWrap.append(panel({
-      title: `口语题库 · ${list.length} 题（每页 ${PER_PAGE} 题）`,
-      body: h("div", null,
-        h("div", { class: "bank-list" }, items.map((x) => {
-          const practiced = store.isSpeakingPracticed(x.id);
-          const answer = ANSWERS[x.id];
-          return h("div", { class: `bank-item${practiced ? " practiced" : ""}` },
-            h("div", { class: "bank-main" },
-              h("div", { class: "bank-head" },
-                badge(PART_LABEL[x.part], PART_KIND[x.part]),
-                badge(x.category, "acc"),
-                answer ? badge("有范文", "ok") : null,
-                practiced ? badge("已练", "ok") : null
-              ),
-              h("div", { class: "bank-question" }, esc(x.question)),
-              answer ? h("details", { class: "bank-answer" },
-                h("summary", null, "参考答案（高分示范）"),
-                h("div", { class: "bank-answer-body" }, esc(answer))
-              ) : null
+    bankListWrap.append(
+      h("div", { class: "list-head" }, `口语题库 · ${list.length} 题（每页 ${PER_PAGE} 题）`),
+      h("div", { class: "bank-list" }, items.map((x) => {
+        const practiced = store.isSpeakingPracticed(x.id);
+        const answer = ANSWERS[x.id];
+        return h("div", { class: `bank-item${practiced ? " practiced" : ""}` },
+          h("div", { class: "bank-main" },
+            h("div", { class: "bank-head" },
+              badge(PART_LABEL[x.part], PART_KIND[x.part]),
+              badge(x.category, "acc"),
+              answer ? badge("有范文", "ok") : null,
+              practiced ? badge("已练", "ok") : null
             ),
-            h("div", { class: "bank-actions" },
-              h("button", { class: "btn btn-ghost btn-sm", title: practiced ? "取消已练标记" : "标记为已练", onclick: () => { store.toggleSpeakingPracticed(x.id); renderBank(); app.refreshChrome(); } },
-                icon("check"), practiced ? "取消" : "标记已练"),
-              h("button", { class: "btn btn-primary btn-sm", onclick: () => useInRecord(x) }, icon("edit"), "记录练习")
-            )
-          );
-        })),
-        pager({ page: bankPage, pages, onChange: (pg) => { bankPage = pg; renderBank(); scrollMainTop(); } })
-      )
-    }));
+            h("div", { class: "bank-question" }, esc(x.question)),
+            answer ? h("details", { class: "bank-answer" },
+              h("summary", null, "参考答案（高分示范）"),
+              h("div", { class: "bank-answer-body" }, esc(answer))
+            ) : null
+          ),
+          h("div", { class: "bank-actions" },
+            h("button", { class: "btn btn-ghost btn-sm", title: practiced ? "取消已练标记" : "标记为已练", onclick: () => { store.toggleSpeakingPracticed(x.id); renderBank(); app.refreshChrome(); } },
+              icon("check"), practiced ? "取消" : "标记已练"),
+            h("button", { class: "btn btn-primary btn-sm", onclick: () => useInRecord(x) }, icon("edit"), "记录练习")
+          )
+        );
+      })),
+      pager({ page: bankPage, pages, onChange: (pg) => { bankPage = pg; renderBank(); scrollMainTop(); } })
+    );
   };
 
   /* 随机抽题 */

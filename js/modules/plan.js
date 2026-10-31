@@ -79,16 +79,22 @@ function renderTasks() {
 
 function renderGrid() {
   const grid = store.weekGrid(14);
+  const today = store.todayKey();
   return [
-    h("div", { class: "bg-meta" }, "达标日：勾完当天全部任务，或手动打卡。绿色 = 达标，琥珀 = 部分完成。"),
-    h("div", { class: "bg-rows" },
-      grid.map((g) =>
-        h("div", { class: "bg-row" },
-          h("span", { class: "bg-label" }, g.key.slice(5)),
-          h("span", { class: `bg-cell${g.met ? " met" : g.taskCount > 0 ? " partial" : ""}`, title: `${g.key} · ${g.doneCount}/${g.taskCount} 任务` }),
-          h("span", { class: "bg-label", style: "width:auto" }, g.met ? "✓" : (g.taskCount > 0 ? `${g.doneCount}/${g.taskCount}` : ""))
-        )
-      )
+    h("div", { class: "blockgrid" },
+      h("div", { class: "bg-rows" },
+        grid.map((g) => {
+          const state = g.met ? "met" : g.taskCount > 0 ? "partial" : "";
+          const count = g.met ? "✓" : g.taskCount > 0 ? `${g.doneCount}/${g.taskCount}` : "";
+          const label = `${g.key} · ${g.doneCount}/${g.taskCount} 任务${g.met ? " · 已达标" : ""}`;
+          return h("div", { class: `bg-day${g.key === today ? " is-today" : ""}`, title: label, "aria-label": label },
+            h("span", { class: `bg-cell${state ? ` ${state}` : ""}` }),
+            h("span", { class: "bg-date" }, g.key.slice(5)),
+            h("span", { class: "bg-count" }, count)
+          );
+        })
+      ),
+      h("div", { class: "bg-meta" }, "绿色 = 达标 · 琥珀 = 部分完成 · 空白 = 未开始（悬停看当日任务数）")
     ),
   ];
 }

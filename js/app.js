@@ -63,7 +63,7 @@ function buildNav() {
   for (const [key, r] of Object.entries(ROUTES)) {
     if (key === "settings") continue;
     const li = h("li", null,
-      h("a", { class: "nav-item", href: `#/${key}`, "data-nav": key, "aria-current": "page" },
+      h("a", { class: "nav-item", href: `#/${key}`, "data-nav": key, "aria-current": "page", "aria-label": r.label, title: r.label },
         icon(r.icon), h("span", null, r.label),
         h("span", { class: "nav-count", id: `nav-count-${key}` })
       )
@@ -79,7 +79,7 @@ function buildMenu() {
   menu.innerHTML = "";
   for (const [key, r] of Object.entries(ROUTES)) {
     menu.append(
-      h("a", { class: "nav-item", href: `#/${key}`, "data-nav": key },
+      h("a", { class: "nav-item", href: `#/${key}`, "data-nav": key, "aria-label": r.label, title: r.label },
         icon(r.icon), h("span", null, r.label),
         h("span", { class: "nav-count", id: `menu-count-${key}` })
       )

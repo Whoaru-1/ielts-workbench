@@ -92,9 +92,9 @@ export function render(root, app) {
 
   const bankTab = h("div", { class: "tab-pane" },
     randPanel,
-    panel({ title: "题库浏览", body:
+    panel({ title: "题库浏览", flush: true, body:
       h("div", null,
-        h("div", { class: "toolbar" },
+        h("div", { class: "toolbar bank-toolbar" },
           h("div", { class: "toolbar-search" }, icon("search"), q),
           taskFilter, catFilter,
           h("button", { class: "btn btn-ghost btn-sm", onclick: () => pickRandom() }, icon("spark"), "换一题")
@@ -129,46 +129,44 @@ export function render(root, app) {
       bankListWrap.append(emptyState("writing", "没有符合条件的题目", "换个筛选条件试试。"));
       return;
     }
-    bankListWrap.append(panel({
-      title: `写作题库 · ${list.length} 题（每页 ${PER_PAGE} 题）`,
-      body: h("div", null,
-        h("div", { class: "bank-list" }, items.map((x) => {
-          const practiced = store.isWritingPracticed(x.id);
-          const answer = ANSWERS[x.id];
-          const chartBox = h("div", { class: "bank-chart" });
-          const expandBtn = h("button", { class: "link-btn", type: "button", onclick: () => {
-            const expanded = item.classList.toggle("expanded");
-            expandBtn.textContent = expanded ? "收起" : "展开";
-            if (expanded && x.chart && !chartBox.innerHTML) chartBox.innerHTML = renderChart(x.chart);
-          } }, "展开");
-          const item = h("div", { class: `bank-item${practiced ? " practiced" : ""}` },
-            h("div", { class: "bank-main" },
-              h("div", { class: "bank-head" },
-                badge(TASK_LABEL[x.task], TASK_KIND[x.task]),
-                badge(x.category, "acc"),
-                x.chart ? badge("含图表", "warn") : null,
-                answer ? badge("有范文", "ok") : null,
-                practiced ? badge("已练", "ok") : null
-              ),
-              h("div", { class: "bank-question" }, esc(x.question)),
-              h("div", { class: "bank-expand-row" }, expandBtn, x.chart ? h("span", { class: "bank-chart-hint" }, "展开查看图表与题目") : null),
-              chartBox,
-              answer ? h("details", { class: "bank-answer" },
-                h("summary", null, "参考答案（高分范文）"),
-                h("div", { class: "bank-answer-body" }, esc(answer))
-              ) : null
+    bankListWrap.append(
+      h("div", { class: "list-head" }, `写作题库 · ${list.length} 题（每页 ${PER_PAGE} 题）`),
+      h("div", { class: "bank-list" }, items.map((x) => {
+        const practiced = store.isWritingPracticed(x.id);
+        const answer = ANSWERS[x.id];
+        const chartBox = h("div", { class: "bank-chart" });
+        const expandBtn = h("button", { class: "link-btn", type: "button", onclick: () => {
+          const expanded = item.classList.toggle("expanded");
+          expandBtn.textContent = expanded ? "收起" : "展开";
+          if (expanded && x.chart && !chartBox.innerHTML) chartBox.innerHTML = renderChart(x.chart);
+        } }, "展开");
+        const item = h("div", { class: `bank-item${practiced ? " practiced" : ""}` },
+          h("div", { class: "bank-main" },
+            h("div", { class: "bank-head" },
+              badge(TASK_LABEL[x.task], TASK_KIND[x.task]),
+              badge(x.category, "acc"),
+              x.chart ? badge("含图表", "warn") : null,
+              answer ? badge("有范文", "ok") : null,
+              practiced ? badge("已练", "ok") : null
             ),
-            h("div", { class: "bank-actions" },
-              h("button", { class: "btn btn-ghost btn-sm", onclick: () => { store.toggleWritingPracticed(x.id); renderBank(); app.refreshChrome(); } },
-                icon("check"), practiced ? "取消" : "标记已练"),
-              h("button", { class: "btn btn-primary btn-sm", onclick: () => useInRecord(x) }, icon("edit"), "记录练习")
-            )
-          );
-          return item;
-        })),
-        pager({ page: bankPage, pages, onChange: (p) => { bankPage = p; renderBank(); scrollMainTop(); } })
-      )
-    }));
+            h("div", { class: "bank-question" }, esc(x.question)),
+            h("div", { class: "bank-expand-row" }, expandBtn, x.chart ? h("span", { class: "bank-chart-hint" }, "展开查看图表与题目") : null),
+            chartBox,
+            answer ? h("details", { class: "bank-answer" },
+              h("summary", null, "参考答案（高分范文）"),
+              h("div", { class: "bank-answer-body" }, esc(answer))
+            ) : null
+          ),
+          h("div", { class: "bank-actions" },
+            h("button", { class: "btn btn-ghost btn-sm", onclick: () => { store.toggleWritingPracticed(x.id); renderBank(); app.refreshChrome(); } },
+              icon("check"), practiced ? "取消" : "标记已练"),
+            h("button", { class: "btn btn-primary btn-sm", onclick: () => useInRecord(x) }, icon("edit"), "记录练习")
+          )
+        );
+        return item;
+      })),
+      pager({ page: bankPage, pages, onChange: (p) => { bankPage = p; renderBank(); scrollMainTop(); } })
+    );
   };
 
   const pickRandom = () => {
