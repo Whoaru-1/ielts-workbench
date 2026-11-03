@@ -126,7 +126,7 @@ export function render(root, app) {
     page.innerHTML = "";
     const qz = quiz[0];
     if (!qz) { finishQuiz(); return; }
-    page.append(h("div", { class: "page" },
+    page.append(h("div", { class: "quiz-page" },
       h("div", { class: "page-head" },
         h("h1", { class: "page-title" }, "词汇自测", h("span", { class: "t-sub" }, `剩余 ${quiz.length} 题 · 从 ${pool.length} 个未掌握单词中抽取`)),
         h("div", { class: "page-actions" }, h("button", { class: "btn btn-ghost btn-sm", onclick: () => render(root, app) }, icon("close"), "退出自测"))
@@ -163,7 +163,7 @@ export function render(root, app) {
   function finishQuiz() {
     const v2 = store.vocabStats();
     page.innerHTML = "";
-    page.append(h("div", { class: "page" },
+    page.append(
       h("div", { class: "page-head" }, h("h1", { class: "page-title" }, "自测完成", h("span", { class: "t-sub" }, "本轮自测结束"))),
       h("div", { class: "stat-grid" },
         statOf("已掌握", v2.mastered, "ok"),
@@ -174,7 +174,7 @@ export function render(root, app) {
         h("button", { class: "btn btn-primary", onclick: () => startQuiz() }, icon("spark"), "再来一轮"),
         h("button", { class: "btn btn-ghost", onclick: () => render(root, app) }, "返回词表")
       )
-    ));
+    );
   }
 }
 

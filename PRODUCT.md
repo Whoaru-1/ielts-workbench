@@ -53,7 +53,7 @@ Undecided facts (not invented):
 ## Brand Commitments
 
 - UI language: Simplified Chinese.
-- Visual direction: 深色现代科技风 — dark background, high-contrast data cards, dashboard-like density (user-confirmed choice; visual system defined in DESIGN.md, not here).
+- Visual direction: 白瓷气泡 — 白 + 天青蓝的轻量界面，胶囊导航与气泡按钮，柔和投影；功能与信息密度保持不变（user-confirmed direction；visual system defined in DESIGN.md, not here）。
 
 ## Evidence on Hand
 

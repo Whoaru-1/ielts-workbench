@@ -1,12 +1,12 @@
 /* ============================================================
- * charts.js — Task 1 图表渲染（手绘 SVG，深色主题一致）
+ * charts.js — Task 1 图表渲染（手绘 SVG，白瓷气泡主题一致）
  * 支持：bar / line / pie / table / process / map / mixed
  * ============================================================ */
 
-const PALETTE = ["#4C9EFF", "#3ECF8E", "#FFB454", "#FF6369", "#7C8CF8", "#2DD4BF"];
-const GRID = "#262C36";
-const TEXT = "#A7B1BF";
-const LABEL = "#78828F";
+const PALETTE = ["#2F6BFF", "#38C6A8", "#F5A623", "#8B7CF6", "#5AA9FF", "#F0576E"];
+const GRID = "#E6EEFB";
+const TEXT = "#47597C";
+const LABEL = "#647694";
 
 const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 

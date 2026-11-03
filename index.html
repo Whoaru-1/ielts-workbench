@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#0B0D10">
-  <meta name="description" content="IELTS 工作台 —— 词汇、真题、写作、口语、打卡与进度看板一体的雅思备考控制台，数据本地保存，支持导入导出。">
-  <title>IELTS 工作台 · 备考控制台</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230B0D10'/%3E%3Cpath d='M7 22l6-12 4 7 3-5 5 10' fill='none' stroke='%234C9EFF' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="css/style.css?v=4">
+  <meta name="theme-color" content="#F4F8FF">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="IELTS 工作台 —— 词汇、真题、写作、口语、打卡与进度看板一体的雅思备考工作台，数据本地保存，支持导入导出。">
+  <title>IELTS 工作台 · 备考工作台</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%232F6BFF'/%3E%3Cpath d='M7 22l6-12 4 7 3-5 5 10' fill='none' stroke='%23FFFFFF' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css?v=5">
 </head>
 <body>
 <!--
-DIRECTION CONTRACT — seed 4a75efbf (assigned form: 数据终端, fused with challenger digital-design-canon-dark-first-developer-console which won the weighing; raises from declined challengers: 数据密度诚实 / 活动模块前置 / 约束联动交互 / 发丝状态边)
-THESIS: 雅思备考的每一分进度都像开发者控制台里的真实数据——石墨黑地面、1px 发丝缝面板、状态色只给数据说话；拒绝"营销大数字 + 等大卡片墙"的备考工具俗套。
-OWN-WORLD: 石墨黑(#0B0D10)地面；面板以发丝缝与单级抬升区分、无阴影堆叠；语法色(蓝=操作 / 绿=达标 / 琥珀=提醒 / 红=破坏)只用于状态与数据；等宽数字贯穿所有度量；小号大写标题；表格行用发丝线分隔。
-STORY: 打开即是"今天该做什么"的控制台：倒计时、连续打卡、各模块计数全部以可扫读的数据面板呈现；勾掉一个任务，连续打卡与看板即时联动。
-FIRST VIEWPORT: 顶部状态条(品牌 + 连续打卡 + 导出/导入)；左侧六模块导航；主区 = 倒计时与今日任务面板 + 六模块概览数据行 + 最近操作日志。
-FORM: 数据终端世界(本方向在有序候选中的第 7 位，seed 4a75efbf)。
+DIRECTION CONTRACT — 白瓷气泡 / Porcelain Bubbles (用户指定：白+蓝主调、气泡元素作交互按钮、灵动简洁；功能不变)
+THESIS: 备考进度不该像报表，而该像一串浮在晨光里的气泡——每个控件都能被按下去、弹回来；拒绝深色数据终端的仪表盘腔调。
+OWN-WORLD: 白瓷(#F4F8FF)地面上浮着天青蓝(#2F6BFF)的光；白色胶囊导航、圆形图标按钮、药丸标签、14 天圆点矿脉；景深只用带偏移的柔和投影与单级白面抬升，不用描边分栏；文字深海军蓝，蓝=进度/操作，薄荷=成功，琥珀=部分，玫红=破坏。
+STORY: 打开就看见"今天该做什么"：倒计时与连续打卡是最大的两颗气泡，勾掉任务即时联动；六个模块都从同一套胶囊/圆点语言进出。
+FIRST VIEWPORT: 顶部白色胶囊状态条(品牌 + 连续打卡 + 导出/导入)；左侧悬浮白卡胶囊导航；主区四颗统计气泡(首颗蓝底) + 今日任务气泡卡 + 14 天圆点格子 + 模块进度与操作日志。
+FORM: 白瓷气泡世界(用户指定方向；未走候选掷骰)。
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
 -->
 <div id="app" class="shell">
@@ -63,6 +64,6 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 </div>
 <div id="toast-region" class="toast-region" aria-live="polite"></div>
 <input type="file" id="import-file" accept="application/json,.json" hidden>
-<script type="module" src="js/app.js?v=4"></script>
+<script type="module" src="js/app.js?v=5"></script>
 </body>
 </html>

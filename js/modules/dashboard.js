@@ -18,7 +18,7 @@ export function render(root, app) {
     statCard("连续打卡", `${store.streakDays()} 天`, "坚持就是胜利", store.streakDays() > 0 ? "ok" : ""),
     statCard("累计练习", `${store.practiceStats().total} 次`, store.practiceStats().avgBand ? `平均估分 ${store.practiceStats().avgBand}` : "暂无练习记录"),
   ];
-  const statPanel = h("section", { class: "panel" }, h("div", { class: "stat-grid" }, stats));
+  const statPanel = h("div", { class: "stat-grid" }, stats);
 
   /* ---- 今日任务 ---- */
   const today = store.todayKey();

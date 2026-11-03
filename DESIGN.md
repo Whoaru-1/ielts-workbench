@@ -1,52 +1,53 @@
 ---
-name: IELTS 工作台 · 石墨矿场
-description: 深色石墨数据终端风格的雅思备考控制台——发丝缝面板、语法色状态、等宽数字
+name: IELTS 工作台 · 白瓷气泡
+description: 白 + 天青蓝的轻量雅思备考工作台——悬浮胶囊导航、气泡按钮、柔和投影、14 天圆点矿脉
 colors:
-  ground: "#0B0D10"
-  panel: "#12151B"
-  raised: "#1C212A"
-  hairline: "#262C36"
-  hairline-strong: "#333B47"
-  text: "#E8EBEF"
-  text-secondary: "#A7B1BF"
-  text-muted: "#78828F"
-  on-accent: "#06101F"
-  accent-hover: "#63AFFF"
-  on-danger: "#1A0507"
-  selection-text: "#F2F6FC"
-  accent: "#4C9EFF"
-  ok: "#3ECF8E"
-  warn: "#FFB454"
-  bad: "#FF6369"
+  ground: "#F4F8FF"
+  surface: "#FFFFFF"
+  surface-2: "#F7FAFF"
+  surface-3: "#EEF5FF"
+  line: "#E6EEFB"
+  line-strong: "#D3E2F7"
+  ink: "#101F3C"
+  ink-secondary: "#47597C"
+  ink-muted: "#5C6E8C"
+  accent: "#2F6BFF"
+  accent-deep: "#1E56E8"
+  accent-soft: "#5E97FF"
+  accent-pale: "#EAF2FF"
+  accent-pale-2: "#DCEAFF"
+  ok: "#12BFA0"
+  ok-ink: "#067A66"
+  warn: "#F5A623"
+  warn-ink: "#A85B00"
+  bad: "#F0576E"
+  bad-ink: "#C4304C"
 typography:
   display:
     fontFamily: "system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif"
-    fontSize: "34px"
+    fontSize: "30px"
     fontWeight: 700
-    lineHeight: 1.25
-    letterSpacing: "-0.01em"
+    lineHeight: 1.2
+    letterSpacing: "-0.03em"
   title:
     fontFamily: "system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif"
-    fontSize: "20px"
-    fontWeight: 700
-    lineHeight: 1.3
+    fontSize: "15px"
+    fontWeight: 650
+    lineHeight: 1.4
   body:
     fontFamily: "system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif"
-    fontSize: "14px"
-    lineHeight: 1.6
-  label:
-    fontFamily: "ui-monospace, 'SF Mono', Menlo, Consolas, monospace"
-    fontSize: "12px"
-    fontWeight: 600
-    letterSpacing: "0.09em"
+    fontSize: "15px"
+    lineHeight: 1.65
   data:
-    fontFamily: "ui-monospace, 'SF Mono', Menlo, Consolas, monospace"
-    fontSize: "13px"
+    fontFamily: "system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif"
+    fontSize: "30px"
+    fontWeight: 700
 rounded:
-  xs: "2px"
-  sm: "4px"
   pill: "999px"
-  md: "7px"
+  xl: "28px"
+  lg: "22px"
+  md: "16px"
+  sm: "12px"
 spacing:
   xs: "4px"
   sm: "8px"
@@ -57,164 +58,169 @@ spacing:
   huge: "48px"
 components:
   button-primary:
-    backgroundColor: "{colors.accent}"
-    textColor: "{colors.on-accent}"
-    rounded: "{rounded.sm}"
-    height: "34px"
-    padding: "0 12px"
+    backgroundColor: "linear-gradient(135deg, #2A63F2, #245FEF 55%, #1E56E8)"
+    textColor: "#FFFFFF"
+    rounded: "{rounded.pill}"
+    height: "38px"
+    padding: "0 16px"
   button-ghost:
-    backgroundColor: "transparent"
-    textColor: "{colors.text-secondary}"
-    rounded: "{rounded.sm}"
-    border: "1px solid {colors.hairline}"
+    backgroundColor: "{colors.accent-pale}"
+    textColor: "{colors.accent-deep}"
+    rounded: "{rounded.pill}"
   button-danger:
-    backgroundColor: "transparent"
-    textColor: "{colors.bad}"
-    rounded: "{rounded.sm}"
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.bad-ink}"
+    rounded: "{rounded.pill}"
+    border: "1px solid {colors.line-strong}"
   panel:
-    backgroundColor: "{colors.panel}"
-    rounded: "{rounded.md}"
-    border: "1px solid {colors.hairline}"
+    backgroundColor: "{colors.surface}"
+    rounded: "{rounded.lg}"
+    shadow: "0 6px 18px rgba(31,70,160,.08)"
   input:
-    backgroundColor: "{colors.ground}"
-    textColor: "{colors.text}"
-    rounded: "{rounded.sm}"
-    border: "1px solid {colors.hairline}"
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.md}"
+    border: "1px solid {colors.line-strong}"
 ---
 
-# Design System: IELTS 工作台 · 石墨矿场
+# Design System: IELTS 工作台 · 白瓷气泡
 
 ## Overview
 
-**Creative North Star: "石墨矿场"**
+**Creative North Star: "白瓷气泡"**
 
-每一次打卡、每一道练习、每一篇作文，都是往矿场的账本里写入一行真实记录；你的努力不靠口号，靠可回看的账目与矿脉累积。系统以深色石墨为地面，用 1px 发丝缝把信息划分为清晰的面板——像开发者控制台一样诚实、精密、可扫读。状态色是矿灯：蓝灯指路（操作）、绿灯见矿（达标）、琥珀预警（学习中）、红灯警报（破坏/错误），它们只出现在数据与状态上，绝不充当装饰。等宽数字是矿场的度量衡：所有分数、天数、倒计时都以等宽字形排布，跨面板对齐，眼睛扫过即是读数。
+晨光下的书桌：白瓷台面、一杯冰水、窗外晴朗的天。备考的每一分进度不该像报表，而该像一串浮在光里的气泡——能被按下去、弹回来。系统用白瓷地面（#F4F8FF）与天青蓝（#2F6BFF）的光构成世界，所有交互控件都是气泡：胶囊导航、圆形图标按钮、药丸标签、14 天圆点矿脉。层级只靠带偏移的柔和投影和白面抬升，不用描边分栏；数字保持等宽栅格对齐，让"今天做到哪"一眼可读。
 
 **Key Characteristics:**
-- 石墨黑地面（#0B0D10），面板靠发丝缝与单级抬升区分，无阴影堆叠
-- 语法色仅用于状态与数据：蓝/绿/琥珀/红四种，配对应低饱和底色
-- 所有度量用等宽数字（tabular figures），面板标题用小号大写等宽字
-- 手绘 1.4px 笔画 SVG 线框图标，无 emoji
-- 破坏性操作默认描边态，聚焦/悬停才显形为实心红
-- 一个方向一个动作：rise-in 入场动效只出现在页面切换，其余状态过渡克制
+- 白瓷地面 + 天青蓝光；胶囊顶栏、悬浮白卡侧栏、圆角面板
+- 交互即气泡：100% 圆角、上缘高光、蓝色柔影；按下收缩、松开回弹
+- 柔和投影（有偏移、有模糊）表达层级；1px 线只做最轻的行分隔
+- 数字用系统无衬线 + tabular-nums；等宽只留给操作日志
+- 语义色：蓝=进度/操作，薄荷=成功，琥珀=部分，玫红=破坏
+- 一个入场动作（bubble-in）+ 气泡按压/悬浮微动效，尊重 reduced-motion
 
 ## Colors
 
-石墨色的中性地面之上，四盏矿灯各自管一种语义。
+白色的地面之上，蓝色是唯一的主调；其余三色只在数据与状态上说话。
 
 ### Primary
-- **操作蓝**（#4C9EFF）：唯一的主操作与焦点色。主按钮、当前导航、链接、进度条、聚焦环、空状态点。任何界面一次只让一种蓝色元素当主角。
+- **天青蓝**（#2F6BFF）：主操作、当前导航、进度填色、聚焦环、当前日期。
+- **深天青**（#1E56E8）：主按钮渐变收尾与按压色，保证白字 5:1 以上对比。
+- **雾蓝**（#EAF2FF）：次级按钮底、徽章底、今日格子底。
 
 ### Secondary
-- **达标绿**（#3ECF8E）：目标达成——打卡达标、自测答对、已掌握词、成功提示。
-- **警示琥珀**（#FFB454）：进行中或提醒——学习中状态、倒计时 ≤30 天、未达标警示。
-- **破坏红**（#FF6369）：删除、错误、答错、清空数据。只出现在需要用户警惕的位置。
+- **薄荷**（#12BFA0 / 文字 #067A66）：成功——达标、答对、已掌握、已练。
+- **琥珀**（#F5A623 / 文字 #A85B00）：进行中——学习中、部分完成、倒计时提醒。
+- **玫红**（#F0576E / 文字 #C4304C）：破坏与错误——删除、答错、清空。
 
 ### Neutral
-- **石墨黑**（#0B0D10）：页面地面。任何元素都站立在它之上。
-- **墨底**（#0E1115）：顶栏/侧栏，比地面高一档的静态区域。
-- **面板底**（#12151B）：卡片/面板主体。
-- **抬升底**（#1C212A）：按钮、徽章底色，唯一的一级抬升。
-- **发丝缝**（#262C36 / 强调 #333B47）：1px 分隔线、边框。
-- **正文**（#E8EBEF）：主文本。
-- **次级文本**（#A7B1BF）：从冷色相中调出的次级文本，绝不使用纯灰。
-- **弱化文本**（#78828F）：元信息、占位符、表头。
-- **选区文字**（#F2F6FC）：文本选区高亮文字色（配合操作蓝 32% 选区底）。
+- **白瓷**（#F4F8FF）：页面地面，带天光渐变。
+- **纯白**（#FFFFFF）：面板、悬浮导航卡、输入框。
+- **雾白**（#F7FAFF / #EEF5FF）：面板内次级底、工具条、列表头。
+- **墨蓝**（#101F3C）：主文本。
+- **次级**（#47597C）：正文与表体。
+- **弱化**（#5C6E8C）：元信息、表头、占位符（白底对比 5.1:1）。
 
 ### Named Rules
-**The 矿灯 Rule.** 状态色只出现在"数据或状态"上：一个绿色徽章说明"达标"，一块蓝色填充说明"当前"。任何把状态色当装饰（彩色按钮墙、彩色卡片、彩色边框）都是违规。
+**The 气泡 Rule.** 可点击的东西必须是气泡：胶囊或圆形，带柔和投影；直角、硬边、1px 描边按钮不属于这个世界。
 
-**The 发丝缝 Rule.** 面板与面板之间用 1px 发丝缝与单级抬升区分，永远不用阴影堆叠层级；阴影只出现在 Toast 这种浮层上。
+**The 一束光 Rule.** 蓝色一次只做一件事：当主按钮是蓝色时，导航的激活态也是蓝色，但同一屏不再出现第二种饱和色抢戏；语义色只出现在状态徽章、格子与进度上。
 
 ## Typography
 
-**Display Font:** 系统无衬线栈（含 PingFang SC / Microsoft YaHei 中文）
+**Display Font:** 系统无衬线栈（PingFang SC / Microsoft YaHei / system-ui）
 **Body Font:** 同一系统栈
-**Label/Mono Font:** 等宽栈（ui-monospace / SF Mono / Menlo / Consolas），用于所有数据、数字、面板标题、表头、日志
+**Label / Data Font:** 同一系统栈，数字启用 tabular-nums；等宽栈只用于「最近操作」日志
 
-**Character:** 界面语言是"精密控制台"：正文用干净的系统无衬线保证中文可读性，数据与标签全部换等宽字形，让数字表格在视觉上形成矿场账本般的秩序感。标题靠字重与字号拉开层级，不做多余装饰。
-
-**Exemption（已文档化）:** 展示层使用系统字体栈（PingFang SC / Microsoft YaHei / system-ui），不引入自托管字体。这是"零构建 + 离线可用"产品约束（PRODUCT.md §Operating Context）下的有意识决策：不因字体而引入运行时网络依赖。
+**Character:** 轻盈、圆润、可读。中文正文用系统无衬线；标题靠字号与字重（700，30px，-0.03em）建立层级，不使用小号大写的"控制台腔"。所有分数、天数、次数用 tabular-nums 保证跨卡片对齐——数字对齐本身就是数据感。
 
 ### Hierarchy
-- **Display**（700, 34px, 1.25, -0.01em）：模块页大标题，如"进度看板"。
-- **Title**（700, 20px, 1.3, -0.01em）：单词卡主词、写作题目。
-- **Body**（400, 14px, 1.6）：正文与控件文字，行宽控制在 65–75ch 以内。
-- **Label**（600, 12px, +0.09em, 大写）：面板标题、表格表头——小号大写等宽字是"矿场标签"。
-- **Data**（400, 13px, tabular）：所有数值、日期、倒计时、估分。
+- **Display**（700，30px，1.2，-0.03em）：模块页标题。
+- **Page sub**（500，13px）：标题下的说明，弱化色。
+- **Panel title**（650，13px）：面板标题，深蓝灰，前置蓝色圆点。
+- **Body**（400/500，15px，1.65）：正文、列表、表单标签。
+- **Stat**（700，30px，tabular）：统计气泡里的数字；首颗气泡反白。
+- **Micro**（600，11.5–12px）：徽章、表头、日期、计数。
 
 ### Named Rules
-**The 账本 Rule.** 任何数字（分数、天数、分钟、倒计时）一律等宽字形 + tabular-nums，保证跨行、跨面板对齐；不用等宽字装"科技感"——本世界中等宽就是度量衡本身。
+**The 对齐 Rule.** 任何数字用 `font-variant-numeric: tabular-nums`；卡片并排时小数点与数位必须对齐。
 
 ## Layout
 
-- 内容区最大宽 1060px，居中；桌面端左侧 208px 固定导航（图标 + 文字），主区 24–48px 呼吸间距。
-- 间距刻度：4 / 8 / 12 / 16 / 24 / 32 / 48px；标题上方空间大于标题下方。
-- 密度：数据面板用紧凑行距（行高 1.6，行间 8px），靠留白分组而非卡片套卡片。
-- 响应式：≤860px 导航收窄为 62px 图标栏；≤640px 导航变为底部通栏（高 52px，图标居中），主区收窄、统计卡自动换行、倒计时字号降档。
-- 禁止嵌套卡片；分组用发丝缝列表行，不用"卡片里套卡片"。
+- 外壳：14px 内边距 + 14px 间隙；顶栏是 64px 高的白色胶囊，侧栏是 228px 宽的悬浮白卡，主区留白呼吸。
+- 内容最大宽 1040px 居中；模块间距 22px；面板内边距 20px。
+- 统计气泡自适应 4 列（≥641px），手机 2 列，≤380px 单列；卡片间距 12px。
+- 列表行用 1px 浅线分隔并整行 hover 提亮，不给列表项再加卡片（禁止卡片套卡片）。
+- 响应式：≤860px 侧栏收成 76px 图标悬浮栏；≤640px 变成底部悬浮胶囊（64px 高、7 个圆形入口）；≤380px 收起品牌副标。
+- 段落行宽 75ch 上限。
 
 ## Elevation & Depth
 
-无阴影体系。层级只靠两种手段：发丝缝（区分相邻面板）与单级底色抬升（ground → panel → raised）。Toast 是唯一允许阴影的浮层（0 4px 14px rgba(0,0,0,.45)），因为它必须悬浮在矿场之上。
+三层深度，全部靠柔和投影而不是描边：
+1. **地面**：白瓷渐变 + 两处极淡的蓝光圆斑。
+2. **面板**：纯白 + `0 6px 18px rgba(31,70,160,.08)`。
+3. **气泡**：主按钮/激活导航用 `0 8px 20px rgba(47,107,255,.30)` + 上缘 1px 白色内高光。
 
 ### Named Rules
-**The 平面矿层 Rule.** 静止状态下一切表面都是平的；阴影不参与层级表达。需要"浮起来"的东西只有 Toast。
+**The 浮起 Rule.** 阴影必须有偏移和模糊；零偏移的彩色光环只是装饰。静止时面板轻浮，交互时气泡再抬起 1–2px。
 
 ## Shapes
 
-- 控件圆角 4px（按钮、输入框、徽章、表格元素），面板圆角 7px；微元素使用 2–3px 超小圆角：打卡格子（2px）、进度条（3px）。
-- 所有可点元素都有 1px 发丝缝边框作为"可点"的静态暗示；主按钮用实心蓝反白字。
-- 图标统一 1.4px 笔画、圆头圆角、16×16 viewBox 手绘 SVG 线框，单色 currentColor。
+- 胶囊 999px：按钮、徽章、标签、底部导航、顶栏。
+- 面板 22–28px：侧栏 28px，统计气泡与面板 22px，输入框 16px。
+- 14 天矿脉：14px 圆形气泡，达标=蓝色渐变+蓝影，部分=琥珀，未开始=雾白内描边；今天外框雾蓝。
+- 图标统一手绘 SVG 线框（16 viewBox，1.4px 笔画，圆头），单色 currentColor。
 
 ## Components
 
 ### Buttons
-- **Shape:** 圆角 4px，高 34px（小号 28px），1px 边框。
-- **Primary:** 实心操作蓝（#4C9EFF）反白字（#06101F），悬停提亮 #63AFFF。
-- **Ghost:** 透明底 + 发丝缝边框 + 次级文字；悬停升为正文色。
-- **Danger:** 描边红字（透明底），**悬停/聚焦才变为实心红**——破坏性动作与邻居之间保留刻意空位，防误触。
-- **Hover / Focus:** 背景 0.12s 缓动；`:focus-visible` 2px 操作蓝聚焦环。
+- **Shape:** 胶囊，高 38px（小号 32px），左右 16px。
+- **Primary:** 135° 蓝色渐变 + 白色内高光 + 蓝色柔影；悬停上浮 2px、阴影加深；按下收缩到 0.97 并压掉阴影。
+- **Ghost:** 雾蓝底 + 深蓝文字，无描边；悬停加深。
+- **Danger:** 白底细边玫红字；悬停转玫红浅底；聚焦时才实心。
+- **Focus:** 主按钮/激活导航/激活标签在深色底上用白色内环 + 蓝色外环。
 
 ### Chips / Badges
-- **Style:** 圆角 999px，12px 字，前置 5px 语义色圆点，边框为语义色 40% 透明度、底色为语义色 12-14% 低饱和。
-- **State:** 绿=达标/掌握，琥珀=进行中，红=错误，蓝=当前/信息。
+- 胶囊，24px 高，11.5px 字，前置 5px 同色圆点；底色为语义色浅底，文字用对应深色，保证 4.5:1。
 
 ### Cards / Panels
-- **Corner Style:** 圆角 7px。
-- **Background:** 面板底 #12151B，1px 发丝缝边框，无阴影。
-- **Head:** 12px 等宽大写标题 + 前置语义色圆点（默认操作蓝），下接 1px 发丝缝。
-- **Internal Padding:** 16px；数据行间用发丝缝分隔。
+- 22px 圆角、纯白、柔和投影、1px 极浅描边；面板头 16/20px 内边距 + 浅线分隔；标题 13px 深蓝灰 + 8px 蓝点（外圈雾蓝）。
+- 统计气泡：首颗深蓝渐变反白，其余白卡；卡片右上角一枚极淡的蓝色气泡光斑。
 
 ### Inputs / Fields
-- **Style:** 地面底色 #0B0D10 + 1px 发丝缝 + 4px 圆角；placeholder 用弱化文本。
-- **Focus:** 边框转操作蓝 + 3px 低饱和蓝色光晕（box-shadow 0 0 0 3px acc-dim）。
-- **Select:** 右侧自绘下拉箭头（SVG data-URI），无原生箭头。
+- 纯白底、16px 圆角、1px 雾蓝边、内阴影 1px；聚焦蓝边 + 4px 30% 蓝环；搜索框与工具条选择器用胶囊形。
+- Select 使用自绘 chevron（SVG data-URI）。
 
 ### Navigation
-- **样式:** 图标 17px + 14px 文字，40px 高；悬停背景 2% 提亮。
-- **Active:** 操作蓝文字 + 操作蓝 14% 低饱和底 + 600 字重——**不用彩色侧边条**。
-- **移动端:** ≤640px 变底部通栏，52px 高，图标居中。
+- 侧栏胶囊项 46px 高；悬停雾蓝底并上移 1px；激活为蓝色渐变胶囊 + 白字 + 蓝影，计数变成半透明白胶囊。
+- 手机底部：悬浮白胶囊，6 个模块 + 设置的圆形入口，激活为 52px 蓝渐变圆气泡。
 
-### Console Log（签名组件）
-看板上的操作日志以等宽行呈现：时间戳（64px）| 模块标签（46px，语义色）| 消息，行间用 1px 虚线发丝缝分隔。它是"矿场账本"的直接物化。
+### Console Log
+看板「最近操作」保留等宽日志：时间（70px）| 模块标签（46px，蓝）| 消息，行间虚线浅分隔——这是整个气泡世界里唯一的数据账本。
 
-### Block Grid（签名组件）
-打卡格子图：12×12px 圆角 2px 方块，达标=实心绿，部分完成=琥珀，未进行=抬升底描边。它让"连续打卡"变成可一眼读出的矿脉。
+### Streak Bubbles（签名组件）
+14 天圆点矿脉：14px 圆，达到=蓝渐变+投影，部分=琥珀，未开始=雾白内圈；今天有雾蓝底与边框，悬停看当日完成数。
+
+## Motion
+
+- **bubble-in**：页面切换时子元素 0.5s 上浮 12px + 轻微模糊消散，40ms 级联。
+- **按压**：按钮 `translateY(1px) scale(.97)`，阴影塌陷；悬停上浮 1–2px。
+- **时长**：150–200ms，缓动 `cubic-bezier(.2,.9,.25,1.1)`。
+- `prefers-reduced-motion` 下全部关闭。
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** 用发丝缝和底色抬升表达层级，保持平面。
-- **Do** 让状态色只出现在数据与状态上，且一次一个主角。
-- **Do** 用等宽数字排布所有度量，保证跨面板对齐。
-- **Do** 破坏性操作保持描边态直到悬停/聚焦。
-- **Do** 用 12px 等宽小号大写字做面板标题与表头。
+- **Do** 用胶囊/圆形承载所有可点元素，让"可点"由形状和投影表达。
+- **Do** 用带偏移的柔和投影分层，面板轻浮、气泡可抬起。
+- **Do** 让蓝色承担操作与进度；语义色只在状态上出现。
+- **Do** 数字用 tabular-nums，并排卡片对齐。
+- **Do** 保持留白：面板之间 22px、页边 14px，宁可少放一个元素。
 
 ### Don't:
-- **Don't** 用阴影堆叠表达面板层级。
-- **Don't** 用彩色侧边条（>1px 彩色 border-left）标记状态。
-- **Don't** 用 emoji 或 Unicode 符号代替图标——一律手绘 SVG 线框。
-- **Don't** 用渐变文字、玻璃拟态、硬偏移阴影。
-- **Don't** 用"大数字 + 小标签"的营销式 hero 指标；数据要以可扫读的面板呈现。
-- **Don't** 把状态色当装饰铺满界面。
+- **Don't** 用深色地面、发丝缝分栏或等宽大字标题（旧「石墨」世界的语言）。
+- **Don't** 用直角按钮、硬偏移阴影、1px 描边当主要层级手段。
+- **Don't** 用渐变文字或玻璃拟态装饰。
+- **Don't** 在面板里再套一层卡片；列表行只做 hover 提亮。
+- **Don't** 用 emoji 代替图标；图标一律手绘 SVG。
+- **Don't** 让状态色铺满界面或参与装饰。

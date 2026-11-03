@@ -1,131 +1,136 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-21T00:00:00.000Z",
-  "title": "Design System: IELTS 工作台 · 石墨矿场",
+  "generatedAt": "2026-11-04T00:00:00.000Z",
+  "title": "Design System: IELTS 工作台 · 白瓷气泡",
   "extensions": {
     "colorMeta": {
-      "accent": { "role": "primary", "displayName": "操作蓝", "canonical": "#4C9EFF", "tonalRamp": ["#0A1B33", "#0F2747", "#15335C", "#1B3F72", "#214B88", "#27589E", "#2D64B5", "#4C9EFF"] },
-      "ok": { "role": "secondary", "displayName": "达标绿", "canonical": "#3ECF8E", "tonalRamp": ["#08301F", "#0D452D", "#125A3B", "#176F49", "#1C8457", "#219965", "#26AE74", "#3ECF8E"] },
-      "warn": { "role": "secondary", "displayName": "警示琥珀", "canonical": "#FFB454", "tonalRamp": ["#33200A", "#472D0E", "#5C3A12", "#714716", "#86541A", "#9B611E", "#B06E22", "#FFB454"] },
-      "bad": { "role": "secondary", "displayName": "破坏红", "canonical": "#FF6369", "tonalRamp": ["#330F11", "#471517", "#5C1C1E", "#712225", "#86292C", "#9B3033", "#B0363A", "#FF6369"] },
-      "ground": { "role": "neutral", "displayName": "石墨黑", "canonical": "#0B0D10", "tonalRamp": ["#0B0D10", "#0E1115", "#12151B", "#171B22", "#1C212A", "#262C36", "#333B47", "#E8EBEF"] },
-      "panel": { "role": "neutral", "displayName": "面板底", "canonical": "#12151B", "tonalRamp": ["#0B0D10", "#12151B", "#171B22", "#1C212A", "#262C36", "#333B47", "#414B5A", "#E8EBEF"] },
-      "selection-text": { "role": "neutral", "displayName": "选区文字", "canonical": "#F2F6FC", "tonalRamp": ["#2A2F38", "#3A414C", "#4B535F", "#5D6673", "#707A88", "#848E9D", "#99A3B3", "#F2F6FC"] }, "text-secondary": { "role": "neutral", "displayName": "次级文本", "canonical": "#A7B1BF", "tonalRamp": ["#20242B", "#2E333C", "#3D434E", "#4D5460", "#5E6673", "#707887", "#838C9B", "#A7B1BF"] }
+      "accent": { "role": "primary", "displayName": "天青蓝", "canonical": "#2F6BFF", "tonalRamp": ["#EAF2FF", "#DCEAFF", "#BCD5FF", "#8FB6FF", "#5E97FF", "#3D7BFF", "#2A63F2", "#1E56E8"] },
+      "accent-deep": { "role": "primary", "displayName": "深天青", "canonical": "#1E56E8", "tonalRamp": ["#EAF2FF", "#C9DBFF", "#A6C3FF", "#7FA8FF", "#5488FF", "#3A6FF5", "#245FEF", "#1E56E8"] },
+      "ok": { "role": "secondary", "displayName": "薄荷", "canonical": "#12BFA0", "tonalRamp": ["#E4FBF5", "#C4F5E8", "#93EDD6", "#5FE2C2", "#2FD3AC", "#12BFA0", "#0D9A80", "#067A66"] },
+      "warn": { "role": "secondary", "displayName": "琥珀", "canonical": "#F5A623", "tonalRamp": ["#FFF4E0", "#FFE7BF", "#FFD28F", "#FFBC5C", "#F9AC38", "#F5A623", "#D0840F", "#A85B00"] },
+      "bad": { "role": "secondary", "displayName": "玫红", "canonical": "#F0576E", "tonalRamp": ["#FFEDF0", "#FFD4DA", "#FFB4BF", "#FF8E9E", "#FA6E83", "#F0576E", "#DE3B54", "#C4304C"] },
+      "ground": { "role": "neutral", "displayName": "白瓷", "canonical": "#F4F8FF", "tonalRamp": ["#FFFFFF", "#F7FAFF", "#F4F8FF", "#EEF5FF", "#E6EEFB", "#D3E2F7", "#47597C", "#101F3C"] },
+      "surface": { "role": "neutral", "displayName": "纯白", "canonical": "#FFFFFF", "tonalRamp": ["#FFFFFF", "#FCFDFF", "#F7FAFF", "#EEF5FF", "#E6EEFB", "#D3E2F7", "#647694", "#101F3C"] },
+      "ink": { "role": "neutral", "displayName": "墨蓝", "canonical": "#101F3C", "tonalRamp": ["#101F3C", "#1C2C4D", "#2B3C60", "#3C4E72", "#4E6086", "#64769A", "#8595B3", "#EAF2FF"] },
+      "ink-muted": { "role": "neutral", "displayName": "弱化文本", "canonical": "#5C6E8C", "tonalRamp": ["#5C6E8C", "#6E809D", "#8292AD", "#98A6BD", "#B0BCCC", "#C8D2DE", "#E0E7F0", "#F7FAFF"] }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "模块页大标题，700/34px，仅用于页面头部。" },
-      "data": { "displayName": "Data", "purpose": "所有数字/日期/倒计时，等宽 + tabular-nums。" },
-      "label": { "displayName": "Label", "purpose": "面板标题与表头，12px 等宽小号大写 +0.09em。" }
+      "display": { "displayName": "Display", "purpose": "模块页大标题，700 / 30px / -0.03em。" },
+      "data": { "displayName": "Data", "purpose": "统计数字，700 / 30px / tabular-nums，系统无衬线。" },
+      "micro": { "displayName": "Micro", "purpose": "徽章、表头、日期，11.5–12px / 600。" }
     },
     "shadows": [
-      { "name": "toast", "value": "0 4px 14px rgba(0,0,0,0.45)", "purpose": "唯一允许的阴影：Toast 浮层。" }
+      { "name": "surface", "value": "0 6px 18px rgba(31,70,160,0.08)", "purpose": "面板与悬浮导航卡的静止轻浮。" },
+      { "name": "float", "value": "0 16px 40px rgba(31,70,160,0.13)", "purpose": "弹层、Toast、手机底栏。" },
+      { "name": "bubble", "value": "0 8px 20px rgba(47,107,255,0.30)", "purpose": "主按钮/激活导航的蓝色柔影。" }
     ],
     "motion": [
-      { "name": "ease-standard", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "所有状态过渡与入场缓动，指数级 ease-out。" },
-      { "name": "rise-in", "value": "translateY(6px) → none, 0.28s", "purpose": "页面切换时面板的单一入场动效。" }
+      { "name": "ease-spring", "value": "cubic-bezier(0.2, 0.9, 0.25, 1.1)", "purpose": "气泡按压与悬浮回弹。" },
+      { "name": "bubble-in", "value": "translateY(12px) scale(.99) blur(3px) → none, 0.5s", "purpose": "页面切换时子元素的单一入场动效。" }
     ],
     "breakpoints": [
-      { "name": "tablet", "value": "860px", "purpose": "导航收窄为图标栏。" },
-      { "name": "mobile", "value": "640px", "purpose": "导航变底部通栏，内容单列。" }
+      { "name": "tablet", "value": "860px", "purpose": "侧栏收成 76px 悬浮图标栏。" },
+      { "name": "mobile", "value": "640px", "purpose": "导航变底部悬浮胶囊，内容单列。" },
+      { "name": "small", "value": "380px", "purpose": "收起品牌副标，统计单列。" }
     ]
   },
   "components": [
     {
-      "name": "Primary Button",
+      "name": "Primary Bubble Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "主操作：实心操作蓝反白字，悬停提亮。",
+      "description": "主操作气泡：蓝色渐变 + 上缘高光 + 蓝色柔影，按压回弹。",
       "html": "<button class=\"ds-btn-primary\">保存记录</button>",
-      "css": ".ds-btn-primary { display:inline-flex; align-items:center; gap:6px; height:34px; padding:0 12px; border-radius:4px; border:1px solid #4C9EFF; background:#4C9EFF; color:#06101F; font:600 14px/1 system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif; cursor:pointer; transition:background .12s ease-out; } .ds-btn-primary:hover { background:#63AFFF; border-color:#63AFFF; } .ds-btn-primary:focus-visible { outline:2px solid #4C9EFF; outline-offset:2px; }"
+      "css": ".ds-btn-primary { display:inline-flex; align-items:center; gap:7px; height:38px; padding:0 16px; border-radius:999px; border:0; background:linear-gradient(135deg,#2A63F2,#245FEF 55%,#1E56E8); color:#fff; font:600 13.5px/1 system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif; cursor:pointer; box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 8px 20px rgba(47,107,255,.30); transition:transform .2s cubic-bezier(.2,.9,.25,1.1),box-shadow .2s; } .ds-btn-primary:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 12px 26px rgba(47,107,255,.38); } .ds-btn-primary:active { transform:translateY(1px) scale(.97); }"
+    },
+    {
+      "name": "Ghost Bubble",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "次级操作：雾蓝底 + 深蓝字，无描边。",
+      "html": "<button class=\"ds-btn-ghost\">导出</button>",
+      "css": ".ds-btn-ghost { display:inline-flex; align-items:center; gap:7px; height:38px; padding:0 16px; border-radius:999px; border:0; background:#EAF2FF; color:#1E56E8; font:600 13.5px/1 system-ui,sans-serif; cursor:pointer; transition:background .18s, color .18s; } .ds-btn-ghost:hover { background:#DCEAFF; color:#1E56E8; }"
     },
     {
       "name": "Danger Button",
       "kind": "button",
       "refersTo": "button-danger",
-      "description": "破坏性操作：默认描边红字，悬停/聚焦才显形为实心红。",
+      "description": "破坏性操作：白底细边玫红字，悬停浅玫红底。",
       "html": "<button class=\"ds-btn-danger\">清空数据</button>",
-      "css": ".ds-btn-danger { display:inline-flex; align-items:center; gap:6px; height:34px; padding:0 12px; border-radius:4px; border:1px solid #333B47; background:transparent; color:#FF6369; font:500 14px/1 system-ui,sans-serif; cursor:pointer; transition:background .12s, border-color .12s, color .12s; } .ds-btn-danger:hover { border-color:#FF6369; background:rgba(255,99,105,.12); } .ds-btn-danger:focus-visible { outline:2px solid #FF6369; outline-offset:2px; background:#FF6369; border-color:#FF6369; color:#1A0507; }"
-    },
-    {
-      "name": "Ghost Button",
-      "kind": "button",
-      "refersTo": "button-ghost",
-      "description": "次级操作：透明底 + 发丝缝边框。",
-      "html": "<button class=\"ds-btn-ghost\">导出</button>",
-      "css": ".ds-btn-ghost { display:inline-flex; align-items:center; gap:6px; height:28px; padding:0 10px; border-radius:4px; border:1px solid #262C36; background:transparent; color:#A7B1BF; font:400 13px/1 system-ui,sans-serif; cursor:pointer; transition:color .12s, background .12s; } .ds-btn-ghost:hover { color:#E8EBEF; background:rgba(255,255,255,.03); }"
+      "css": ".ds-btn-danger { display:inline-flex; align-items:center; gap:7px; height:38px; padding:0 16px; border-radius:999px; border:1px solid #D3E2F7; background:#fff; color:#C4304C; font:600 13.5px/1 system-ui,sans-serif; cursor:pointer; transition:background .18s,border-color .18s; } .ds-btn-danger:hover { background:#FFEDF0; border-color:transparent; }"
     },
     {
       "name": "Panel",
       "kind": "card",
       "refersTo": "panel",
-      "description": "发丝缝面板：12px 等宽大写标题 + 前置圆点 + 1px 缝分隔。",
+      "description": "白瓷面板：22px 圆角、纯白、柔和投影，蓝色圆点标题。",
       "html": "<section class=\"ds-panel\"><div class=\"ds-panel-head\"><span class=\"ds-dot\"></span>今日任务</div><div class=\"ds-panel-body\">面板内容</div></section>",
-      "css": ".ds-panel { background:#12151B; border:1px solid #262C36; border-radius:7px; } .ds-panel-head { display:flex; align-items:center; gap:8px; padding:12px 16px; border-bottom:1px solid #262C36; font:600 12px/1 ui-monospace,'SF Mono',Menlo,Consolas,monospace; letter-spacing:.09em; text-transform:uppercase; color:#A7B1BF; } .ds-dot { width:6px; height:6px; border-radius:50%; background:#4C9EFF; } .ds-panel-body { padding:16px; color:#E8EBEF; font:400 14px/1.6 system-ui,sans-serif; }"
+      "css": ".ds-panel { background:#fff; border:1px solid rgba(230,238,251,.9); border-radius:22px; box-shadow:0 6px 18px rgba(31,70,160,.08); overflow:hidden; } .ds-panel-head { display:flex; justify-content:space-between; align-items:center; padding:16px 20px; border-bottom:1px solid #E6EEFB; background:linear-gradient(180deg,#fff,#FCFDFF); } .ds-panel-title { display:flex; align-items:center; gap:9px; font:650 13px/1.4 system-ui,sans-serif; color:#47597C; } .ds-dot { width:8px; height:8px; border-radius:50%; background:linear-gradient(135deg,#5E97FF,#2F6BFF); box-shadow:0 0 0 4px #EAF2FF; } .ds-panel-body { padding:20px; font:400 15px/1.65 system-ui,sans-serif; color:#101F3C; }"
     },
     {
       "name": "Badge",
       "kind": "chip",
       "refersTo": "badge",
-      "description": "语义徽章：前置语义色圆点，低饱和底 + 40% 透明边框。",
+      "description": "语义气泡徽章：浅语义底 + 深语义字 + 前置圆点。",
       "html": "<span class=\"ds-badge ds-badge-ok\">已达标</span>",
-      "css": ".ds-badge { display:inline-flex; align-items:center; gap:5px; height:22px; padding:0 8px; border-radius:999px; font:400 12px/1 system-ui,sans-serif; } .ds-badge::before { content:''; width:5px; height:5px; border-radius:50%; background:currentColor; } .ds-badge-ok { color:#3ECF8E; border:1px solid rgba(62,207,142,.4); background:rgba(62,207,142,.13); }"
+      "css": ".ds-badge { display:inline-flex; align-items:center; gap:5px; height:24px; padding:0 10px; border-radius:999px; font:600 11.5px/1 system-ui,sans-serif; background:#EEF5FF; color:#47597C; } .ds-badge::before { content:''; width:5px; height:5px; border-radius:50%; background:currentColor; } .ds-badge-ok { background:#E4FBF5; color:#067A66; }"
     },
     {
       "name": "Input",
       "kind": "input",
       "refersTo": "input",
-      "description": "地面底色输入框，聚焦时边框转操作蓝 + 3px 光晕。",
+      "description": "白底 16px 圆角输入框，聚焦蓝环。",
       "html": "<input class=\"ds-input\" placeholder=\"新任务…\">",
-      "css": ".ds-input { width:100%; background:#0B0D10; border:1px solid #262C36; border-radius:4px; padding:7px 10px; color:#E8EBEF; font:400 14px/1.6 system-ui,sans-serif; transition:border-color .12s, box-shadow .12s; } .ds-input::placeholder { color:#78828F; } .ds-input:focus { outline:none; border-color:#4C9EFF; box-shadow:0 0 0 3px rgba(76,158,255,.14); }"
+      "css": ".ds-input { width:100%; padding:9px 13px; background:#fff; border:1px solid #D3E2F7; border-radius:16px; color:#101F3C; font:400 14px/1.6 system-ui,sans-serif; box-shadow:inset 0 1px 2px rgba(16,31,60,.03); transition:border-color .18s, box-shadow .18s; } .ds-input::placeholder { color:#5C6E8C; } .ds-input:focus { outline:none; border-color:#2F6BFF; box-shadow:0 0 0 4px rgba(47,107,255,.28); }"
     },
     {
       "name": "Nav Item",
       "kind": "nav",
       "refersTo": "nav-item",
-      "description": "激活态：操作蓝文字 + 14% 低饱和底，不用彩色侧边条。",
-      "html": "<nav style=\"width:208px;background:#0E1115;padding:8px 0;\"><a class=\"ds-nav ds-nav-active\">进度看板</a><a class=\"ds-nav\">词汇</a></nav>",
-      "css": ".ds-nav { display:flex; align-items:center; gap:12px; height:40px; padding:0 16px; color:#A7B1BF; font:400 14px/1 system-ui,sans-serif; } .ds-nav:hover { color:#E8EBEF; background:rgba(255,255,255,.02); } .ds-nav-active { color:#4C9EFF; background:rgba(76,158,255,.14); font-weight:600; }"
+      "description": "胶囊导航；激活为蓝色渐变气泡 + 白字 + 蓝影。",
+      "html": "<nav style=\"width:228px;background:#fff;border-radius:28px;padding:12px 10px;\"><a class=\"ds-nav ds-nav-active\">进度看板</a><a class=\"ds-nav\">词汇</a></nav>",
+      "css": ".ds-nav { display:flex; align-items:center; gap:12px; height:46px; padding:0 14px; border-radius:999px; color:#47597C; font:500 14px/1 system-ui,sans-serif; text-decoration:none; transition:background .18s,color .18s,transform .18s; } .ds-nav:hover { color:#1E56E8; background:#EEF5FF; transform:translateY(-1px); } .ds-nav-active { color:#fff; font-weight:600; background:linear-gradient(135deg,#2A63F2,#1E56E8); box-shadow:0 8px 20px rgba(47,107,255,.30); }"
     },
     {
-      "name": "Stat Cell",
+      "name": "Stat Bubble",
       "kind": "card",
       "refersTo": "stat",
-      "description": "数据统计格：等宽大写标签 + 等宽大数字，格间 1px 缝。",
-      "html": "<div class=\"ds-stats\"><div class=\"ds-stat\"><span class=\"ds-k\">考试倒计时</span><span class=\"ds-v\">47 天</span></div></div>",
-      "css": ".ds-stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px; background:#262C36; border:1px solid #262C36; border-radius:7px; overflow:hidden; } .ds-stat { background:#12151B; padding:12px 16px; display:flex; flex-direction:column; gap:2px; } .ds-k { font:600 12px/1 ui-monospace,monospace; letter-spacing:.07em; text-transform:uppercase; color:#78828F; } .ds-v { font:650 26px/1.15 ui-monospace,monospace; font-variant-numeric:tabular-nums; color:#E8EBEF; }"
+      "description": "统计气泡：白卡轻浮 + 蓝色光斑；首颗深蓝渐变反白。",
+      "html": "<div class=\"ds-stats\"><div class=\"ds-stat ds-stat-lead\"><span class=\"ds-k\">考试倒计时</span><span class=\"ds-v\">47 天</span></div></div>",
+      "css": ".ds-stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; } .ds-stat { position:relative; overflow:hidden; display:flex; flex-direction:column; gap:4px; padding:18px 20px 16px; background:#fff; border:1px solid #E6EEFB; border-radius:22px; box-shadow:0 6px 18px rgba(31,70,160,.08); } .ds-k { font:600 12px/1 system-ui,sans-serif; color:#5C6E8C; } .ds-v { font:700 30px/1.15 system-ui,sans-serif; font-variant-numeric:tabular-nums; color:#101F3C; } .ds-stat-lead { background:linear-gradient(135deg,#2A63F2,#1E56E8 55%,#1A4DD6); border-color:transparent; box-shadow:0 14px 30px rgba(30,86,232,.30); } .ds-stat-lead .ds-k { color:rgba(255,255,255,.86); } .ds-stat-lead .ds-v { color:#fff; }"
     }
   ],
   "narrative": {
-    "northStar": "石墨矿场",
-    "overview": "每一次打卡、每一道练习、每一篇作文，都是往矿场的账本里写入一行真实记录；你的努力不靠口号，靠可回看的账目与矿脉累积。系统以深色石墨为地面，用 1px 发丝缝把信息划分为清晰的面板——像开发者控制台一样诚实、精密、可扫读。状态色是矿灯：蓝灯指路（操作）、绿灯见矿（达标）、琥珀预警（学习中）、红灯警报（破坏/错误），它们只出现在数据与状态上，绝不充当装饰。等宽数字是矿场的度量衡：所有分数、天数、倒计时都以等宽字形排布，跨面板对齐，眼睛扫过即是读数。",
+    "northStar": "白瓷气泡",
+    "overview": "晨光下的书桌：白瓷台面、一杯冰水、窗外晴朗的天。备考的每一分进度不该像报表，而该像一串浮在光里的气泡——能被按下去、弹回来。系统用白瓷地面（#F4F8FF）与天青蓝（#2F6BFF）的光构成世界，所有交互控件都是气泡：胶囊导航、圆形图标按钮、药丸标签、14 天圆点矿脉。层级只靠带偏移的柔和投影和白面抬升，不用描边分栏；数字保持等宽栅格对齐，让“今天做到哪”一眼可读。",
     "keyCharacteristics": [
-      "石墨黑地面（#0B0D10），面板靠发丝缝与单级抬升区分，无阴影堆叠",
-      "语法色仅用于状态与数据：蓝/绿/琥珀/红四种，配对应低饱和底色",
-      "所有度量用等宽数字（tabular figures），面板标题用小号大写等宽字",
-      "手绘 1.4px 笔画 SVG 线框图标，无 emoji",
-      "破坏性操作默认描边态，聚焦/悬停才显形为实心红",
-      "一个方向一个动作：rise-in 入场动效只出现在页面切换，其余状态过渡克制"
+      "白瓷地面 + 天青蓝光；胶囊顶栏、悬浮白卡侧栏、圆角面板",
+      "交互即气泡：100% 圆角、上缘高光、蓝色柔影；按下收缩、松开回弹",
+      "柔和投影（有偏移、有模糊）表达层级；1px 线只做最轻的行分隔",
+      "数字用系统无衬线 + tabular-nums；等宽只留给操作日志",
+      "语义色：蓝=进度/操作，薄荷=成功，琥珀=部分，玫红=破坏",
+      "一个入场动作（bubble-in）+ 气泡按压/悬浮微动效，尊重 reduced-motion"
     ],
     "rules": [
-      { "name": "The 矿灯 Rule", "body": "状态色只出现在数据或状态上；任何把状态色当装饰（彩色按钮墙、彩色卡片、彩色边框）都是违规。", "section": "colors" },
-      { "name": "The 发丝缝 Rule", "body": "面板之间用 1px 发丝缝与单级抬升区分，永远不用阴影堆叠层级；阴影只出现在 Toast 浮层。", "section": "elevation" },
-      { "name": "The 账本 Rule", "body": "任何数字一律等宽字形 + tabular-nums，保证跨行、跨面板对齐。", "section": "typography" },
-      { "name": "The 平面矿层 Rule", "body": "静止状态下一切表面都是平的；阴影不参与层级表达。", "section": "elevation" }
+      { "name": "The 气泡 Rule", "body": "可点击的东西必须是气泡：胶囊或圆形，带柔和投影；直角、硬边、1px 描边按钮不属于这个世界。", "section": "shapes" },
+      { "name": "The 一束光 Rule", "body": "蓝色一次只做一件事：主按钮与激活导航同为蓝色，同一屏不再出现第二种饱和色抢戏；语义色只出现在状态徽章、格子与进度上。", "section": "colors" },
+      { "name": "The 浮起 Rule", "body": "阴影必须有偏移和模糊；零偏移的彩色光环只是装饰。静止时面板轻浮，交互时气泡再抬起 1–2px。", "section": "elevation" },
+      { "name": "The 对齐 Rule", "body": "任何数字使用 tabular-nums；并排卡片的小数点与数位必须对齐。", "section": "typography" }
     ],
     "dos": [
-      "Do 用发丝缝和底色抬升表达层级，保持平面。",
-      "Do 让状态色只出现在数据与状态上，且一次一个主角。",
-      "Do 用等宽数字排布所有度量，保证跨面板对齐。",
-      "Do 破坏性操作保持描边态直到悬停/聚焦。",
-      "Do 用 12px 等宽小号大写字做面板标题与表头。"
+      "Do 用胶囊/圆形承载所有可点元素，让“可点”由形状和投影表达。",
+      "Do 用带偏移的柔和投影分层，面板轻浮、气泡可抬起。",
+      "Do 让蓝色承担操作与进度；语义色只在状态上出现。",
+      "Do 数字用 tabular-nums，并排卡片对齐。",
+      "Do 保持留白：面板之间 22px、页边 14px，宁可少放一个元素。"
     ],
     "donts": [
-      "Don't 用阴影堆叠表达面板层级。",
-      "Don't 用彩色侧边条（>1px 彩色 border-left）标记状态。",
-      "Don't 用 emoji 或 Unicode 符号代替图标——一律手绘 SVG 线框。",
-      "Don't 用渐变文字、玻璃拟态、硬偏移阴影。",
-      "Don't 用大数字+小标签的营销式 hero 指标；数据要以可扫读的面板呈现。",
-      "Don't 把状态色当装饰铺满界面。"
+      "Don't 用深色地面、发丝缝分栏或等宽大字标题（旧「石墨」世界的语言）。",
+      "Don't 用直角按钮、硬偏移阴影、1px 描边当主要层级手段。",
+      "Don't 用渐变文字或玻璃拟态装饰。",
+      "Don't 在面板里再套一层卡片；列表行只做 hover 提亮。",
+      "Don't 用 emoji 代替图标；图标一律手绘 SVG。",
+      "Don't 让状态色铺满界面或参与装饰。"
     ]
   }
 }
