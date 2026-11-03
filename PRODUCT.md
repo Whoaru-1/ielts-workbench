@@ -37,7 +37,7 @@ Confirmed capabilities:
 - Progress saved automatically to browser localStorage.
 - Full export to JSON file and import from JSON file (with validation and merge/replace choice).
 - Chinese UI.
-- Dark, modern, high-contrast dashboard visual style (user confirmed direction; no other visuals pinned).
+- White + sky-blue, light, airy visual style with bubbles as every interactive control (user confirmed direction; visual system defined in DESIGN.md).
 - A topic-organized built-in vocabulary bank (~2000 words across 12 IELTS topics: education, environment, technology, health, society, work, economy, culture, science, travel, government, media) ships with the app and merges on first load (incremental for existing users); users can add/edit/delete their own words; built-in data is labeled as non-official starter content.
 
 Technical constraints:
@@ -53,7 +53,7 @@ Undecided facts (not invented):
 ## Brand Commitments
 
 - UI language: Simplified Chinese.
-- Visual direction: 白瓷气泡 — 白 + 天青蓝的轻量界面，胶囊导航与气泡按钮，柔和投影；功能与信息密度保持不变（user-confirmed direction；visual system defined in DESIGN.md, not here）。
+- Visual direction: 白瓷气泡 — 白 + 天青蓝的轻量界面，一列独立气泡导航、浮岛/分栏布局、气泡按钮与柔和投影；功能与信息密度保持不变（user-confirmed direction；visual system defined in DESIGN.md, not here）。
 
 ## Evidence on Hand
 
@@ -69,6 +69,6 @@ No existing assets or content. Starter vocabulary list is authored as curated st
 
 ## Accessibility & Inclusion
 
-- Dark theme designed with sufficient contrast for the dashboard density.
+- Light theme (white + sky blue) checked for body-text contrast (muted text ≥ 4.5:1 on white and on pale blue surfaces).
 - Respect `prefers-reduced-motion`; all interactive controls keyboard-operable and labeled.
 - No product-specific accessibility standard was confirmed beyond these baseline choices.

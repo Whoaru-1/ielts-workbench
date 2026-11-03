@@ -6,7 +6,7 @@ import { h, panel, badge, icon } from "../ui.js";
 
 export function render(root, app) {
   root.innerHTML = "";
-  const page = h("div", { class: "page" });
+  const page = h("div", { class: "page plan-page" });
   const today = store.todayKey();
 
   page.append(
@@ -16,17 +16,19 @@ export function render(root, app) {
     )
   );
 
-  /* 今日任务 */
-  const taskPanel = panel({ title: `今日任务 · ${today}`, dot: true, body: h("div", { id: "plan-tasks" }) });
-  page.append(taskPanel);
+  /* 今日任务（左） */
+  const taskPanel = panel({ title: `今日任务 · ${today}`, dot: true, flush: true, body: h("div", { id: "plan-tasks" }) });
 
-  /* 近 14 天打卡格子 */
-  const gridPanel = panel({ title: "近 14 天打卡", body: h("div", { id: "plan-grid" }) });
-  page.append(gridPanel);
+  /* 打卡区（右）：手动打卡 + 近 14 天格子 */
+  const checkinPanel = panel({ className: "plan-checkin", title: "手动打卡", body: h("div", { id: "plan-checkin", class: "checkin-box" }) });
+  const gridPanel = panel({ className: "plan-calendar", title: "近 14 天打卡", body: h("div", { id: "plan-grid" }) });
 
-  /* 手动打卡 */
-  const checkinPanel = panel({ title: "手动打卡", body: h("div", { id: "plan-checkin", class: "checkin-box" }) });
-  page.append(checkinPanel);
+  page.append(
+    h("div", { class: "plan-grid" },
+      h("div", { class: "plan-col plan-col-main" }, taskPanel),
+      h("div", { class: "plan-col plan-col-side" }, checkinPanel, gridPanel)
+    )
+  );
 
   root.append(page);
 

@@ -1,5 +1,5 @@
 /* ============================================================
- * app.js — 应用外壳：哈希路由 / 导航 / 顶栏 / 首次种子词库
+ * app.js — 应用外壳：哈希路由 / 气泡导航 / 顶部漂浮操作
  * ============================================================ */
 import * as store from "./store.js";
 import { ICONS, toast, h, icon } from "./ui.js";
@@ -25,13 +25,13 @@ import government from "./data/topics/government.js";
 import media from "./data/topics/media.js";
 
 const ROUTES = {
-  dashboard: { label: "进度看板", icon: "dashboard", render: renderDashboard },
-  vocab: { label: "词汇", icon: "vocab", render: renderVocab },
-  practice: { label: "真题模考", icon: "practice", render: renderPractice },
-  writing: { label: "写作", icon: "writing", render: renderWriting },
-  speaking: { label: "口语", icon: "speaking", render: renderSpeaking },
-  plan: { label: "计划打卡", icon: "plan", render: renderPlan },
-  settings: { label: "设置与数据", icon: "settings", render: renderSettings },
+  dashboard: { label: "进度看板", short: "看板", icon: "dashboard", render: renderDashboard },
+  vocab: { label: "词汇", short: "词汇", icon: "vocab", render: renderVocab },
+  practice: { label: "真题模考", short: "真题", icon: "practice", render: renderPractice },
+  writing: { label: "写作", short: "写作", icon: "writing", render: renderWriting },
+  speaking: { label: "口语", short: "口语", icon: "speaking", render: renderSpeaking },
+  plan: { label: "计划打卡", short: "计划", icon: "plan", render: renderPlan },
+  settings: { label: "设置与数据", short: "设置", icon: "settings", render: renderSettings },
 };
 
 const app = {
@@ -56,61 +56,33 @@ function seedVocab() {
   localStorage.setItem("ielts-workbench:seeded2", "1");
 }
 
-/* ---------- 导航 ---------- */
+/* ---------- 导航：一列独立的气泡 ---------- */
 function buildNav() {
   const list = document.getElementById("nav-list");
+  if (!list) return;
   list.innerHTML = "";
   for (const [key, r] of Object.entries(ROUTES)) {
     if (key === "settings") continue;
-    const li = h("li", null,
-      h("a", { class: "nav-item", href: `#/${key}`, "data-nav": key, "aria-current": "page", "aria-label": r.label, title: r.label },
-        icon(r.icon), h("span", null, r.label),
-        h("span", { class: "nav-count", id: `nav-count-${key}` })
-      )
-    );
-    list.append(li);
-  }
-}
-
-/* 顶部模块下拉菜单（小屏时替代/补充侧栏） */
-function buildMenu() {
-  const menu = document.getElementById("module-menu");
-  if (!menu) return;
-  menu.innerHTML = "";
-  for (const [key, r] of Object.entries(ROUTES)) {
-    menu.append(
-      h("a", { class: "nav-item", href: `#/${key}`, "data-nav": key, "aria-label": r.label, title: r.label },
-        icon(r.icon), h("span", null, r.label),
-        h("span", { class: "nav-count", id: `menu-count-${key}` })
+    list.append(
+      h("li", null,
+        h("a", { class: "dock-item", href: `#/${key}`, "data-nav": key, "aria-label": r.label, title: r.label },
+          h("span", { class: "dock-orb" },
+            icon(r.icon),
+            h("span", { class: "dock-count", id: `nav-count-${key}`, hidden: true })
+          ),
+          h("span", { class: "dock-label" }, r.short)
+        )
       )
     );
   }
-}
-
-function wireMenu() {
-  const toggle = document.getElementById("menu-toggle");
-  const menu = document.getElementById("module-menu");
-  if (!toggle || !menu) return;
-  const setOpen = (open) => {
-    menu.hidden = !open;
-    toggle.setAttribute("aria-expanded", String(open));
-    toggle.setAttribute("aria-label", open ? "关闭模块菜单" : "打开模块菜单");
-  };
-  toggle.addEventListener("click", (e) => { e.stopPropagation(); setOpen(menu.hidden); });
-  menu.addEventListener("click", () => setOpen(false));
-  document.addEventListener("click", (e) => {
-    if (!menu.hidden && !menu.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
-  });
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape") setOpen(false); });
-  window.addEventListener("hashchange", () => setOpen(false));
 }
 
 function navCounts() {
   const set = (key, n) => {
-    for (const id of [`nav-count-${key}`, `menu-count-${key}`]) {
-      const el = document.getElementById(id);
-      if (el) { el.textContent = n > 0 ? n : ""; el.hidden = n === 0; }
-    }
+    const el = document.getElementById(`nav-count-${key}`);
+    if (!el) return;
+    el.textContent = n > 0 ? (n > 9999 ? "9k+" : String(n)) : "";
+    el.hidden = n === 0;
   };
   const v = store.vocabStats();
   set("vocab", v.total);
@@ -121,9 +93,10 @@ function navCounts() {
   set("plan", planCount);
 }
 
-/* ---------- 顶栏：连续打卡 ---------- */
+/* ---------- 顶部：连续打卡 ---------- */
 function refreshStreak() {
   const el = document.getElementById("global-streak");
+  if (!el) return;
   const n = store.streakDays();
   if (n > 0) {
     el.hidden = false;
@@ -138,10 +111,10 @@ function refreshChrome() {
   navCounts();
 }
 
-/* 模块内派发的全局 chrome 刷新（如计划页打卡后联动顶栏连续天数） */
+/* 模块内派发的全局 chrome 刷新（如计划页打卡后联动顶部连续天数） */
 document.addEventListener("app-refresh-chrome", refreshChrome);
 
-/* ---------- 导出 / 导入（顶栏） ---------- */
+/* ---------- 导出 / 导入（顶部漂浮按钮） ---------- */
 function wireTopbar() {
   document.getElementById("btn-export").addEventListener("click", () => {
     const name = `ielts-progress-${store.todayKey()}.json`;
@@ -175,7 +148,7 @@ function renderRoute() {
   const main = document.getElementById("main");
   main.scrollTop = 0;
   route.render(main, app);
-  document.querySelectorAll(".nav-item").forEach((el) => {
+  document.querySelectorAll(".dock-item").forEach((el) => {
     const active = el.dataset.nav === key;
     el.classList.toggle("is-active", active);
     if (active) el.setAttribute("aria-current", "page");
@@ -187,8 +160,6 @@ function renderRoute() {
 /* ---------- 启动 ---------- */
 seedVocab();
 buildNav();
-buildMenu();
-wireMenu();
 wireTopbar();
 refreshChrome();
 window.addEventListener("hashchange", renderRoute);

@@ -4,34 +4,211 @@
   "title": "Design System: IELTS 工作台 · 白瓷气泡",
   "extensions": {
     "colorMeta": {
-      "accent": { "role": "primary", "displayName": "天青蓝", "canonical": "#2F6BFF", "tonalRamp": ["#EAF2FF", "#DCEAFF", "#BCD5FF", "#8FB6FF", "#5E97FF", "#3D7BFF", "#2A63F2", "#1E56E8"] },
-      "accent-deep": { "role": "primary", "displayName": "深天青", "canonical": "#1E56E8", "tonalRamp": ["#EAF2FF", "#C9DBFF", "#A6C3FF", "#7FA8FF", "#5488FF", "#3A6FF5", "#245FEF", "#1E56E8"] },
-      "ok": { "role": "secondary", "displayName": "薄荷", "canonical": "#12BFA0", "tonalRamp": ["#E4FBF5", "#C4F5E8", "#93EDD6", "#5FE2C2", "#2FD3AC", "#12BFA0", "#0D9A80", "#067A66"] },
-      "warn": { "role": "secondary", "displayName": "琥珀", "canonical": "#F5A623", "tonalRamp": ["#FFF4E0", "#FFE7BF", "#FFD28F", "#FFBC5C", "#F9AC38", "#F5A623", "#D0840F", "#A85B00"] },
-      "bad": { "role": "secondary", "displayName": "玫红", "canonical": "#F0576E", "tonalRamp": ["#FFEDF0", "#FFD4DA", "#FFB4BF", "#FF8E9E", "#FA6E83", "#F0576E", "#DE3B54", "#C4304C"] },
-      "ground": { "role": "neutral", "displayName": "白瓷", "canonical": "#F4F8FF", "tonalRamp": ["#FFFFFF", "#F7FAFF", "#F4F8FF", "#EEF5FF", "#E6EEFB", "#D3E2F7", "#47597C", "#101F3C"] },
-      "surface": { "role": "neutral", "displayName": "纯白", "canonical": "#FFFFFF", "tonalRamp": ["#FFFFFF", "#FCFDFF", "#F7FAFF", "#EEF5FF", "#E6EEFB", "#D3E2F7", "#647694", "#101F3C"] },
-      "ink": { "role": "neutral", "displayName": "墨蓝", "canonical": "#101F3C", "tonalRamp": ["#101F3C", "#1C2C4D", "#2B3C60", "#3C4E72", "#4E6086", "#64769A", "#8595B3", "#EAF2FF"] },
-      "ink-muted": { "role": "neutral", "displayName": "弱化文本", "canonical": "#5C6E8C", "tonalRamp": ["#5C6E8C", "#6E809D", "#8292AD", "#98A6BD", "#B0BCCC", "#C8D2DE", "#E0E7F0", "#F7FAFF"] }
+      "accent": {
+        "role": "primary",
+        "displayName": "天青蓝",
+        "canonical": "#2F6BFF",
+        "tonalRamp": [
+          "#EAF2FF",
+          "#DCEAFF",
+          "#BCD5FF",
+          "#8FB6FF",
+          "#5E97FF",
+          "#3D7BFF",
+          "#2A63F2",
+          "#1E56E8"
+        ]
+      },
+      "accent-deep": {
+        "role": "primary",
+        "displayName": "深天青",
+        "canonical": "#1E56E8",
+        "tonalRamp": [
+          "#EAF2FF",
+          "#C9DBFF",
+          "#A6C3FF",
+          "#7FA8FF",
+          "#5488FF",
+          "#3A6FF5",
+          "#245FEF",
+          "#1E56E8"
+        ]
+      },
+      "ok": {
+        "role": "secondary",
+        "displayName": "薄荷",
+        "canonical": "#12BFA0",
+        "tonalRamp": [
+          "#E4FBF5",
+          "#C4F5E8",
+          "#93EDD6",
+          "#5FE2C2",
+          "#2FD3AC",
+          "#12BFA0",
+          "#0D9A80",
+          "#067A66"
+        ]
+      },
+      "warn": {
+        "role": "secondary",
+        "displayName": "琥珀",
+        "canonical": "#F5A623",
+        "tonalRamp": [
+          "#FFF4E0",
+          "#FFE7BF",
+          "#FFD28F",
+          "#FFBC5C",
+          "#F9AC38",
+          "#F5A623",
+          "#D0840F",
+          "#A85B00"
+        ]
+      },
+      "bad": {
+        "role": "secondary",
+        "displayName": "玫红",
+        "canonical": "#F0576E",
+        "tonalRamp": [
+          "#FFEDF0",
+          "#FFD4DA",
+          "#FFB4BF",
+          "#FF8E9E",
+          "#FA6E83",
+          "#F0576E",
+          "#DE3B54",
+          "#C4304C"
+        ]
+      },
+      "ground": {
+        "role": "neutral",
+        "displayName": "白瓷",
+        "canonical": "#F4F8FF",
+        "tonalRamp": [
+          "#FFFFFF",
+          "#F7FAFF",
+          "#F4F8FF",
+          "#EEF5FF",
+          "#E6EEFB",
+          "#D3E2F7",
+          "#47597C",
+          "#101F3C"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "纯白",
+        "canonical": "#FFFFFF",
+        "tonalRamp": [
+          "#FFFFFF",
+          "#FCFDFF",
+          "#F7FAFF",
+          "#EEF5FF",
+          "#E6EEFB",
+          "#D3E2F7",
+          "#647694",
+          "#101F3C"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "墨蓝",
+        "canonical": "#101F3C",
+        "tonalRamp": [
+          "#101F3C",
+          "#1C2C4D",
+          "#2B3C60",
+          "#3C4E72",
+          "#4E6086",
+          "#64769A",
+          "#8595B3",
+          "#EAF2FF"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "弱化文本",
+        "canonical": "#5C6E8C",
+        "tonalRamp": [
+          "#5C6E8C",
+          "#6E809D",
+          "#8292AD",
+          "#98A6BD",
+          "#B0BCCC",
+          "#C8D2DE",
+          "#E0E7F0",
+          "#F7FAFF"
+        ]
+      }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "模块页大标题，700 / 30px / -0.03em。" },
-      "data": { "displayName": "Data", "purpose": "统计数字，700 / 30px / tabular-nums，系统无衬线。" },
-      "micro": { "displayName": "Micro", "purpose": "徽章、表头、日期，11.5–12px / 600。" }
+      "display": {
+        "displayName": "Display",
+        "purpose": "模块页大标题，700 / 30px / -0.03em。"
+      },
+      "data": {
+        "displayName": "Data",
+        "purpose": "统计数字，700 / 30px / tabular-nums，系统无衬线。"
+      },
+      "micro": {
+        "displayName": "Micro",
+        "purpose": "徽章、表头、日期，11.5–12px / 600。"
+      }
     },
     "shadows": [
-      { "name": "surface", "value": "0 6px 18px rgba(31,70,160,0.08)", "purpose": "面板与悬浮导航卡的静止轻浮。" },
-      { "name": "float", "value": "0 16px 40px rgba(31,70,160,0.13)", "purpose": "弹层、Toast、手机底栏。" },
-      { "name": "bubble", "value": "0 8px 20px rgba(47,107,255,0.30)", "purpose": "主按钮/激活导航的蓝色柔影。" }
+      {
+        "name": "surface",
+        "value": "0 6px 18px rgba(31,70,160,0.08)",
+        "purpose": "面板与悬浮导航卡的静止轻浮。"
+      },
+      {
+        "name": "float",
+        "value": "0 16px 40px rgba(31,70,160,0.13)",
+        "purpose": "弹层、Toast、手机底栏。"
+      },
+      {
+        "name": "bubble",
+        "value": "0 8px 20px rgba(47,107,255,0.30)",
+        "purpose": "主按钮/激活导航的蓝色柔影。"
+      }
     ],
     "motion": [
-      { "name": "ease-spring", "value": "cubic-bezier(0.2, 0.9, 0.25, 1.1)", "purpose": "气泡按压与悬浮回弹。" },
-      { "name": "bubble-in", "value": "translateY(12px) scale(.99) blur(3px) → none, 0.5s", "purpose": "页面切换时子元素的单一入场动效。" }
+      {
+        "name": "ease-spring",
+        "value": "cubic-bezier(0.2, 0.9, 0.25, 1.1)",
+        "purpose": "气泡按压与悬浮回弹。"
+      },
+      {
+        "name": "bubble-in",
+        "value": "translateY(12px) scale(.99) blur(3px) → none, 0.5s",
+        "purpose": "页面切换时子元素的单一入场动效。"
+      }
     ],
     "breakpoints": [
-      { "name": "tablet", "value": "860px", "purpose": "侧栏收成 76px 悬浮图标栏。" },
-      { "name": "mobile", "value": "640px", "purpose": "导航变底部悬浮胶囊，内容单列。" },
-      { "name": "small", "value": "380px", "purpose": "收起品牌副标，统计单列。" }
+      {
+        "name": "tablet",
+        "value": "1080px",
+        "purpose": "看板 bento 与计划两栏塌成单列。"
+      },
+      {
+        "name": "iconDock",
+        "value": "860px",
+        "purpose": "气泡导航收成 62px 图标列并隐藏标签。"
+      },
+      {
+        "name": "mobile",
+        "value": "640px",
+        "purpose": "导航变底部悬浮药丸栏，内容单列。"
+      },
+      {
+        "name": "small",
+        "value": "560px",
+        "purpose": "模块气泡块单列。"
+      },
+      {
+        "name": "tiny",
+        "value": "380px",
+        "purpose": "收起品牌副标、小统计单列。"
+      }
     ]
   },
   "components": [
@@ -98,6 +275,27 @@
       "description": "统计气泡：白卡轻浮 + 蓝色光斑；首颗深蓝渐变反白。",
       "html": "<div class=\"ds-stats\"><div class=\"ds-stat ds-stat-lead\"><span class=\"ds-k\">考试倒计时</span><span class=\"ds-v\">47 天</span></div></div>",
       "css": ".ds-stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; } .ds-stat { position:relative; overflow:hidden; display:flex; flex-direction:column; gap:4px; padding:18px 20px 16px; background:#fff; border:1px solid #E6EEFB; border-radius:22px; box-shadow:0 6px 18px rgba(31,70,160,.08); } .ds-k { font:600 12px/1 system-ui,sans-serif; color:#5C6E8C; } .ds-v { font:700 30px/1.15 system-ui,sans-serif; font-variant-numeric:tabular-nums; color:#101F3C; } .ds-stat-lead { background:linear-gradient(135deg,#2A63F2,#1E56E8 55%,#1A4DD6); border-color:transparent; box-shadow:0 14px 30px rgba(30,86,232,.30); } .ds-stat-lead .ds-k { color:rgba(255,255,255,.86); } .ds-stat-lead .ds-v { color:#fff; }"
+    },
+    {
+      "name": "Bubble Dock",
+      "kind": "nav",
+      "description": "左侧一列独立圆形导航气泡；激活态为蓝色渐变气泡，计数为右上小药丸。",
+      "html": "<nav class=\"dock\"><a class=\"dock-item is-active\"><span class=\"dock-orb\">▣</span><span class=\"dock-label\">看板</span></a></nav>",
+      "css": ".dock { display:flex; flex-direction:column; align-items:center; gap:5px; width:76px; } .dock-item { display:flex; flex-direction:column; align-items:center; gap:5px; width:100%; color:#5C6E8C; text-decoration:none; } .dock-orb { position:relative; display:grid; place-items:center; width:48px; height:48px; border-radius:50%; background:#fff; border:1px solid rgba(230,238,251,.9); box-shadow:0 6px 18px rgba(31,70,160,.08); transition:transform .22s cubic-bezier(.2,.9,.25,1.1),box-shadow .22s; } .dock-item:hover .dock-orb { transform:translateY(-3px); box-shadow:0 16px 40px rgba(31,70,160,.13); } .dock-item.is-active { color:#1E56E8; } .dock-item.is-active .dock-orb { color:#fff; border-color:transparent; background:linear-gradient(135deg,#2A63F2,#1E56E8); box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 10px 22px rgba(47,107,255,.34); } .dock-label { font-size:10.5px; font-weight:600; }"
+    },
+    {
+      "name": "Countdown Bubble",
+      "kind": "card",
+      "description": "看板主视觉：3 栏宽蓝色渐变卡，66px 倒计时数字，右上两颗半透明泡泡做景深。",
+      "html": "<section class=\"countdown-card\"><span class=\"cd-k\">考试倒计时</span><div class=\"cd-figure\"><span class=\"cd-num\">142</span><span class=\"cd-unit\">天</span></div><p class=\"cd-meta\">考试日 · 2027-03-01 · 目标 6.5 分</p></section>",
+      "css": ".countdown-card { display:flex; flex-direction:column; gap:8px; padding:22px 26px 20px; border-radius:28px; color:#fff; background:linear-gradient(135deg,#2F6BFF,#245FEF 52%,#1B4FDB); box-shadow:0 18px 38px rgba(30,86,232,.26),inset 0 1px 0 rgba(255,255,255,.35); overflow:hidden; } .cd-num { font-size:66px; font-weight:700; line-height:.96; letter-spacing:-.045em; font-variant-numeric:tabular-nums; } .cd-unit { font-size:18px; font-weight:600; color:rgba(255,255,255,.88); }"
+    },
+    {
+      "name": "Module Bubble Tile",
+      "kind": "link",
+      "description": "看板里的模块入口：圆图标 + 名称/数值 + 进度条，整块可点；奇数尾块横跨整行。",
+      "html": "<a class=\"bubble-tile\" href=\"#/vocab\"><span class=\"bt-orb\">▤</span><span class=\"bt-main\"><span class=\"bt-name\">词汇</span><span class=\"bt-val\">0/1976 已掌握</span><span class=\"bt-bar\"><span class=\"bt-fill\" style=\"--p:.1\"></span></span></span></a>",
+      "css": ".bubble-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; } .bubble-tile { display:grid; grid-template-columns:40px minmax(0,1fr); align-items:center; gap:12px; padding:13px 15px; border-radius:22px; background:#F7FAFF; color:#101F3C; text-decoration:none; transition:background .18s,transform .22s,box-shadow .22s; } .bubble-tile:hover { background:#fff; transform:translateY(-2px); box-shadow:0 6px 18px rgba(31,70,160,.08); } .bt-orb { display:grid; place-items:center; width:40px; height:40px; border-radius:50%; background:#EAF2FF; color:#1E56E8; } .bt-bar { height:5px; border-radius:999px; background:#EEF5FF; overflow:hidden; } .bt-fill { display:block; height:100%; border-radius:inherit; background:linear-gradient(90deg,#5E97FF,#2F6BFF); transform:scaleX(var(--p,0)); transform-origin:left center; }"
     }
   ],
   "narrative": {
@@ -112,10 +310,26 @@
       "一个入场动作（bubble-in）+ 气泡按压/悬浮微动效，尊重 reduced-motion"
     ],
     "rules": [
-      { "name": "The 气泡 Rule", "body": "可点击的东西必须是气泡：胶囊或圆形，带柔和投影；直角、硬边、1px 描边按钮不属于这个世界。", "section": "shapes" },
-      { "name": "The 一束光 Rule", "body": "蓝色一次只做一件事：主按钮与激活导航同为蓝色，同一屏不再出现第二种饱和色抢戏；语义色只出现在状态徽章、格子与进度上。", "section": "colors" },
-      { "name": "The 浮起 Rule", "body": "阴影必须有偏移和模糊；零偏移的彩色光环只是装饰。静止时面板轻浮，交互时气泡再抬起 1–2px。", "section": "elevation" },
-      { "name": "The 对齐 Rule", "body": "任何数字使用 tabular-nums；并排卡片的小数点与数位必须对齐。", "section": "typography" }
+      {
+        "name": "The 气泡 Rule",
+        "body": "可点击的东西必须是气泡：胶囊或圆形，带柔和投影；直角、硬边、1px 描边按钮不属于这个世界。",
+        "section": "shapes"
+      },
+      {
+        "name": "The 一束光 Rule",
+        "body": "蓝色一次只做一件事：主按钮与激活导航同为蓝色，同一屏不再出现第二种饱和色抢戏；语义色只出现在状态徽章、格子与进度上。",
+        "section": "colors"
+      },
+      {
+        "name": "The 浮起 Rule",
+        "body": "阴影必须有偏移和模糊；零偏移的彩色光环只是装饰。静止时面板轻浮，交互时气泡再抬起 1–2px。",
+        "section": "elevation"
+      },
+      {
+        "name": "The 对齐 Rule",
+        "body": "任何数字使用 tabular-nums；并排卡片的小数点与数位必须对齐。",
+        "section": "typography"
+      }
     ],
     "dos": [
       "Do 用胶囊/圆形承载所有可点元素，让“可点”由形状和投影表达。",

@@ -68,8 +68,8 @@ export function toast(msg, kind = "") {
   setTimeout(() => node.remove(), 3200);
 }
 
-export function panel({ title, dot = true, actions = "", body, flush = false }) {
-  return h("section", { class: "panel" },
+export function panel({ title, dot = true, actions = "", body, flush = false, className = "" }) {
+  return h("section", { class: `panel${className ? ` ${className}` : ""}` },
     h("div", { class: "panel-head" },
       h("h2", { class: "panel-title" }, dot ? h("span", { class: "dot" }) : "", title),
       h("div", { class: "panel-actions" }, actions ? actions : "")
