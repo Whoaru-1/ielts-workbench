@@ -1,0 +1,10 @@
+# Cloud Studio 预览配置：工作目录必须是项目根（./），
+# 否则 python http.server 会把文件系统根目录当成网站根，预览只显示目录列表、静态资源 404。
+autoOpen: true
+apps:
+  - port: 3000
+    run: python3 -m http.server 3000
+    root: ./
+    name: ielts-workbench
+    description: IELTS 工作台（纯静态站）
+    autoOpen: true
