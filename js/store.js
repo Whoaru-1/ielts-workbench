@@ -21,6 +21,7 @@ const emptyState = () => ({
   speaking: [],     // {id, date, part:1|2|3, topic, notes, score}
   speakingBank: { practiced: {} }, // {'questionId': ISO时间}
   writingBank: { practiced: {} },  // {'questionId': ISO时间}
+  materials: [],    // 个人素材：{id, title, type, rawInput, points[], keywords[], topics[], english{}, lexical[], collocations[], frames[], outline[], confidence, mergedFrom[], mergeNote, createdAt, updatedAt}
   mistakes: [],     // {id, module:'listening'|'reading', qtype, note, date}
   tasks: {},        // {'YYYY-MM-DD': [{id, text, done}]}
   checkins: {},     // {'YYYY-MM-DD': true}
@@ -315,6 +316,72 @@ export function writingPracticedCount() {
   return Object.keys(state.writingBank?.practiced || {}).length;
 }
 
+/* ---------- 个人素材库 ---------- */
+
+/** 按更新时间倒序返回素材 */
+export function materialsList() {
+  return [...(state.materials || [])].sort((a, b) => String(b.updatedAt || "").localeCompare(String(a.updatedAt || "")));
+}
+
+export function getMaterial(id) {
+  return (state.materials || []).find((m) => m.id === id) || null;
+}
+
+/** 新增或更新一条素材；返回保存后的完整对象 */
+export function saveMaterial(m) {
+  state.materials ??= [];
+  const now = new Date().toISOString();
+  const idx = state.materials.findIndex((x) => x.id === m.id);
+  if (idx >= 0) {
+    const prev = state.materials[idx];
+    state.materials[idx] = {
+      ...prev,
+      ...m,
+      id: prev.id,
+      createdAt: prev.createdAt || m.createdAt || now,
+      updatedAt: now,
+    };
+    addLog("素材", `更新素材「${state.materials[idx].title}」`);
+    save();
+    return state.materials[idx];
+  }
+  const item = { ...m, id: m.id || uid(), createdAt: m.createdAt || now, updatedAt: now };
+  state.materials.unshift(item);
+  addLog("素材", `新增素材「${item.title}」`, "ok");
+  save();
+  return item;
+}
+
+export function deleteMaterial(id) {
+  const m = getMaterial(id);
+  state.materials = (state.materials || []).filter((x) => x.id !== id);
+  if (m) addLog("素材", `删除素材「${m.title}」`, "bad");
+  save();
+}
+
+/** 素材库为空时写入演示素材；返回写入条数 */
+export function seedMaterials(list) {
+  if ((state.materials || []).length) return 0;
+  const now = new Date().toISOString();
+  const items = (list || []).map((m) => ({ ...m, id: m.id || uid(), createdAt: m.createdAt || now, updatedAt: m.updatedAt || now }));
+  if (!items.length) return 0;
+  state.materials = items;
+  addLog("素材", `载入 ${items.length} 条演示素材`, "ok");
+  save();
+  return items.length;
+}
+
+export function materialStats() {
+  const list = state.materials || [];
+  const topics = {};
+  let merged = 0;
+  for (const m of list) {
+    for (const t of m.topics || []) topics[t.id] = (topics[t.id] || 0) + 1;
+    if (m.mergedFrom && m.mergedFrom.length) merged++;
+  }
+  return { total: list.length, topicCount: Object.keys(topics).length, topics, merged };
+}
+
 /* ---------- 听读错题本 ---------- */
 
 export function addMistake({ module, qtype = "", note = "" }) {
@@ -451,16 +518,19 @@ export function importMerge(incoming) {
   src.practices = dedupe(src.practices);
   src.writing = dedupe(src.writing);
   src.speaking = dedupe(src.speaking);
+  src.materials = dedupe(src.materials || []);
   const oldIds = {
     vocab: new Set(state.vocab.map((x) => x.id)),
     practices: new Set(state.practices.map((x) => x.id)),
     writing: new Set(state.writing.map((x) => x.id)),
     speaking: new Set(state.speaking.map((x) => x.id)),
+    materials: new Set((state.materials || []).map((x) => x.id)),
   };
   state.vocab = [...state.vocab, ...src.vocab.filter((x) => !oldIds.vocab.has(x.id))];
   state.practices = [...state.practices, ...src.practices.filter((x) => !oldIds.practices.has(x.id))];
   state.writing = [...state.writing, ...src.writing.filter((x) => !oldIds.writing.has(x.id))];
   state.speaking = [...state.speaking, ...src.speaking.filter((x) => !oldIds.speaking.has(x.id))];
+  state.materials = [...(state.materials || []), ...src.materials.filter((x) => !oldIds.materials.has(x.id))];
   state.tasks = { ...src.tasks, ...state.tasks };
   state.checkins = { ...src.checkins, ...state.checkins };
   state.log = [...src.log, ...state.log].slice(0, LOG_CAP);

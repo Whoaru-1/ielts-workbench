@@ -8,6 +8,7 @@ import { render as renderVocab } from "./modules/vocab.js";
 import { render as renderPractice } from "./modules/practice.js";
 import { render as renderWriting } from "./modules/writing.js";
 import { render as renderSpeaking } from "./modules/speaking.js";
+import { render as renderMaterials } from "./modules/materials.js";
 import { render as renderPlan } from "./modules/plan.js";
 import { render as renderSettings } from "./modules/settings.js";
 import { STARTER_VOCAB } from "./data/starter-vocab.js";
@@ -30,6 +31,7 @@ const ROUTES = {
   practice: { label: "真题模考", short: "真题", icon: "practice", render: renderPractice },
   writing: { label: "写作", short: "写作", icon: "writing", render: renderWriting },
   speaking: { label: "口语", short: "口语", icon: "speaking", render: renderSpeaking },
+  materials: { label: "个人素材", short: "素材", icon: "material", render: renderMaterials },
   plan: { label: "计划打卡", short: "计划", icon: "plan", render: renderPlan },
   settings: { label: "设置与数据", short: "设置", icon: "settings", render: renderSettings },
 };
@@ -89,6 +91,7 @@ function navCounts() {
   set("practice", store.practiceStats().total);
   set("writing", store.writingList().length);
   set("speaking", store.speakingList().length);
+  set("materials", store.materialStats().total);
   const planCount = Object.values(store.rawState().tasks).reduce((a, t) => a + t.length, 0);
   set("plan", planCount);
 }
