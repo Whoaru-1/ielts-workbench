@@ -1,13 +1,15 @@
 {
   "name": "ielts-workbench",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "type": "module",
   "description": "本地优先的雅思备考工作台（纯静态，无构建、无运行时依赖）",
   "scripts": {
-    "check": "node scripts/verify-speaking.mjs && node scripts/selftest-materials.mjs",
+    "check": "node scripts/verify-speaking.mjs && node scripts/selftest-materials.mjs && node scripts/test-agent.mjs",
     "serve": "python3 -m http.server 4173",
     "deploy:check": "node scripts/check-deploy.mjs",
-    "deploy:cloudbase": "bash scripts/deploy-cloudbase.sh"
+    "deploy:cloudbase": "bash scripts/deploy-cloudbase.sh",
+    "test:agent": "node scripts/test-agent.mjs",
+    "mock:llm": "node scripts/mock-llm.mjs"
   }
 }

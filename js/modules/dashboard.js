@@ -63,6 +63,10 @@ export function render(root, app) {
   const w = store.writingList().length;
   const sp = store.speakingList().length;
   const mat = store.materialStats();
+  const agentReady = (() => {
+    try { return Boolean(JSON.parse(localStorage.getItem("ielts-workbench:agent-config-v1") || "{}").apiKey); }
+    catch { return false; }
+  })();
   const planDone = Object.values(store.rawState().tasks).reduce((a, t) => a + t.filter((x) => x.done).length, 0);
   const tiles = [
     { key: "vocab", name: "词汇", icon: "vocab", value: `${v.mastered}/${v.total} 已掌握`, pct: v.total ? (v.mastered / v.total) * 100 : 0 },
@@ -70,6 +74,7 @@ export function render(root, app) {
     { key: "writing", name: "写作", icon: "writing", value: `${w} 篇记录`, pct: w ? 100 : 0 },
     { key: "speaking", name: "口语", icon: "speaking", value: `${sp} 条记录`, pct: sp ? 100 : 0 },
     { key: "materials", name: "个人素材", icon: "material", value: `${mat.total} 条素材 · ${mat.topicCount} 个主题`, pct: mat.total ? 100 : 0 },
+    { key: "agent", name: "AI 助手", icon: "agent", value: agentReady ? "模型已配置 · 可调用工具" : "待配置 API Key", pct: agentReady ? 100 : 0 },
     { key: "plan", name: "计划打卡", icon: "plan", value: `${planDone} 个任务已完成`, pct: planDone ? 100 : 0 },
   ];
   const modulePanel = panel({

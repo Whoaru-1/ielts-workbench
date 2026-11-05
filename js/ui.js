@@ -28,6 +28,7 @@ export const ICONS = {
   arrowUp: `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 12V4m0 0L4.6 7.4M8 4l3.4 3.4" ${STROKE}/></svg>`,
   box: `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.6 5.2L8 2.4l5.4 2.8v5.6L8 13.6l-5.4-2.8z" ${STROKE}/><path d="M2.6 5.2L8 8l5.4-2.8M8 8v5.6" ${STROKE}/></svg>`,
   material: `<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2.4" y="4.8" width="8" height="9" rx="1.4" ${STROKE}/><path d="M4.6 4.8V3a1 1 0 0 1 1-1h7.1a1 1 0 0 1 1 1v6.9a1 1 0 0 1-1 1h-1.6" ${STROKE}/><path d="M4.7 7.8h3.4M4.7 10.4h2.4" ${STROKE}/></svg>`,
+  agent: `<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2.8" y="5.4" width="9.4" height="7.2" rx="2" ${STROKE}/><path d="M7.5 3.2v2.2" ${STROKE}/><circle cx="7.5" cy="2.6" r=".7" ${STROKE}/><path d="M5.5 8.6v.01M9.5 8.6v.01M5.9 10.6c.9.6 2.3.6 3.2 0" ${STROKE}/><path d="M12.2 7.6h1.2a1 1 0 0 1 1 1v1.6a1 1 0 0 1-1 1h-1.2" ${STROKE}/></svg>`,
 };
 
 export function icon(name, cls = "") {

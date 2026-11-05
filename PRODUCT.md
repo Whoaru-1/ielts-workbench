@@ -33,8 +33,9 @@ An all-in-one, local-first IELTS preparation dashboard: all six study modules li
 
 Confirmed capabilities:
 
-- Seven modules: 词汇 (vocabulary), 真题模考与练习 (practice & mock results), 写作 (writing records), 口语 (speaking records + 480-question bank with 150 fresh 2025–2026 recall questions), 个人素材 (personal material studio: local keyword/topic engine that turns notes into P1/P2/P3 material, matches real exam questions, and folds near-duplicate materials together), 学习计划与打卡 (daily plan & streaks), 成绩与进度看板 (dashboard).
+- Eight modules: 词汇 (vocabulary), 真题模考与练习 (practice & mock results), 写作 (writing records), 口语 (speaking records + 480-question bank with 150 fresh 2025–2026 recall questions), 个人素材 (personal material studio: local keyword/topic engine that turns notes into P1/P2/P3 material, matches real exam questions, and folds near-duplicate materials together), AI 助手 (in-site agent with tools for progress, vocab, speaking bank, materials, tasks and practice logs), 学习计划与打卡 (daily plan & streaks), 成绩与进度看板 (dashboard).
 - Progress saved automatically to browser localStorage (including personal materials).
+- The AI assistant is BYOK: the user supplies an OpenAI-compatible endpoint and key; the key stays in browser localStorage and is never part of export JSON.
 - Personal materials are generated fully offline by a rule-based bilingual engine (topic identification, keyword extraction, English scaffolding, similarity clustering); no network call, no LLM claim — UI labels it as a scaffold to adapt.
 - Full export to JSON file and import from JSON file (with validation and merge/replace choice).
 - Chinese UI.
