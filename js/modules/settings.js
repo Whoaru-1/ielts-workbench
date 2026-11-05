@@ -79,7 +79,8 @@ export function render(root, app) {
     title: "关于",
     body: h("div", { class: "about" },
       h("p", null, "IELTS 工作台 · 本地优先的雅思备考控制台。数据保存在当前浏览器的 localStorage，不经过任何服务器；换设备请使用「导出 / 导入」。"),
-      h("p", { class: "about-sub" }, "内置 2000+ 分话题词库（12 大雅思话题，非官方词表，可自由修改）；真题练习为自记录模式，估分映射仅供参考。")
+      h("p", { class: "about-sub" }, "内置 2000+ 分话题词库（12 大雅思话题，非官方词表，可自由修改）；真题练习为自记录模式，估分映射仅供参考。"),
+      versionLine()
     ),
   }));
 
@@ -141,4 +142,22 @@ export function render(root, app) {
 
 function field(labelText, input) {
   return h("div", { class: "field" }, h("label", null, labelText), input);
+}
+
+/* ---------- 部署自检：显示当前站点实际加载的版本 ---------- */
+
+function versionLine() {
+  const line = h("p", { class: "about-sub", id: "about-version" }, "部署自检：读取版本信息…");
+  const paint = (text) => { if (line.isConnected) line.textContent = text; };
+  fetch(`version.json?t=${Date.now()}`, { cache: "no-store" })
+    .then((r) => (r.ok ? r.json() : null))
+    .then((v) => {
+      if (!v || !v.version) {
+        paint("部署自检：未找到 version.json —— 当前站点大概率是旧副本，请重新拉取 / 重新部署。");
+        return;
+      }
+      paint(`部署自检：v${v.version} · ${v.build || "未知日期"}${v.notes ? " · " + v.notes : ""} —— 若与 GitHub 最新提交不一致，说明尚未同步。`);
+    })
+    .catch(() => paint("部署自检：无法读取 version.json（本地 file:// 打开或尚未部署），无法判断是否为最新版本。"));
+  return line;
 }

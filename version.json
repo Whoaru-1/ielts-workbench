@@ -1,0 +1,7 @@
+{
+  "name": "IELTS 工作台",
+  "version": "1.1.0",
+  "build": "2026-11-05",
+  "modules": ["dashboard", "vocab", "practice", "writing", "speaking", "materials", "plan", "settings"],
+  "notes": "口语题库 480 题（含 150 道 2025–2026 新题）+ 个人素材模块"
+}

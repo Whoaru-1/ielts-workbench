@@ -6,6 +6,7 @@
   "description": "本地优先的雅思备考工作台（纯静态，无构建、无运行时依赖）",
   "scripts": {
     "check": "node scripts/verify-speaking.mjs && node scripts/selftest-materials.mjs",
-    "serve": "python3 -m http.server 4173"
+    "serve": "python3 -m http.server 4173",
+    "deploy:check": "node scripts/check-deploy.mjs"
   }
 }
