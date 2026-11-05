@@ -7,6 +7,7 @@
   "scripts": {
     "check": "node scripts/verify-speaking.mjs && node scripts/selftest-materials.mjs",
     "serve": "python3 -m http.server 4173",
-    "deploy:check": "node scripts/check-deploy.mjs"
+    "deploy:check": "node scripts/check-deploy.mjs",
+    "deploy:cloudbase": "bash scripts/deploy-cloudbase.sh"
   }
 }

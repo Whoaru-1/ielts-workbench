@@ -114,6 +114,62 @@ npm run deploy:check -- https://你的站点地址
 
 ---
 
+## CloudBase CLI：安装、登录与部署
+
+### 1. 安装（不需要 sudo）
+
+```bash
+mkdir -p ~/.local
+npm i -g --prefix ~/.local @cloudbase/cli
+export PATH="$HOME/.local/bin:$PATH"   # 建议写进 ~/.zshrc
+cloudbase --version                    # CloudBase CLI 3.x
+```
+
+> npm 走代理时加：`HTTPS_PROXY=http://127.0.0.1:7890 npm i -g --prefix ~/.local @cloudbase/cli`。
+> CLI 3.x 的命令是 `cloudbase`（旧文档里叫 `tcb`，两者等价）。
+
+### 2. 登录（三选一）
+
+```bash
+cloudbase login                       # 推荐：浏览器/设备码授权，无需暴露密钥
+cloudbase login -k                    # 交互式输入 SecretId / SecretKey
+cloudbase login --apiKeyId <SecretId> --apiKey <SecretKey>   # 非交互（CI / 脚本）
+cloudbase login --cloudbase-api-key <环境 API Key> -e <envId>
+cloudbase logout                      # 退出并清除本机凭据
+```
+
+- 凭据保存在 `~/.config/.cloudbase/auth.json`（权限 600），**不要提交到 Git、不要发到聊天里**。
+- SecretId/SecretKey 在腾讯云控制台 → 访问管理 CAM → API 密钥管理创建；SecretKey 只显示一次。
+- 登录后 `cloudbase env:list` 查看环境，`cloudbase env:list --region ap-singapore` 可查其他地域。
+
+### 3. 一键部署（本项目）
+
+```bash
+npm run deploy:cloudbase               # 自动生成干净目录 → 上传 → 校验线上版本
+DRY_RUN=1 npm run deploy:cloudbase     # 只准备文件，不上传
+```
+
+默认部署到环境 `ladygaga-d2gssg68j01d8906b` 的 **`/ielts/`** 子路径（这是当前线上站点实际使用的路径，不是根目录）。可用环境变量覆盖：
+
+```bash
+CLOUDBASE_ENV_ID=xxx CLOUDBASE_PATH=ielts \
+CLOUDBASE_SITE_URL=https://xxx.tcloudbaseapp.com npm run deploy:cloudbase
+```
+
+也可以手动执行：
+
+```bash
+cloudbase hosting deploy ./dist ielts -e <envId> --verify
+cloudbase hosting list /ielts -e <envId>
+npm run deploy:check -- https://<默认域名>/ielts
+```
+
+### 4. 默认域名的「风险提醒」是正常的
+
+`*.tcloudbaseapp.com` 是腾讯云的**测试默认域名**：浏览器首次访问会先出现「风险提醒」中间页（点「确定访问」后进入），非页面导航请求会带 `Content-Disposition: attachment`（用 curl 看到附件头是正常现象）。要去掉中间页/附件头，需要绑定**已完成 ICP 备案的自定义域名**。详见 [默认域名访问限制及中间页](https://docs.cloudbase.net/service/alias)。
+
+---
+
 ## 推送 GitHub
 
 ```bash
